@@ -164,6 +164,19 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201410171225078_InitialCreate.cs" />
+    <Compile Include="Migrations\201410171225078_InitialCreate.Designer.cs">
+      <DependentUpon>201410171225078_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201410171418309_Updates.cs" />
+    <Compile Include="Migrations\201410171418309_Updates.Designer.cs">
+      <DependentUpon>201410171418309_Updates.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201410171420332_Updates_Age.cs" />
+    <Compile Include="Migrations\201410171420332_Updates_Age.Designer.cs">
+      <DependentUpon>201410171420332_Updates_Age.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -229,6 +242,8 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Account\ConfirmedEmail.cshtml" />
+    <Content Include="Views\Account\EmailNoneConfirmed.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -240,6 +255,17 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201410171225078_InitialCreate.resx">
+      <DependentUpon>201410171225078_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201410171418309_Updates.resx">
+      <DependentUpon>201410171418309_Updates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201410171420332_Updates_Age.resx">
+      <DependentUpon>201410171420332_Updates_Age.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
