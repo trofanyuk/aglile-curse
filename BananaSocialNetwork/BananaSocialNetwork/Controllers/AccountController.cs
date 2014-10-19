@@ -76,11 +76,11 @@ namespace BananaSocialNetwork.Controllers
                     switch (result)
                     {
                         case SignInStatus.Success:
-                            return RedirectToLocal(returnUrl);
+                            return RedirectToAction("Index", "Map");
                         case SignInStatus.LockedOut:
                             return View("Lockout");
                         case SignInStatus.RequiresVerification:
-                            return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+                            return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, model.RememberMe });
                         case SignInStatus.Failure:
                         default:
                             ModelState.AddModelError("", "Invalid login attempt.");
@@ -164,14 +164,17 @@ namespace BananaSocialNetwork.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, RegistrationDate = DateTime.Parse(DateTime.Now.ToString("d MMM yyyy")) };
+                try
+                {
+                    var result = await UserManager.CreateAsync(user, model.Password);
+                
                 if (result.Succeeded)
                 {
                     // генерируем токен для подтверждения регистрации
                     var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // создаем ссылку для подтверждения
-                    var callbackUrl = Url.Action("ConfirmedEmail", "Account", new { userId = user.Id, code = code },
+                    var callbackUrl = Url.Action("ConfirmedEmail", "Account", new { userId = user.Id, code },
                                protocol: Request.Url.Scheme);
                     // отправка письма
                     await UserManager.SendEmailAsync(user.Id, "Подтверждение электронной почты",
@@ -180,6 +183,11 @@ namespace BananaSocialNetwork.Controllers
                     return View("ConfirmEmail");
                 }
                 AddErrors(result);
+                }
+                catch (Exception ex)
+                {
+
+                }
             }
             return View(model);
         }
@@ -335,7 +343,7 @@ namespace BananaSocialNetwork.Controllers
             {
                 return View("Error");
             }
-            return RedirectToAction("VerifyCode", new { Provider = model.SelectedProvider, ReturnUrl = model.ReturnUrl, RememberMe = model.RememberMe });
+            return RedirectToAction("VerifyCode", new { Provider = model.SelectedProvider, model.ReturnUrl, model.RememberMe });
         }
 
         //
@@ -413,7 +421,7 @@ namespace BananaSocialNetwork.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login");
         }
 
         //
