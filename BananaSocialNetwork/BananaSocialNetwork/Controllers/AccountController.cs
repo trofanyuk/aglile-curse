@@ -167,22 +167,29 @@ namespace BananaSocialNetwork.Controllers
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email, RegistrationDate = DateTime.Parse(DateTime.Now.ToString("d MMM yyyy")) };
                 try
                 {
+                    var tUser = await UserManager.FindAsync(model.Email, model.Password);
+
+                    if (tUser != null && !IsValidAccount(tUser))
+                    {
+                        await UserManager.DeleteAsync(tUser);
+                    }
+
                     var result = await UserManager.CreateAsync(user, model.Password);
-                
-                if (result.Succeeded)
-                {
-                    // генерируем токен для подтверждения регистрации
-                    var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // создаем ссылку для подтверждения
-                    var callbackUrl = Url.Action("ConfirmedEmail", "Account", new { userId = user.Id, code },
-                               protocol: Request.Url.Scheme);
-                    // отправка письма
-                    await UserManager.SendEmailAsync(user.Id, "Подтверждение электронной почты",
-                               "Для завершения регистрации перейдите по ссылке:: <a href=\""
-                                                               + callbackUrl + "\">завершить регистрацию</a>");
-                    return View("ConfirmEmail");
-                }
-                AddErrors(result);
+
+                    if (result.Succeeded)
+                    {
+                        // генерируем токен для подтверждения регистрации
+                        var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                        // создаем ссылку для подтверждения
+                        var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code },
+                                   protocol: Request.Url.Scheme);
+                        // отправка письма
+                        await UserManager.SendEmailAsync(user.Id, "Подтверждение электронной почты",
+                                   "Для завершения регистрации перейдите по ссылке:: <a href=\""
+                                                                   + callbackUrl + "\">завершить регистрацию</a>");
+                        return View("ConfirmEmail");
+                    }
+                    AddErrors(result);
                 }
                 catch (Exception ex)
                 {
@@ -202,8 +209,21 @@ namespace BananaSocialNetwork.Controllers
             {
                 return View("Error");
             }
-            var result = await UserManager.ConfirmEmailAsync(userId, code);
-            return View(result.Succeeded ? "ConfirmEmail" : "Error");
+            //System.Web.HttpContext.Current.Response.Write("<SCRIPT LANGUAGE='JavaScript'>alert('Hello this is an Alert')</SCRIPT>");
+            var user = UserManager.FindById(userId);
+
+            // дата регистрации больше 7 дней
+            if (!IsValidAccount(user)) 
+            {
+                return View("RegistrationCanceled");
+            } 
+            // дата регистрации меньше 7 дней или равна последнему дню регистрации 
+            else 
+            {
+                var result = UserManager.ConfirmEmail(userId, code);
+                return View(result.Succeeded ? "ConfirmedEmail" : "Error");
+            } 
+
         }
 
         //
@@ -211,6 +231,7 @@ namespace BananaSocialNetwork.Controllers
         [AllowAnonymous]
         public ActionResult ConfirmedEmail()
         {
+            //System.Web.HttpContext.Current.Response.Write("<SCRIPT LANGUAGE='JavaScript'>alert('Hello this is an Alert')</SCRIPT>");
             return View("ConfirmedEmail");
         }
 
@@ -435,6 +456,16 @@ namespace BananaSocialNetwork.Controllers
         #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
+
+        // Проверяет прошло 7 дней с момента регистрации или нет
+        // не прошло 7 дней TRUE, прошло 7 дней FALSE
+        private bool IsValidAccount(ApplicationUser user)
+        {
+            DateTime tempDate = user.RegistrationDate.AddDays(7);
+            if (user.RegistrationDate.CompareTo(tempDate) <= 0)
+                return true;
+            return false;
+        }
 
         private IAuthenticationManager AuthenticationManager
         {
