@@ -251,6 +251,7 @@
     <Content Include="Views\Shared\_UsersLayout.cshtml" />
     <Content Include="Views\Album\Index.cshtml" />
     <Content Include="Views\Photo\Index.cshtml" />
+    <Content Include="Views\Shared\_Base.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
