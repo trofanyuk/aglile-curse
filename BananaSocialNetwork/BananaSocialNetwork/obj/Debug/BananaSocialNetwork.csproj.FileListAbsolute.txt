@@ -234,3 +234,5 @@ C:\Users\Дмитрий\Documents\bananarepositoty\BananaSocialNetwork\BananaSoc
 C:\Users\Дмитрий\Documents\bananarepositoty\BananaSocialNetwork\BananaSocialNetwork\obj\Debug\BananaSocialNetwork.dll
 C:\Users\Дмитрий\Documents\bananarepositoty\BananaSocialNetwork\BananaSocialNetwork\obj\Debug\BananaSocialNetwork.pdb
 C:\Users\Дмитрий\Documents\bananarepositoty\BananaSocialNetwork\BananaSocialNetwork\bin\BananaSocialNetwork.dll.config
+D:\Team\BananaProject\bananarepositoty\BananaSocialNetwork\BananaSocialNetwork\bin\Moq.dll
+D:\Team\BananaProject\bananarepositoty\BananaSocialNetwork\BananaSocialNetwork\bin\Moq.xml
