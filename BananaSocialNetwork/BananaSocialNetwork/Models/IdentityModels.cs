@@ -27,9 +27,16 @@ namespace BananaSocialNetwork.Models
         // Путь к аватарке на сервере
         public string AvatatPath { get; set; }
 
+        public virtual IEnumerable<Album> Albums { get; set; }
         // Друзья пользователя
         public virtual IEnumerable<ApplicationUser> Friends { get; set; }
         
+        public ApplicationUser()
+        {
+            Albums = new List<Album>();
+            Friends = new List<ApplicationUser>();
+
+        }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
@@ -46,7 +53,8 @@ namespace BananaSocialNetwork.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
-
+        public DbSet<Album> Albums { get; set; }
+        public DbSet<Photo> Photos { get; set; }
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

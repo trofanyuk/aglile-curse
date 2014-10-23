@@ -1,8 +1,28 @@
 ﻿
 @{
-    ViewBag.Title = "Album";
+   
     Layout = "~/Views/Shared/_UsersLayout.cshtml";
 }
 
 <h2>Album</h2>
+
+<label>dasda</label>
+
+@foreach (BananaSocialNetwork.Models.Album album in ViewBag.Albums)
+{
+    <div>
+        <label>имя: @album.Name</label>
+        <label>адресс: @album.Adress</label>
+        <label>GeoLat: @album.GeoLat</label>
+        <label>GeoLong: @album.GeoLong</label>
+        @Html.ActionLink("Details", "Details", new { id = album.Id }) |
+        @Html.ActionLink("Delete", "Delete", new { id = album.Id })
+    </div> 
+}
+
+<div>
+
+    <a href="/Album/Create">Создать новый альбом</a>
+</div>
+
 

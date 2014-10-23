@@ -145,9 +145,6 @@
     <Reference Include="Microsoft.Owin.Security.OAuth">
       <HintPath>..\packages\Microsoft.Owin.Security.OAuth.2.1.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Owin.Security.Google">
-      <HintPath>..\packages\Microsoft.Owin.Security.Google.2.1.0\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Owin.Security.Twitter">
       <HintPath>..\packages\Microsoft.Owin.Security.Twitter.2.1.0\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
     </Reference>
@@ -182,10 +179,36 @@
     <Compile Include="Migrations\201410171420332_Updates_Age.Designer.cs">
       <DependentUpon>201410171420332_Updates_Age.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201410220759323_Album.cs" />
+    <Compile Include="Migrations\201410220759323_Album.Designer.cs">
+      <DependentUpon>201410220759323_Album.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201410220809181_Album2.cs" />
+    <Compile Include="Migrations\201410220809181_Album2.Designer.cs">
+      <DependentUpon>201410220809181_Album2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201410220812000_Album3.cs" />
+    <Compile Include="Migrations\201410220812000_Album3.Designer.cs">
+      <DependentUpon>201410220812000_Album3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201410220832181_Album4.cs" />
+    <Compile Include="Migrations\201410220832181_Album4.Designer.cs">
+      <DependentUpon>201410220832181_Album4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201410220930185_Album5.cs" />
+    <Compile Include="Migrations\201410220930185_Album5.Designer.cs">
+      <DependentUpon>201410220930185_Album5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201410231139025_Photo.cs" />
+    <Compile Include="Migrations\201410231139025_Photo.Designer.cs">
+      <DependentUpon>201410231139025_Photo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Album.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Photo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -250,12 +273,19 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Account\ConfirmedEmail.cshtml" />
     <Content Include="Views\Account\EmailNoneConfirmed.cshtml" />
-    <Content Include="Views\Map\Index.cshtml" />
     <Content Include="Views\Shared\_UsersLayout.cshtml" />
     <Content Include="Views\Album\Index.cshtml" />
     <Content Include="Views\Photo\Index.cshtml" />
     <Content Include="Views\Shared\_Base.cshtml" />
     <Content Include="Views\Account\RegistrationCanceled.cshtml" />
+    <Content Include="Views\Album\NotAlbums.cshtml" />
+    <Content Include="Views\Album\Details.cshtml" />
+    <Content Include="Views\Album\Delete.cshtml" />
+    <Content Include="Views\Album\Create.cshtml" />
+    <Content Include="Views\Photo\Create.cshtml" />
+    <Content Include="Views\Photo\Delete.cshtml" />
+    <Content Include="Views\Photo\Details.cshtml" />
+    <Content Include="Views\Photo\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -277,6 +307,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201410171420332_Updates_Age.resx">
       <DependentUpon>201410171420332_Updates_Age.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201410220759323_Album.resx">
+      <DependentUpon>201410220759323_Album.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201410220809181_Album2.resx">
+      <DependentUpon>201410220809181_Album2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201410220812000_Album3.resx">
+      <DependentUpon>201410220812000_Album3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201410220832181_Album4.resx">
+      <DependentUpon>201410220832181_Album4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201410220930185_Album5.resx">
+      <DependentUpon>201410220930185_Album5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201410231139025_Photo.resx">
+      <DependentUpon>201410231139025_Photo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

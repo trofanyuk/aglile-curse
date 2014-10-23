@@ -76,7 +76,7 @@ namespace BananaSocialNetwork.Controllers
                     switch (result)
                     {
                         case SignInStatus.Success:
-                            return RedirectToAction("Index", "Map");
+                            return RedirectToAction("Index", "Album", user );
                         case SignInStatus.LockedOut:
                             return View("Lockout");
                         case SignInStatus.RequiresVerification:
