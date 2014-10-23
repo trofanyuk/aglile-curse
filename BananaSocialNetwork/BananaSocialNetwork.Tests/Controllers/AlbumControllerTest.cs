@@ -9,10 +9,10 @@ namespace BananaSocialNetwork.Tests.Controllers
     public class AlbumControllerTest
     {
         [TestMethod]
-        public void IndexViewResultNotNull()
+        public void CreateViewResultNotNull()
         {
             AlbumController controller = new AlbumController();
-            ViewResult result = controller.Index() as ViewResult;
+            ViewResult result = controller.Create() as ViewResult;
             Assert.IsNotNull(result);
         }
     }

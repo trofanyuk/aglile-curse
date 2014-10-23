@@ -14,10 +14,10 @@ namespace BananaSocialNetwork.Tests.Controllers
     public class PhotoControlerTest
     {
         [TestMethod]
-        public void IndexViewResultNot()
+        public void CreateViewResultNot()
         {
             PhotoController controller = new PhotoController();
-            ViewResult result = controller.Index() as ViewResult;
+            ViewResult result = controller.Create() as ViewResult;
             Assert.IsNotNull(result);
         }
     }
