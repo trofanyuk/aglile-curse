@@ -1,13 +1,13 @@
 ﻿@model BananaSocialNetwork.Models.RegisterViewModel
 
 @{
-    Layout = "~/Views/Shared/_Base.cshtml";
+    Layout = "~/Views/Shared/_Login.cshtml";
 }
 @{
     ViewBag.Title = "Home";
 }
-    <div style="float:left; background:#4cff00; width:60%; background:#b6ff00"></div>
-    <div style="float:right; width:40%; ">
+<div style="float:left; background:#4cff00; width:60%; background:#b6ff00"></div>
+<div style="float:right; width:40%; ">
         @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
         {
             @Html.AntiForgeryToken()
@@ -38,6 +38,27 @@
             @Html.ValidationSummary("", new { @class = "text-danger" })
         }
     </div>
-    @section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
-    }
+@*@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    <div class="container middle_content min_width" style="height:400px;">
+        <div class="display_block">
+            <div class="width_50per float_left" style="margin-top:120px;">
+                <p class="bigger_text">Welcome to Banana Social Network</p>
+                <p class="middle_text">Keep in touch with friends and other wonderful people. Get instant updates pictures of your friends.</p>
+            </div>
+
+            <div class="width_50per float_right" style="margin-top: 60px;">
+                <div class="enter_form">
+                    <div class="header"><p class="header_text">Authorization</p></div>
+                    <div class="margin_10">@Html.TextBoxFor(m => m.Email)</div>
+                    <div class="margin_10">@Html.PasswordFor(m => m.Password)</div>
+                    <div class="margin_10"><input type="checkbox" /><span class="remember_text">Remeber me?</span></div>
+                    <div class="margin_10"><input type="submit" value="Login" class="s_btn" /></div>
+                </div>
+            </div>
+        </div>
+    </div>
+}*@
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

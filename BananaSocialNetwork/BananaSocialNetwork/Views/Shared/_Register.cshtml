@@ -1,0 +1,39 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    @*<meta name="viewport" content="width=device-width" />*@
+    <title>Registration</title>
+    @Styles.Render("~/Content/css")
+    @*@Scripts.Render("~/bundles/modernizr")*@
+</head>
+<body>
+    <div class="wrap">
+        <div class="header">
+            <div class="container min_width">
+                <p class="logo_string">Banana Social Network</p>
+                <div class="s_btn right_btn">
+                    <a href="/Account/Login" class="top_btn_href login">Login</a>
+                </div>
+            </div>
+        </div>
+        <div class="render_body">
+            @RenderBody()
+        </div>
+    </div>
+    
+    <div class="footer">
+        <div class="container">
+            <p class="rights">Banana Social Network &copy; @DateTime.Now.Year</p>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

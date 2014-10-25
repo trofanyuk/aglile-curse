@@ -1,0 +1,49 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    @*<meta name="viewport" content="width=device-width" />*@
+    <title>Autorization</title>
+    @Styles.Render("~/Content/css")
+    @*@Scripts.Render("~/bundles/modernizr")*@
+
+    <style type="text/css">
+        
+
+
+
+     
+    </style>
+
+</head>
+<body>
+    <div class="wrap ">
+        <div class="header">
+            <div class="container min_width">
+                <p class="logo_string">Banana Social Network</p>
+                <div class="s_btn right_btn">
+                    <a href="/Account/Register" class="top_btn_href singup">Singup</a>
+                </div>
+            </div>
+        </div>
+        <div class="render_body">
+            @RenderBody()
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="rights">Banana Social Network &copy; @DateTime.Now.Year</p>
+        </div>
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
