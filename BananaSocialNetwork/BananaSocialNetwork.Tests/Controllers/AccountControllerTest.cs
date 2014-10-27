@@ -13,34 +13,53 @@ namespace BananaSocialNetwork.Tests.Controllers
     {
         //Login
         [TestMethod]
-        public void LoginViewResultNotNull()
+        public void LoginViewResultNotNull() //ActionResult Login(string returnUrl)
         {
             AccountController controller = new AccountController();
-            ViewResult result = controller.Login("login") as ViewResult;
+            ViewResult result = controller.Login("/Account/Login") as ViewResult;
+            Assert.AreEqual(controller.ViewBag.ReturnUrl, "/Account/Login");
             Assert.IsNotNull(result);
         }
 
-        [TestMethod]
-        public void LoginViewModelNotNull()
-        {
-            AccountController controller = new AccountController();
-            LoginViewModel model = new LoginViewModel();
-            Task<ActionResult> result = controller.Login(model, "login") as Task<ActionResult>;
-            Assert.IsNotNull(result);
-        }
+       // [TestMethod]
+        //public void LoginViewModelNotNull() //async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
+        //{
+        //    AccountController controller = new AccountController();
+        //    LoginViewModel model = new LoginViewModel();
+        //    Task<ActionResult> result = controller.Login(model, "/Account/Login") as Task<ActionResult>;
+        //    Assert.IsNotNull(result);
+        //}
 
         //Register
         [TestMethod]
-        public void RegisterViewResultNotNull()
+        public void RegisterViewResultNotNull() // ActionResult Register()
         {
             AccountController controller = new AccountController();
             ViewResult result = controller.Register() as ViewResult;
             Assert.IsNotNull(result);
         }
 
+        //E-mail
+        //[TestMethod] 
+        //public Task<ViewResult> ConfirmEmailUserIdIsNull() //async Task<ActionResult> ConfirmEmail(string userId, string code)
+        //{
+        //    AccountController controller = new AccountController();
+        //    string userId = null, code = "code";
+        //    await controller.ConfirmEmail(userId, code);
+        //    Assert.Equals(controller)
+        //}
+        [TestMethod]
+        public void ConfirmedEmailViewResultNotNull() //ActionResult ConfirmedEmail()
+        {
+            AccountController controller = new AccountController();
+            ViewResult result = controller.ConfirmedEmail() as ViewResult;
+            Assert.IsNotNull(result);
+            Assert.AreEqual(result.ViewName, "ConfirmedEmail");
+        }
+
         //ForgotPasswor
         [TestMethod]
-        public void ForgotPasswordViewResultNotNull()
+        public void ForgotPasswordViewResultNotNull() //ActionResult ForgotPassword()
         {
             AccountController controller = new AccountController();
             ViewResult result = controller.ForgotPassword() as ViewResult;
@@ -48,7 +67,7 @@ namespace BananaSocialNetwork.Tests.Controllers
         }
 
         [TestMethod]
-        public void ForgotPasswordConfirmationViewResultNotNull()
+        public void ForgotPasswordConfirmationViewResultNotNull() //ActionResult ForgotPasswordConfirmation()
         {
             AccountController controller = new AccountController();
             ViewResult result = controller.ForgotPasswordConfirmation() as ViewResult;
@@ -57,7 +76,7 @@ namespace BananaSocialNetwork.Tests.Controllers
 
         //ResetPassword
         [TestMethod]
-        public void ResetPasswordCodeNull()
+        public void ResetPasswordCodeNull() //ActionResult ResetPassword(string code)
         {
             AccountController controller = new AccountController();
             string code = null;
@@ -66,7 +85,7 @@ namespace BananaSocialNetwork.Tests.Controllers
         }
 
         [TestMethod]
-        public void ResetPasswordCodeNotNull()
+        public void ResetPasswordCodeNotNull() //ActionResult ResetPassword(string code)
         {
             AccountController controller = new AccountController();
             string code = "code";
@@ -75,7 +94,7 @@ namespace BananaSocialNetwork.Tests.Controllers
         }
 
         [TestMethod]
-        public void  ResetPasswordConfirmationViewResultNotNull()
+        public void ResetPasswordConfirmationViewResultNotNull() //ActionResult ResetPasswordConfirmation()
         {
             AccountController controller = new AccountController();
             ViewResult result = controller.ResetPasswordConfirmation() as ViewResult;
@@ -84,7 +103,7 @@ namespace BananaSocialNetwork.Tests.Controllers
 
         //Other
         [TestMethod]
-        public void ExternalLoginFailureViewResultNotNull()
+        public void ExternalLoginFailureViewResultNotNull() //ActionResult ExternalLoginFailure()
         {
             AccountController controller = new AccountController();
             ViewResult result = controller.ExternalLoginFailure() as ViewResult;
