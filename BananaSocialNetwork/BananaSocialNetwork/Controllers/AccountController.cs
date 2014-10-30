@@ -76,7 +76,7 @@ namespace BananaSocialNetwork.Controllers
                     switch (result)
                     {
                         case SignInStatus.Success:
-                            return RedirectToAction("Index", "Album", user );
+                            return RedirectToAction("Index", "Profile", user );
                         case SignInStatus.LockedOut:
                             return View("Lockout");
                         case SignInStatus.RequiresVerification:
@@ -164,7 +164,7 @@ namespace BananaSocialNetwork.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, RegistrationDate = DateTime.Parse(DateTime.Now.ToString("d MMM yyyy")) };
+                var user = new User { UserName = model.Email, Email = model.Email, RegistrationDate = DateTime.Parse(DateTime.Now.ToString("d MMM yyyy")) };
                 try
                 {
                     var tUser = await UserManager.FindAsync(model.Email, model.Password);
@@ -417,7 +417,7 @@ namespace BananaSocialNetwork.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new User { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
@@ -459,7 +459,7 @@ namespace BananaSocialNetwork.Controllers
 
         // Проверяет прошло 7 дней с момента регистрации или нет
         // не прошло 7 дней TRUE, прошло 7 дней FALSE
-        private bool IsValidAccount(ApplicationUser user)
+        private bool IsValidAccount(User user)
         {
             DateTime tempDate = user.RegistrationDate.AddDays(7);
             if (user.RegistrationDate.CompareTo(tempDate) <= 0)

@@ -15,7 +15,7 @@
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true, "")
-    <div class="container middle_content min_width" >
+    <div class="container middle_content min_width">
         <div class="display_block">
             <div class="width_50per float_left" style="margin-top:120px;">
                 <p class="bigger_text">Welcome to Banana Social Network</p>
@@ -25,8 +25,10 @@
             <div class="width_50per float_right" style="margin-top: 60px;">
                 <div class="enter_form">
                     <div class="header_form"><p class="header_text">Authorization</p></div>
-                    <div class="margin_10">@Html.TextBoxFor(m => m.Email, new { @placeholder="Example@mail.com" }) @Html.ValidationMessageFor(m => m.Email, "")</div>
-                    <div class="margin_10">@Html.PasswordFor(m => m.Password, new { @placeholder = "Password" }) @Html.ValidationMessageFor(m => m.Password, "")</div>
+                    <div class="margin_10">@Html.ValidationMessageFor(m => m.Email, "")</div>
+                    <div class="margin_10">@Html.TextBoxFor(m => m.Email, new { @placeholder = "Example@mail.com" })</div>
+                    <div class="margin_10">@Html.ValidationMessageFor(m => m.Password, "")</div>
+                    <div class="margin_10">@Html.PasswordFor(m => m.Password, new { @placeholder = "Password" })</div>
                     <div class="margin_10">@Html.CheckBoxFor(m => m.RememberMe)<span class="remember_text">Remember me?</span></div>
                     <div class="margin_10"><input type="submit" value="Login" class="s_btn" /></div>
                 </div>

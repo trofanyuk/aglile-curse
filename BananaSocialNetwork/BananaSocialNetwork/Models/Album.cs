@@ -13,7 +13,13 @@ namespace BananaSocialNetwork.Models
         public string Adress { get; set; } // название места
         public double GeoLong { get; set; } // долгота - для карт google
         public double GeoLat { get; set; } // широта - для карт google
-        public virtual ApplicationUser User { get; set; }
+        public DateTime DateCreate { get; set; }
+        public virtual User User { get; set; }
         public virtual IEnumerable<Photo> Photos { get; set; }
+
+        public Album()
+        {
+            Photos = new List<Photo>();
+        }
     }
 }

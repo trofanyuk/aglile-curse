@@ -112,6 +112,32 @@ html, body {
         margin: 10px;
     }
 
+/* Icons */
+
+.mail{
+	font-size:12px;
+	display:block;
+	position:relative;
+	border-top:1em solid transparent;
+	border-left:1.5em solid #2c2c2c;
+	border-right:1.5em solid #2c2c2c;
+	border-bottom:1em solid #2c2c2c;
+    height:0;
+    width:0;
+}
+.mail:before{
+    content: '';
+    top: -1.23em;
+    left: -1.5em;
+    display: block;
+    position: absolute;
+    border-top: 1em solid #2c2c2c;
+    border-left: 1.5em solid transparent;
+    border-right: 1.5em solid transparent;
+    border-bottom: 1em solid transparent;
+    font-size: 0.8em;
+}
+
 /* Top Buttons */
 .top_btn_href{
     padding-top:28px; 
@@ -266,9 +292,16 @@ html, body {
     }
 
 /* Profile/Index */
+
 .profile_bg{
     background-color:#EFEFEF;
 }
+
+.middle_content .header_form {
+        width: 100%;
+        height: 30px;
+        background-color: #EFEFEF;
+    }
 
 .middle_content .first_column{
     width:200px;
@@ -279,4 +312,59 @@ html, body {
     height:300px;
     background-color:white;
     border:solid 1px #AAAAAA;
+}
+
+.middle_content .online_form{
+    height:40px;
+    width:720px;
+    background-color:white;
+    border:solid 1px #AAAAAA;
+}
+
+.middle_content .about_form{
+    height:125px;
+    width:280px;
+    background-color:white;
+    border:solid 1px #AAAAAA;
+}
+
+.middle_content .friends_form{
+    height:125px;
+    width:420px;
+    background-color:white;
+    border:solid 1px #AAAAAA;
+}
+
+.middle_content .status_form{
+    height:100px;
+    width:200px;
+    background-color:white;
+    border:solid 1px #AAAAAA;
+}
+
+.middle_content .photo{
+    float:left;
+    width:120px;
+    height:120px;
+    /*background-color:lightblue;*/
+}
+
+@media(max-width:1199px)
+{
+    .middle_content .online_form{
+        width:550px;
+    }
+    .middle_content .friends_form{
+        width:250px;
+    }
+}
+
+@media(max-width:990px){
+    .middle_content .online_form {
+        width: 505px;
+    }
+
+    .middle_content .friends_form {
+        width: 205px;
+    }
 }

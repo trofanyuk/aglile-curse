@@ -17,12 +17,12 @@ namespace BananaSocialNetwork.Controllers
     {
         //ApplicationUserManager userManager;
         // GET: /Album/
-        
-       ApplicationDbContext db = new ApplicationDbContext();
+
+        ApplicationDbContext db = new ApplicationDbContext();
         public ActionResult Index()
         {
 
-            ApplicationUser user = db.Users.Where(m => m.Email == HttpContext.User.Identity.Name).FirstOrDefault();
+            User user = db.Users.Where(m => m.Email == HttpContext.User.Identity.Name).FirstOrDefault();
 
             user.Albums = db.Albums.Where(m => m.User.Id == user.Id);
             if (user.Albums.Count() == 0)
@@ -33,7 +33,7 @@ namespace BananaSocialNetwork.Controllers
             {
                 ViewBag.Albums = user.Albums;
                 return View();
-            }   
+            }
         }
 
         public ActionResult Create()
@@ -44,7 +44,7 @@ namespace BananaSocialNetwork.Controllers
         [HttpPost]
         public ActionResult Create(Album album)
         {
-            ApplicationUser user = db.Users.Where(m => m.Email == HttpContext.User.Identity.Name).FirstOrDefault();
+            User user = db.Users.Where(m => m.Email == HttpContext.User.Identity.Name).FirstOrDefault();
             album.User = user;
             db.Albums.Add(album);
             (user.Albums as List<Album>).Add(album);
@@ -72,22 +72,22 @@ namespace BananaSocialNetwork.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult Details(int id = 0)
+        public ActionResult Details(int id)
         {
             Album album = db.Albums.Find(id);
             album.Photos = db.Photos.Where(m => m.Album.Id == album.Id);
-
-            if (album.Photos.Count()== 0)
+            ViewBag.Photos = album.Photos;
+            if (album.Photos.Count() == 0)
             {
-                return View("~/Views/Photo/Create.cshtml");
+                ViewBag.id = album.Id;
+                return View("~/Views/Photo/NonPhoto.cshtml");
             }
-
-            if (album == null)
+            else
             {
-                return HttpNotFound();
+                return View(album);
             }
-            return View(album);
+            //return View(album);
         }
 
-	}
+    }
 }

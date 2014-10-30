@@ -160,11 +160,11 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AlbumController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MapController.cs" />
     <Compile Include="Controllers\PhotoController.cs" />
-    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -204,6 +204,14 @@
     <Compile Include="Migrations\201410231139025_Photo.Designer.cs">
       <DependentUpon>201410231139025_Photo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201410290812374_User.cs" />
+    <Compile Include="Migrations\201410290812374_User.Designer.cs">
+      <DependentUpon>201410290812374_User.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201410291115313_AlbumCreateDAte.cs" />
+    <Compile Include="Migrations\201410291115313_AlbumCreateDAte.Designer.cs">
+      <DependentUpon>201410291115313_AlbumCreateDAte.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Album.cs" />
@@ -218,8 +226,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\icons\foundation-icons.css" />
-    <Content Include="Content\icons\foundation-icons.svg" />
+    <Content Include="Content\img\empty-album.png" />
     <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -227,10 +234,6 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Content\icons\.fontcustom-data" />
-    <Content Include="Content\icons\foundation-icons.eot" />
-    <Content Include="Content\icons\foundation-icons.ttf" />
-    <Content Include="Content\icons\foundation-icons.woff" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -286,6 +289,7 @@
     <Content Include="Views\Shared\_UsersLayout.cshtml" />
     <Content Include="Views\Album\Index.cshtml" />
     <Content Include="Views\Photo\Index.cshtml" />
+    <Content Include="Views\Shared\_Base.cshtml" />
     <Content Include="Views\Account\RegistrationCanceled.cshtml" />
     <Content Include="Views\Album\NotAlbums.cshtml" />
     <Content Include="Views\Album\Details.cshtml" />
@@ -295,9 +299,10 @@
     <Content Include="Views\Photo\Delete.cshtml" />
     <Content Include="Views\Photo\Details.cshtml" />
     <Content Include="Views\Photo\Edit.cshtml" />
-    <Content Include="Views\Shared\_Login.cshtml" />
-    <Content Include="Views\Shared\_Register.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
+    <Content Include="Views\Shared\_Register.cshtml" />
+    <Content Include="Views\Shared\_Login.cshtml" />
+    <Content Include="Views\Photo\NonPhoto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -337,6 +342,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201410231139025_Photo.resx">
       <DependentUpon>201410231139025_Photo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201410290812374_User.resx">
+      <DependentUpon>201410290812374_User.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201410291115313_AlbumCreateDAte.resx">
+      <DependentUpon>201410291115313_AlbumCreateDAte.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

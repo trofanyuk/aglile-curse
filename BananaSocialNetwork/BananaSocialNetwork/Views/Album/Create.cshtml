@@ -4,7 +4,8 @@
 
 <form action="Create" method="post">
 
-
+   
+    @Html.Hidden("DateCreate" , DateTime.Parse(DateTime.Now.ToString("d MMM yyyy")))
     <div>
         <label>Имя</label>
     </div>

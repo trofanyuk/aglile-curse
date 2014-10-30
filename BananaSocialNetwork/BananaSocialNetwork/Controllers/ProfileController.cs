@@ -1,97 +1,30 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
+using BananaSocialNetwork.Models;
+using System.Collections.Generic;
+
 
 namespace BananaSocialNetwork.Controllers
 {
     public class ProfileController : Controller
     {
+        ApplicationDbContext db = new ApplicationDbContext();
         //
-        // GET: /Profile/
+        // GET: /Default1/
         public ActionResult Index()
         {
-            return View();
+            User user = db.Users.Where(m => m.Email == HttpContext.User.Identity.Name).FirstOrDefault();
+           user.Albums = db.Albums.Where(m => m.User.Id == user.Id ).OrderByDescending(t=>t.DateCreate).Take(5);
+            ViewBag.Albums = user.Albums;
+            return View(user);
         }
-
-        //
-        // GET: /Profile/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        //
-        // GET: /Profile/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        //
-        // POST: /Profile/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        //
-        // GET: /Profile/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        //
-        // POST: /Profile/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        //
-        // GET: /Profile/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        //
-        // POST: /Profile/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-    }
+	}
 }

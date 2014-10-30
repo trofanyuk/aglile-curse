@@ -45,15 +45,15 @@ namespace BananaSocialNetwork.Controllers
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
         // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="Id,Name,PhotoPath,Adress,GeoLong,GeoLat")] Photo photo)
+        public ActionResult Create(Photo photo, int id)
         {
-            if (ModelState.IsValid)
-            {
-                db.Photos.Add(photo);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+            Album album = db.Albums.Find(id);
+            photo.Album = album;
+            db.Photos.Add(photo);
+            //(album.Photos as List<Photo>).Add(photo);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+
 
             return View(photo);
         }
@@ -78,7 +78,7 @@ namespace BananaSocialNetwork.Controllers
         // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="Id,Name,PhotoPath,Adress,GeoLong,GeoLat")] Photo photo)
+        public ActionResult Edit([Bind(Include = "Id,Name,PhotoPath,Adress,GeoLong,GeoLat")] Photo photo)
         {
             if (ModelState.IsValid)
             {

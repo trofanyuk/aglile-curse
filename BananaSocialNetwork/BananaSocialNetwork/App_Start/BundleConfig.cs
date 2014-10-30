@@ -26,7 +26,6 @@ namespace BananaSocialNetwork
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/bootstrap.min.css",
-                      "~/Content/icons/foundation-icons.css",
                       "~/Content/style.css"));
 
             // Set EnableOptimizations to false for debugging. For more information,

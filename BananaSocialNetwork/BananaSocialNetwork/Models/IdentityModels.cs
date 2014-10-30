@@ -10,7 +10,7 @@ namespace BananaSocialNetwork.Models
 {
     public enum Sexs { Male, Female };
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
-    public class ApplicationUser : IdentityUser
+    public class User : IdentityUser
     {
         // Дата регистрации 
         public DateTime RegistrationDate { get; set; }
@@ -29,16 +29,16 @@ namespace BananaSocialNetwork.Models
 
         public virtual IEnumerable<Album> Albums { get; set; }
         // Друзья пользователя
-        public virtual IEnumerable<ApplicationUser> Friends { get; set; }
+        public virtual IEnumerable<User> Friends { get; set; }
         
-        public ApplicationUser()
+        public User()
         {
             Albums = new List<Album>();
-            Friends = new List<ApplicationUser>();
+            Friends = new List<User>();
 
         }
 
-        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
+        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
@@ -47,7 +47,7 @@ namespace BananaSocialNetwork.Models
         }
     }
 
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext : IdentityDbContext<User>
     {
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
