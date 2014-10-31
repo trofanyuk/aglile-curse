@@ -15,28 +15,29 @@
 <body>
     <div class="wrap">
         <div class="header">
-            <div class="container min_width">
+            <div class="soc_container">
                 <div class="s_btn btn_bounds">
                     <a href="" class="top_btn_href "><i class="fi-mail" style="padding:40%"></i></a>
                 </div>
                 @*<div class="s_btn right_btn">
-                        <a href="/Account/Login" class="top_btn_href login">Login</a>
-                    </div>*@
+                <a href="/Account/Login" class="top_btn_href login">Login</a>
+            </div>*@
             </div>
         </div>
-        <div class="render_body container">
+        <div class="render_body soc_container">
             @RenderBody()
         </div>
     </div>
 
     <div class="footer">
-        <div class="container">
+        <div class="soc_container">
             <p class="rights">Banana Social Network &copy; @DateTime.Now.Year</p>
         </div>
     </div>
 
     @System.Web.Optimization.Scripts.Render("~/bundles/jquery")
     @System.Web.Optimization.Scripts.Render("~/bundles/bootstrap")
+    @System.Web.Optimization.Scripts.Render("~/bundles/photo_dialog")
     @RenderSection("scripts", required: false)
 </body>
 </html>

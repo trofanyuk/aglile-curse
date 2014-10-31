@@ -1,18 +1,10 @@
 ﻿@model BananaSocialNetwork.Models.Album
 
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_UsersLayout.cshtml";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>View1</title>
-</head>
-<body>
-    <div>
+@*<div>
         <h4>Album</h4>
         <hr />
         <dl class="dl-horizontal">
@@ -61,6 +53,19 @@
 
     <p>
         @Html.ActionLink("Back to List", "Index")
-    </p>
-</body>
-</html>
+    </p>*@
+
+<div class="middle_content min_width profile_bg">
+    <div class="album">
+        <div>@Html.DisplayFor(model => model.Name)</div>
+        <div class="display_block">
+            @foreach (BananaSocialNetwork.Models.Photo photo in Model.Photos)
+{
+    <div class="photo_content float_left margin_10 thumbs">
+        <a href="/server_imgs/temp.png" style="background-image: url(/server_imgs/temp.png)" title="" class="photo">g</a>
+    </div>
+}
+        </div>
+    </div>
+    
+</div>

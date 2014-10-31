@@ -2,6 +2,11 @@
     min-width: 767px;
 }
 
+.soc_container{
+    width:1000px;
+    margin:auto;
+}
+
 html, body {
     height: 100%;
     margin: 0px;
@@ -13,7 +18,16 @@ html, body {
     padding:0px;
 }
 
+a{
+     text-decoration:none;
+}
+
+.green_text{
+    color: #25AD9F;
+}
+
 .header {
+    min-width:1000px;
     height: 70px;
     background-color: #25AD9F;
 }
@@ -61,6 +75,7 @@ html, body {
 .footer {
     height: 25px;
     width: auto;
+    min-width:1000px;
     border: none;
     background-color: #25AD9F;
     margin-top: -25px; 
@@ -297,59 +312,69 @@ html, body {
     background-color:#EFEFEF;
 }
 
-.middle_content .header_form {
+.middle_content .profile .header_form {
         width: 100%;
         height: 30px;
         background-color: #EFEFEF;
     }
 
-.middle_content .first_column{
+.middle_content .profile .first_column{
     width:200px;
 }
 
-.middle_content .avatar_form{
+.middle_content .profile .avatar_form{
     width:200px;
     height:300px;
     background-color:white;
     border:solid 1px #AAAAAA;
 }
 
-.middle_content .online_form{
+.middle_content .profile .online_form{
     height:40px;
     width:720px;
     background-color:white;
     border:solid 1px #AAAAAA;
 }
 
-.middle_content .about_form{
+.middle_content .profile .about_form{
     height:125px;
     width:280px;
     background-color:white;
     border:solid 1px #AAAAAA;
 }
 
-.middle_content .friends_form{
+.middle_content .profile .friends_form{
     height:125px;
     width:420px;
     background-color:white;
     border:solid 1px #AAAAAA;
 }
 
-.middle_content .status_form{
+.middle_content .profile .status_form{
     height:100px;
     width:200px;
     background-color:white;
     border:solid 1px #AAAAAA;
 }
 
-.middle_content .photo{
-    float:left;
+.middle_content .profile .photo{
     width:120px;
     height:120px;
-    /*background-color:lightblue;*/
+    background-color:#25AD9F;
 }
 
-@media(max-width:1199px)
+.middle_content .profile .photo_count{
+    background-color:#EFEFEF;
+}
+
+.middle_content .profile .photo_count .text{
+    font-size:11px;
+    padding-left:5px;
+    color:#25AD9F;
+    text-decoration:none;
+}
+
+/*@media(max-width:1199px)
 {
     .middle_content .online_form{
         width:550px;
@@ -367,4 +392,37 @@ html, body {
     .middle_content .friends_form {
         width: 205px;
     }
+}*/
+
+/* Album/Details */
+
+.middle_content .album .photo_content{
+    width:180px;
+    height:190px;
+
+    background-color: white;
+    border:solid 1px #AAAAAA;
 }
+
+.middle_content .album .photo{
+    /*width:170px;*/
+    /*height:170px;*/
+    /*border:solid 1px #AAAAAA;*/
+    /*border:solid 1px red;*/
+}
+
+.middle_content .album .photo_header{
+    background-color: #EFEFEF;
+}
+
+/*@media (min-width: 992px) and (max-width: 1199px){
+    .middle_content .album .photo_content {
+        width: 168px;
+        height: 178px;
+
+    }
+    .middle_content .album .photo {
+        /*width: 168px;
+        height: 168px;*/
+    }
+}*/

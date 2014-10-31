@@ -1,103 +1,103 @@
-﻿@model BananaSocialNetwork.Models.User
+﻿@using System.Web.WebPages.Html;
+@model BananaSocialNetwork.Models.User
 
 @*@{
-    Layout = null;
-}
+        Layout = null;
+    }
 
-<!DOCTYPE html>
+    <!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>View1</title>
-</head>
-<body>
-    <div>
-        <h4>User</h4>
-    	<hr />
-        <dl class="dl-horizontal">  
-            <dt>
-                @Html.DisplayNameFor(model => model.Firstname)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Firstname)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Surname)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Surname)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Age)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Age)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Sex)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Sex)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Adress)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Adress)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.AvatatPath)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.AvatatPath)
-            </dd>
-           <dt>
-                @Html.DisplayNameFor(model => model.UserName)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.UserName)
-                
-                
-            </dd>
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>View1</title>
+    </head>
+    <body>
+        <div>
+            <h4>User</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Firstname)
+                </dt>
 
-    
-        </dl>
-    </div>
+                <dd>
+                    @Html.DisplayFor(model => model.Firstname)
+                </dd>
 
-   
+                <dt>
+                    @Html.DisplayNameFor(model => model.Surname)
+                </dt>
 
-   @foreach (BananaSocialNetwork.Models.Album album in ViewBag.Albums)
-{
-    <div>
-        <label>имя: @album.Name</label>
-        <label>адресс: @album.Adress</label>
-        <label>GeoLat: @album.GeoLat</label>
-        <label>GeoLong: @album.GeoLong</label>
-        @Html.ActionLink("Details", "Details", new { id = album.Id }) |
-        @Html.ActionLink("Delete", "Delete", new { id = album.Id })
-    </div>
-}
+                <dd>
+                    @Html.DisplayFor(model => model.Surname)
+                </dd>
 
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
-</body>
-</html>*@
+                <dt>
+                    @Html.DisplayNameFor(model => model.Age)
+                </dt>
 
+                <dd>
+                    @Html.DisplayFor(model => model.Age)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Sex)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Sex)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Adress)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Adress)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.AvatatPath)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.AvatatPath)
+                </dd>
+               <dt>
+                    @Html.DisplayNameFor(model => model.UserName)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.UserName)
+
+
+                </dd>
+
+
+            </dl>
+        </div>
+
+
+
+       @foreach (BananaSocialNetwork.Models.Album album in ViewBag.Albums)
+    {
+        <div>
+            <label>имя: @album.Name</label>
+            <label>адресс: @album.Adress</label>
+            <label>GeoLat: @album.GeoLat</label>
+            <label>GeoLong: @album.GeoLong</label>
+            @Html.ActionLink("Details", "Details", new { id = album.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = album.Id })
+        </div>
+    }
+
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </body>
+    </html>*@
 @{
     Layout = "~/Views/Shared/_UsersLayout.cshtml";
 }
@@ -105,77 +105,85 @@
     ViewBag.Title = "Profile";
 }
 <div class="display_block middle_content profile_bg min_width">
-    <div class="float_left">
-        <div class="first_column margin_10">
-            <div class="avatar_form margin_10">
-                <div></div>
-                <div>
-                    @Html.DisplayFor(model => model.Firstname) 
-                    @Html.DisplayFor(model => model.Surname)
-                </div>
-            </div>
-
-            <div class="status_form margin_10">
-                <div class="header_form"></div>
-            </div>
-        </div>
-    </div>
-    <div class="float_right margin_10">
-        <div class="online_form margin_10"></div>
-        <div class="margin_10">
-            <div class="tabbable" style="border:solid 1px #AAAAAA; background-color:white;">
-                <ul class="nav nav-tabs">
-                    <li class="active"><a href="#tab1" data-toggle="tab">Photos</a></li>
-                    <li><a href="#tab2" data-toggle="tab">Albums</a></li>
-                </ul>
-                <div class="tab-content">
-                    <div class="tab-pane active display_block" id="tab1">
-                        @foreach (BananaSocialNetwork.Models.Album album in ViewBag.Albums)
-                        {
-                            <div class="photo margin_10">
-                                <a href="/Album/Details/@album.Id">
-                                    @if (album.Photos.Count() <= 0)
-                                    {
-                                         <img src="/Content/img/empty-album.png" class="photo"/>
-                                    }
-                                    else
-                                    {
-                                        <img src="@album.Adress" class="photo"/>
-                                    }
-                                        
-                                </a>
-                            </div>
-
-                            <div>
-                                @*<label>имя: @album.Name</label>
-                <label>адресс: @album.Adress</label>
-                <label>GeoLat: @album.GeoLat</label>
-                <label>GeoLong: @album.GeoLong</label>
-                @Html.ActionLink("Details", "Details", new { id = album.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = album.Id })*@
-                            </div>
-                        }
-                    </div>
-                    <div class="tab-pane" id="tab2">
-                        <p>Привет, я в Разделе 2.</p>
+    <div class="profile">
+        <div class="float_left">
+            <div class="first_column margin_10">
+                <div class="avatar_form margin_10">
+                    <div></div>
+                    <div>
+                        @Html.DisplayFor(model => model.Firstname)
+                        @Html.DisplayFor(model => model.Surname)
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="display_block">
-            <div class="float_left">
-                <div class="about_form margin_10">
-                    <div class="header_form"></div>
-                    <div><span>Age </span>@Html.DisplayFor(model => model.Age)</div>
-                    <div><span>Gender </span>@Html.DisplayFor(model => model.Sex)</div>
-                    <div><span>Lives in </span>@Html.DisplayFor(model => model.Adress)</div>
-                </div>
-            </div>
-            <div class="float_right">
-                <div class="friends_form margin_10">
+
+                <div class="status_form margin_10">
                     <div class="header_form"></div>
                 </div>
             </div>
         </div>
+        <div class="float_right margin_10">
+            <div class="online_form margin_10"></div>
+            <div class="display_block">
+                <div class="float_left">
+                    <div class="about_form margin_10">
+                        <div class="header_form"></div>
+                        <div><span>Age </span>@Html.DisplayFor(model => model.Age)</div>
+                        <div><span>Gender </span>@Html.DisplayFor(model => model.Sex)</div>
+                        <div><span>Lives in </span>@Html.DisplayFor(model => model.Adress)</div>
+                    </div>
+                </div>
+                <div class="float_right">
+                    <div class="friends_form margin_10">
+                        <div class="header_form"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="margin_10">
+                <div class="tabbable" style="border:solid 1px #AAAAAA; background-color:white;">
+                    <div class="header_form">
+                        <a href="/Album/Create" class="margin_10 float_right">+ Create album</a>
+                    </div>
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#tab1" data-toggle="tab">Photos</a></li>
+                        <li><a href="#tab2" data-toggle="tab">Albums</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active display_block" id="tab1">
+                            @foreach (BananaSocialNetwork.Models.Album album in Model.Albums)
+                            {
+                                <div class="float_left margin_10">
+                                    <div>
+                                        <a href="/Album/Details/@album.Id">
+                                            @if (album.CountPhotos <= 0)
+                                            {
+                                                <img src="/Content/img/empty-album.png" class="photo" />
+                                            }
+                                            else
+                                            {
+                                                <img src="@album.Adress" class="photo" />
+                                            }
+                                        </a>
+                                    </div>
+                                    <div class="photo_count"><span class="text">@album.CountPhotos</span></div>
+                                </div>
+                                <div>
+                                    @*<label>имя: @album.Name</label>
+                                    <label>адресс: @album.Adress</label>
+                                    <label>GeoLat: @album.GeoLat</label>
+                                    <label>GeoLong: @album.GeoLong</label>
+                                    @Html.ActionLink("Details", "Details", new { id = album.Id }) |
+                                    @Html.ActionLink("Delete", "Delete", new { id = album.Id })*@
+                                </div>
+                            }
+                        </div>
+
+                        <div class="tab-pane" id="tab2">
+                            <p>Привет, я в Разделе 2.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+    
 </div>

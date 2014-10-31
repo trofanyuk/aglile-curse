@@ -15,6 +15,7 @@ namespace BananaSocialNetwork.Models
         public double GeoLat { get; set; } // широта - для карт google
         public DateTime DateCreate { get; set; }
         public virtual User User { get; set; }
+        public int CountPhotos { get; set; }
         public virtual IEnumerable<Photo> Photos { get; set; }
 
         public Album()

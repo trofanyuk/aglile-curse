@@ -23,9 +23,14 @@ namespace BananaSocialNetwork
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/photo_dialog").Include(
+                      "~/Scripts/touchTouch.jquery.js",
+                      "~/Scripts/photo.dialog.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/bootstrap.min.css",
+                      "~/Content/touchTouch.css",
                       "~/Content/style.css"));
 
             // Set EnableOptimizations to false for debugging. For more information,
