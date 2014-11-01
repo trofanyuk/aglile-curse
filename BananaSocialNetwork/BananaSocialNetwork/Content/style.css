@@ -415,6 +415,29 @@ a{
     background-color: #EFEFEF;
 }
 
+.thumbs{
+	width:auto;
+	margin:auto;
+	text-align:center;
+}
+
+.thumbs a{
+	/*display:inline-block;*/
+    float:left;
+	/*border:7px solid #303030;*/
+	/*box-shadow:0 1px 3px rgba(0,0,0,0.5);*/
+	/*border-radius:4px;*/
+	/*margin: 6px 6px 40px;*/
+	/*position:relative;*/
+	text-decoration:none;
+	
+	background-position:center center;
+	background-repeat: no-repeat;
+	
+	background-size:cover;
+	-moz-background-size:cover;
+	-webkit-background-size:cover;
+}
 /*@media (min-width: 992px) and (max-width: 1199px){
     .middle_content .album .photo_content {
         width: 168px;
@@ -422,7 +445,7 @@ a{
 
     }
     .middle_content .album .photo {
-        /*width: 168px;
-        height: 168px;*/
+        width: 168px;
+        height: 168px;
     }
 }*/

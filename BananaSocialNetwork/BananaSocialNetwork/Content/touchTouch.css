@@ -10,7 +10,7 @@
 	z-index:100000;
 	background-color:#222;
 	background-color:rgba(0,0,0,0.8);
-	overflow:hidden;
+	/*overflow:hidden;*/
 	display:none;
 	
 	-moz-transition:opacity 1s ease;
@@ -18,6 +18,14 @@
 	transition:opacity 1s ease;
 }
 
+#gallerySlider .placeholder .waiter{
+    background: url("preloader.gif") no-repeat center center;
+    height: 100%;
+	line-height: 1px;
+	text-align: center;
+	width:100%;
+	display:inline-block;
+}
 /* This class will trigger the animation */
 
 #galleryOverlay.visible{
@@ -26,7 +34,6 @@
 
 #gallerySlider{
 	/*height:100%;*/
-    min-height:1px;
 	left:0;
 	top:0;
 	
@@ -40,7 +47,7 @@
 }
 
 #gallerySlider .placeholder{
-	background: url("preloader.gif") no-repeat center center;
+	/*background: url("preloader.gif") no-repeat center center;*/
 	height: 100%;
 	line-height: 1px;
 	text-align: center;
@@ -48,14 +55,17 @@
 	display:inline-block;
 }
 
-#commentsBlock{
-    position:absolute;
+.commentsBlock{
+    /*position:absolute;*/
     height:auto;
-    width:100%;
-    top:150px;
+    max-width:80%;
+    min-width:400px;
+    /*top:150px;*/
     min-height:130px;
     background-color:white;
     z-index:2000;
+    margin:auto;
+    /*display:inline-block;*/
 }
 
 /* The before element moves the
@@ -72,7 +82,7 @@
 #gallerySlider .placeholder img{
 	display: inline-block;
 	max-height: 100%;
-	max-width: 100%;
+	max-width: 80%;
 	vertical-align: top;
     margin-top:20px;
 }
