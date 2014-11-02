@@ -10,7 +10,8 @@
 	z-index:100000;
 	background-color:#222;
 	background-color:rgba(0,0,0,0.8);
-	/*overflow:hidden;*/
+    overflow:hidden;
+    overflow-y:auto;
 	display:none;
 	
 	-moz-transition:opacity 1s ease;
@@ -33,14 +34,12 @@
 }
 
 #gallerySlider{
-	/*height:100%;*/
+	height:100%;
 	left:0;
 	top:0;
-	
 	width:100%;
 	white-space: nowrap;
 	position:absolute;
-	
 	-moz-transition:left 0.4s ease;
 	-webkit-transition:left 0.4s ease;
 	transition:left 0.4s ease;
@@ -53,19 +52,44 @@
 	text-align: center;
 	width:100%;
 	display:inline-block;
+    z-index:1100;
 }
 
 .commentsBlock{
-    /*position:absolute;*/
-    height:auto;
+    /*height:auto;*/
     max-width:80%;
-    min-width:400px;
-    /*top:150px;*/
-    min-height:130px;
+    min-width:767px;
+    min-height:10px;
     background-color:white;
     z-index:2000;
     margin:auto;
-    /*display:inline-block;*/
+
+}
+
+.commentsBlock .comtrols_div{
+    display:inline-block;
+}
+
+.commentsBlock .comtrols_div .mess_div{
+    float:left;
+    width:450px;
+}
+
+.commentsBlock .comtrols_div .mess_div textarea{
+    line-height:normal;
+    margin-top:10px;
+    margin-bottom:10px;
+    float:left; 
+    height:100px;
+    width:450px;
+    resize:none;
+}
+
+.commentsBlock .comtrols_div .btns_div{
+    float:right;
+    width:200px;
+    height:120px;
+    margin:10px;
 }
 
 /* The before element moves the
@@ -83,8 +107,10 @@
 	display: inline-block;
 	max-height: 100%;
 	max-width: 80%;
+    min-width:767px;
 	vertical-align: top;
     margin-top:20px;
+    z-index:1500;
 }
 
 #gallerySlider.rightSpring{

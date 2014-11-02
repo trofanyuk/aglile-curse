@@ -61,10 +61,11 @@
         <div class="display_block thumbs ">
             @foreach (BananaSocialNetwork.Models.Photo photo in Model.Photos)
             {
-                <a href="http://www.automobilesreview.com/img/vorsteiner-bmw-f10-5-series-vs-130/vorsteiner-bmw-f10-5-series-vs-130-02.jpg"
-                   style="background-image: url(http://www.automobilesreview.com/img/vorsteiner-bmw-f10-5-series-vs-130/vorsteiner-bmw-f10-5-series-vs-130-02.jpg);"
+                <a href="@photo.PhotoPath"
+                   style="background-image: url(@photo.PhotoPath);"
                    title=""
-                   class="photo_content margin_10"></a>
+                   class="photo_content margin_10"
+                   data-id="@photo.Id"></a>
             }
         </div>
     </div>

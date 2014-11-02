@@ -17,7 +17,6 @@
 		nextArrow = $('<a id="nextArrow"></a>'),
 		overlayVisible = false;
 
-
     /* Creating the plugin */
 
     $.fn.touchTouch = function () {
@@ -42,7 +41,8 @@
         // Hide the gallery if the background is touched / clicked
         slider.append(placeholders).on('click', function (e) {
 
-            if (!$(e.target).is('img')) {
+            var coutn = 0;
+            if ($(e.target).is('.placeholder')) {
                 hideOverlay();
             }
         });
@@ -219,7 +219,6 @@
             // This will trigger a smooth css transition
             slider.css('left', (-index * 100) + '%');
             cur_index = index;
-            //showComments();
         }
 
         // Preload an image by its index in the items array
@@ -228,7 +227,7 @@
             setTimeout(function () {
                 showImage(index);
                 showComments();
-            }, 200);
+            }, 0);
         }
 
         // Show image in the slider
@@ -298,12 +297,27 @@
         function showComments()
         {
             var place = placeholders.eq(cur_index);
-            if (!place.is(".commentsBlock")) {
-                var content = $("<div class='commentsBlock'>");
-                var textbox = $("<input type='text' style='float:left; height:300px;'>");
+            if (place.find('div.commentsBlock').length <= 0) {
+                var id = items.eq(index).attr('data-id');
 
-                textbox.appendTo(content);
+                var div = $("<div class='comtrols_div'>");
+                var mess_div = $("<div class='mess_div'>");
+                var btns_div = $("<div class='btns_div'>");
+                var content = $("<div class='commentsBlock'>");
+                var textbox = $("<textarea>");
+                var delete_btn = $("<a href='/Photo/Delete/"+ id +"' class='btn btn-danger btn-block'>Delete</a>");
+                var send_btn = $("<a href='' class='btn btn-success btn-block'>Send</a>");
+
+                textbox.appendTo(mess_div);
+                delete_btn.appendTo(btns_div);
+                send_btn.appendTo(btns_div);
+                mess_div.appendTo(div);
+                btns_div.appendTo(div);
+                div.appendTo(content);
                 place.append(content);
+            }
+            else {
+                return;
             }
         }
     };
