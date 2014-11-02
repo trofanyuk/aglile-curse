@@ -26,6 +26,80 @@ a{
     color: #25AD9F;
 }
 
+/*------------------------------------*\
+	НАВИГАЦИЯ
+\*------------------------------------*/
+#nav{
+	float:left;
+	width:100%;
+	list-style:none;
+	font-weight:bold;
+	margin-bottom:10px;
+    background-color:#25AD9F;
+}
+#nav li{
+	float:left;
+	margin-right:10px;
+	position:relative;
+	display:block;
+}
+#nav li a{
+    padding:10px;
+    color:white;
+    text-decoration:none;
+}
+#nav li a .text{
+    padding-left:20px;
+}
+#nav li a:hover{
+	background-color:white;
+    color: #25AD9F;
+}
+
+/*--- ВЫПАДАЮЩИЕ ПУНКТЫ ---*/
+#nav ul{
+    top:70px;
+	list-style:none;
+	position:absolute;
+	left:-9999px; /* Скрываем за экраном, когда не нужно (данный метод лучше, чем display:none;) */
+	opacity:0; /* Устанавливаем начальное состояние прозрачности */
+	-webkit-transition:0.25s linear opacity; /* В Webkit выпадающие пункты будут проявляться */
+}
+#nav ul li{
+	padding-top:0px; 
+	float:none;
+	background-color:#25AD9F;
+}
+#nav ul a{
+    margin-left:-1px;
+	white-space:nowrap; 
+	display:block;
+    border-left:solid 1px #25AD9F;
+    border-bottom:solid 1px #25AD9F;
+    border-right:solid 1px #25AD9F;
+}
+#nav li:hover ul{ /* Выводим выпадающий пункт при наведении курсора */
+	left:0; /* Приносим его обратно на экран, когда нужно */
+	opacity:1; /* Делаем непрозрачным */
+}
+#nav li:hover a{ /* Устанавливаем стили для верхнего уровня, когда выводится выпадающий список */
+    color: #25AD9F;
+	background-color:white;
+    text-decoration:none;
+    border-bottom:solid 1px #25AD9F;
+    border-right:solid 1px #25AD9F;
+}
+#nav li:hover ul a{ 
+    min-width:100px;
+	color:#23988c;
+    text-decoration:none;
+}
+#nav li:hover ul li a:hover{ /* Устанавливаем стили для выпадающих пунктов, когда курсор наводится на конкретный пункт */
+	background-color:#25AD9F;
+    color:white;
+}
+
+
 .header {
     min-width:1000px;
     height: 70px;
@@ -127,36 +201,10 @@ a{
         margin: 10px;
     }
 
-/* Icons */
-
-.mail{
-	font-size:12px;
-	display:block;
-	position:relative;
-	border-top:1em solid transparent;
-	border-left:1.5em solid #2c2c2c;
-	border-right:1.5em solid #2c2c2c;
-	border-bottom:1em solid #2c2c2c;
-    height:0;
-    width:0;
-}
-.mail:before{
-    content: '';
-    top: -1.23em;
-    left: -1.5em;
-    display: block;
-    position: absolute;
-    border-top: 1em solid #2c2c2c;
-    border-left: 1.5em solid transparent;
-    border-right: 1.5em solid transparent;
-    border-bottom: 1em solid transparent;
-    font-size: 0.8em;
-}
-
 /* Top Buttons */
 .top_btn_href{
-    padding-top:28px; 
-    padding-bottom:28px; 
+    /*padding-top:28px;*/ 
+    /*padding-bottom:28px;*/ 
     line-height:70px;
     color:white;
     text-decoration:none;
