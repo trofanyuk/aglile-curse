@@ -1,129 +1,52 @@
-﻿@Model BananaSocialNetwork.Albums
+﻿@*@Model BananaSocialNetwork.Albums*@
+
+@{
+    Layout = "~/Views/Shared/_UsersLayout.cshtml";
+}
+
+
 <script src="http://maps.google.com/maps/api/js?sensor=true" type="text/javascript"></script>
-<h2>Create</h2>
 
-<form action="Create" method="post">
+<div class="middle_content min_width profile_bg">
+    <div class="album">
+        <form action="Create" method="post">
+            @Html.Hidden("DateCreate", DateTime.Parse(DateTime.Now.ToString("d MMM yyyy")))
+            <div>
+                <label>Имя</label>
+            </div>
+            <div>
+                @Html.TextBox("Name", "Введите имя")
+            </div>
 
-   
-    @Html.Hidden("DateCreate" , DateTime.Parse(DateTime.Now.ToString("d MMM yyyy")))
-    <div>
-        <label>Имя</label>
-    </div>
-    <div>
-        @Html.TextBox("Name", "Введите имя")
+            <div>
+                <label>Адресс</label>
+            </div>
+            <div>
+                @Html.TextBox("Adress", "Введите адресс")
+                <input type="button" value="Обозначить место на карте" onclick="codeAddress()">
+            </div>
+            <!--<div>
+               <input id="address" type="textbox" value="Adress">
 
-    </div>
-
-    <div>
-        <label>Адресс</label>
-    </div>
-    <div>
-        @Html.TextBox("Adress", "Введите адресс")
-        <input type="button" value="Обозначить место на карте" onclick="codeAddress()">
-    </div>
-    <!--<div>
-       <input id="address" type="textbox" value="Adress">
-
-    </div> -->
-    @Html.TextBox("GeoLong")  <!-- НУЖНО ПОМЕНЯТЬ .  НА  ,  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-    @Html.TextBox("GeoLat")
-   <!-- @Html.Hidden("GeoLat2")-->
+            </div> -->
+            @Html.TextBox("GeoLong")  <!-- НУЖНО ПОМЕНЯТЬ .  НА  ,  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+            @Html.TextBox("GeoLat")
+            <!-- @Html.Hidden("GeoLat2")-->
 
 
 
-    <div id="canvas" style="height: 600px; width:600px;">
-
-        <!--Устанавливаем секцию scripts, которая затем будет рендериться на мастер-странице -->
-        @section scripts {
-            <script type="text/javascript">
-                var markers = new Array();
-                $(document).ready(function () {
+            <div id="canvas" style="height: 600px; width:600px;">
+                <!--Устанавливаем секцию scripts, которая затем будет рендериться на мастер-странице -->
+                @section scripts {
                     GetMap();
-                });
-
-                var geocoder;
-                var map;
-                // Функция загрузки
-                function GetMap() {
-                    geocoder = new google.maps.Geocoder();
-
-                    google.maps.visualRefresh = true;
-                    // установка основных координат
-                    var Moscow = new google.maps.LatLng(46.481447, 30.735585);
-
-                    // Установка общих параметров отображения карты, как масштаб, центральная точка и тип карты
-                    var mapOptions = {
-                        zoom: 15,
-                        center: Moscow,
-                        mapTypeId: google.maps.MapTypeId.G_NORMAL_MAP
-                    };
-
-                    // Встраиваем гугл-карты в элемент на странице и получаем объект карты
-                    map = new google.maps.Map(document.getElementById("canvas"), mapOptions);
-
-
-
-                    google.maps.event.addListener(map, 'click', function (e) {
-
-                        placeMarker(e.latLng, map);
-                    });
                 }
-
-                function placeMarker(position, map) {
-                    var marker = new google.maps.Marker({
-                        position: position,
-                        map: map
-                    });
-                    if (markers.length == 1) {
-                        markers[0].setMap(null);
-                    }
-
-                    markers[0] = marker;
-                    var GeoLong = document.getElementById('GeoLong');
-                    var GeoLat = document.getElementById('GeoLat');
-
-                    GeoLong.value = marker.position.lng();
-                    GeoLat.value = marker.position.lat();
-                    map.panTo(position);
-                }
-
-                function codeAddress() {
-                    var address = document.getElementById('Adress').value;
-                    geocoder.geocode({ 'address': address }, function (results, status) {
-                        if (status == google.maps.GeocoderStatus.OK) {
-                            map.setCenter(results[0].geometry.location);
-                            var marker = new google.maps.Marker({
-                                map: map,
-                                position: results[0].geometry.location
-                            });
-                            if (markers.length == 1) {
-                                markers[0].setMap(null);
-                            }
-
-                            markers[0] = marker;
-                            var GeoLong = document.getElementById('GeoLong');
-                            var GeoLat = document.getElementById('GeoLat');
-
-                            GeoLong.value = marker.position.lng();
-                            GeoLat.value = marker.position.lat();
-                        } else {
-                            alert('Geocode was not successful for the following reason: ' + status);
-                        }
-                    });
-                }
-
-
-
-
-
-            </script>
-
-        }
+            </div>
+            <p>
+                <input type="submit" value="Create" />
+            </p>
+        </form>
     </div>
-    <p>
-        <input type="submit" value="Create" />
-    </p>
-</form>
 
+</div>
 
 

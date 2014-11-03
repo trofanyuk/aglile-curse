@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using BananaSocialNetwork.Models;
 using System.Collections.Generic;
+using System.Web.Helpers;
 
 namespace BananaSocialNetwork.Controllers
 {
@@ -42,14 +43,24 @@ namespace BananaSocialNetwork.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Album album)
+        public ActionResult Create(Album json)
         {
             User user = db.Users.Where(m => m.Email == HttpContext.User.Identity.Name).FirstOrDefault();
-            album.User = user;
+            Album album = new Album()
+            {
+                Name = json.Name,
+                Adress = json.Adress,
+                DateCreate = DateTime.Now,
+                GeoLat = json.GeoLat,
+                GeoLong = json.GeoLong,
+                User = user
+            };
+
             db.Albums.Add(album);
             (user.Albums as List<Album>).Add(album);
             db.SaveChanges();
-            return RedirectToAction("Index");
+
+            return View("Index", "Profile");
         }
 
         public ActionResult Delete(int id = 0)

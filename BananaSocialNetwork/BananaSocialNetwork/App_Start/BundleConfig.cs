@@ -27,6 +27,12 @@ namespace BananaSocialNetwork
                       "~/Scripts/touchTouch.jquery.js",
                       "~/Scripts/photo.dialog.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/google_map").Include(
+                        "~/Scripts/google_map.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/modal_dialogs").Include(
+                        "~/Scripts/modal_dialogs.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/bootstrap.min.css",

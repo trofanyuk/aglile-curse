@@ -10,6 +10,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using BananaSocialNetwork.Models;
 using System.Collections.Generic;
+using System.Data.Entity;
+using Newtonsoft.Json;
 
 
 namespace BananaSocialNetwork.Controllers
@@ -31,6 +33,45 @@ namespace BananaSocialNetwork.Controllers
             }
             //ViewBag.Albums = user.Albums;
             return View(user);
+        }
+
+        [HttpGet]
+        [Authorize]
+        public ActionResult Edit()
+        {
+            // Находим в базе студента
+            User user = db.Users.Where(m => m.Email == HttpContext.User.Identity.Name).FirstOrDefault();
+            if (user != null)
+            {
+                return View(user);
+            }
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult Edit(User user)
+        {
+            //Изменяем данные об игроке в таблице
+            db.Entry(user).State = EntityState.Modified;
+            db.SaveChanges();
+            // перенаправляем на главную страницу
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        [Authorize]
+        public ActionResult AddAlbumPartial()
+        {
+            return PartialView();
+        }
+        [Authorize]
+        public string GetAutorizeUser()
+        {
+            string login = User.Identity.GetUserName();
+            var user = (from usr in db.Users where usr.Email == login select usr).First();
+            var jsonUser = JsonConvert.SerializeObject(user);
+            return jsonUser;
         }
 	}
 }

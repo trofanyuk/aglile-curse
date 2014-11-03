@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BananaSocialNetwork.Models;
+using System.IO;
 
 namespace BananaSocialNetwork.Controllers
 {
@@ -17,6 +18,7 @@ namespace BananaSocialNetwork.Controllers
         // GET: /Photo/
         public ActionResult Index()
         {
+
             return View(db.Photos.ToList());
         }
 
@@ -44,18 +46,38 @@ namespace BananaSocialNetwork.Controllers
         // POST: /Photo/Create
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
         // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        public ActionResult Create(Photo photo, int id)
+        private void SaveFile(string fileName, string contentType, Stream inputStream, string userEmail, int albumId)
         {
+            using (var fileStream = System.IO.File.Create("D:\\Tests\\" + userEmail + albumId + fileName))           // ТУТ ПУТЬ КУДА СОХРАНЯТЬ ФОТО ДЛЯ СЕРВА!!!!!!!!!!!!!!!!!!!!!!!!
+            {
+                inputStream.CopyTo(fileStream);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Create(Photo photo, int id, HttpPostedFileBase[] file1)
+        {
+            User user = db.Users.Where(m => m.Email == HttpContext.User.Identity.Name).FirstOrDefault();
             Album album = db.Albums.Find(id);
             photo.Album = album;
-            db.Photos.Add(photo);
-            //(album.Photos as List<Photo>).Add(photo);
-            db.SaveChanges();
-            return RedirectToAction("Index");
 
 
-            return View(photo);
+
+            foreach (var file in file1)
+            {
+
+                SaveFile(file.FileName, file.ContentType, file.InputStream, user.Email, id);
+                photo.PhotoPath ="D:\\Tests\\" + user.Email + id + file.FileName;
+                db.Photos.Add(photo);
+                db.SaveChanges();
+
+            }
+           
+
+          // return RedirectToAction("Index");
+
+
+            return RedirectToAction("Index", "Album");
         }
 
         // GET: /Photo/Edit/5

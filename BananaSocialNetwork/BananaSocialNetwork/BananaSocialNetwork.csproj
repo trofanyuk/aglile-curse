@@ -165,6 +165,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MapController.cs" />
     <Compile Include="Controllers\PhotoController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -242,6 +243,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\google_map.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -249,6 +251,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modal_dialogs.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -312,6 +315,9 @@
     <Content Include="Views\Shared\_Login.cshtml" />
     <Content Include="Views\Photo\NonPhoto.cshtml" />
     <Content Include="Scripts\photo.dialog.js" />
+    <Content Include="Views\Search\Index.cshtml" />
+    <Content Include="Views\Profile\Edit.cshtml" />
+    <Content Include="Views\Profile\AddAlbumPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

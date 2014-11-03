@@ -6,6 +6,9 @@
 @{
     ViewBag.Title = "Profile";
 }
+
+@System.Web.Optimization.Scripts.Render("~/bundles/modal_dialogs")
+
 <div class="display_block middle_content profile_bg min_width">
     <div class="profile">
         <div class="float_left">
@@ -33,6 +36,7 @@
                         <div><span>Gender </span>@Html.DisplayFor(model => model.Sex)</div>
                         <div><span>Lives in </span>@Html.DisplayFor(model => model.Adress)</div>
                     </div>
+                    @Html.ActionLink("Редактировать", "Edit")
                 </div>
                 <div class="float_right">
                     <div class="friends_form margin_10">
@@ -43,7 +47,7 @@
             <div class="margin_10">
                 <div class="tabbable" style="border:solid 1px #AAAAAA; background-color:white;">
                     <div class="header_form">
-                        <a href="/Album/Create" class="margin_10 float_right">+ Create album</a>
+                        <a class="margin_10 float_right" onclick="showModal_Add_Album()">+ Create album</a>
                     </div>
                     <ul class="nav nav-tabs">
                         <li class="active"><a href="#tab1" data-toggle="tab"><i class="fa fa-folder fa-1x"></i></a></li>
@@ -87,5 +91,6 @@
             </div>
         </div>
     </div>
+   
     
 </div>
