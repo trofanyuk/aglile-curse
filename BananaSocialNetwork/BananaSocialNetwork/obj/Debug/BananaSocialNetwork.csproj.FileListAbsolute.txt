@@ -16,7 +16,6 @@ C:\Users\Дмитрий\Documents\bananarepositoty\BananaSocialNetwork\BananaSoc
 C:\Users\Дмитрий\Documents\bananarepositoty\BananaSocialNetwork\BananaSocialNetwork\bin\Microsoft.Owin.Security.OAuth.dll
 C:\Users\Дмитрий\Documents\bananarepositoty\BananaSocialNetwork\BananaSocialNetwork\bin\Microsoft.Owin.Security.Twitter.dll
 C:\Users\Дмитрий\Documents\bananarepositoty\BananaSocialNetwork\BananaSocialNetwork\bin\Microsoft.Web.Infrastructure.dll
-C:\Users\Дмитрий\Documents\bananarepositoty\BananaSocialNetwork\BananaSocialNetwork\bin\Moq.dll
 C:\Users\Дмитрий\Documents\bananarepositoty\BananaSocialNetwork\BananaSocialNetwork\bin\Newtonsoft.Json.dll
 C:\Users\Дмитрий\Documents\bananarepositoty\BananaSocialNetwork\BananaSocialNetwork\bin\Owin.dll
 C:\Users\Дмитрий\Documents\bananarepositoty\BananaSocialNetwork\BananaSocialNetwork\bin\System.Web.Helpers.dll
@@ -27,7 +26,6 @@ C:\Users\Дмитрий\Documents\bananarepositoty\BananaSocialNetwork\BananaSoc
 C:\Users\Дмитрий\Documents\bananarepositoty\BananaSocialNetwork\BananaSocialNetwork\bin\System.Web.WebPages.dll
 C:\Users\Дмитрий\Documents\bananarepositoty\BananaSocialNetwork\BananaSocialNetwork\bin\System.Web.WebPages.Razor.dll
 C:\Users\Дмитрий\Documents\bananarepositoty\BananaSocialNetwork\BananaSocialNetwork\bin\WebGrease.dll
-C:\Users\Дмитрий\Documents\bananarepositoty\BananaSocialNetwork\BananaSocialNetwork\bin\Moq.xml
 C:\Users\Дмитрий\Documents\bananarepositoty\BananaSocialNetwork\BananaSocialNetwork\bin\System.Web.Helpers.xml
 C:\Users\Дмитрий\Documents\bananarepositoty\BananaSocialNetwork\BananaSocialNetwork\bin\System.Web.Mvc.xml
 C:\Users\Дмитрий\Documents\bananarepositoty\BananaSocialNetwork\BananaSocialNetwork\bin\System.Web.Optimization.xml
@@ -65,7 +63,6 @@ C:\Users\Дмитрий\Documents\bananarepositoty\BananaSocialNetwork\BananaSoc
 C:\Users\Дмитрий\Documents\bananarepositoty\BananaSocialNetwork\BananaSocialNetwork\obj\Debug\BananaSocialNetwork.dll
 C:\Users\Дмитрий\Documents\bananarepositoty\BananaSocialNetwork\BananaSocialNetwork\obj\Debug\BananaSocialNetwork.pdb
 C:\Users\Дмитрий\Documents\bananarepositoty\BananaSocialNetwork\BananaSocialNetwork\obj\Debug\BananaSocialNetwork.Migrations.countphotos.resources
-C:\Users\Дмитрий\Documents\bananarepositoty\BananaSocialNetwork\BananaSocialNetwork\obj\Debug\BananaSocialNetwork.csprojResolveAssemblyReference.cache
 C:\Users\кирилл\Documents\bananarepositoty\BananaSocialNetwork\BananaSocialNetwork\bin\BananaSocialNetwork.dll.config
 C:\Users\кирилл\Documents\bananarepositoty\BananaSocialNetwork\BananaSocialNetwork\bin\BananaSocialNetwork.dll
 C:\Users\кирилл\Documents\bananarepositoty\BananaSocialNetwork\BananaSocialNetwork\bin\BananaSocialNetwork.pdb
@@ -198,3 +195,4 @@ C:\Users\Дмитрий\Desktop\bananarepositoty\BananaSocialNetwork\BananaSocia
 C:\Users\Дмитрий\Desktop\bananarepositoty\BananaSocialNetwork\BananaSocialNetwork\obj\Debug\BananaSocialNetwork.dll
 C:\Users\Дмитрий\Desktop\bananarepositoty\BananaSocialNetwork\BananaSocialNetwork\obj\Debug\BananaSocialNetwork.pdb
 C:\Users\Дмитрий\Desktop\bananarepositoty\BananaSocialNetwork\BananaSocialNetwork\obj\Debug\BananaSocialNetwork.csprojResolveAssemblyReference.cache
+C:\Users\Дмитрий\Documents\bananarepositoty\BananaSocialNetwork\BananaSocialNetwork\obj\Debug\BananaSocialNetwork.csprojResolveAssemblyReference.cache

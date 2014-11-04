@@ -48,7 +48,9 @@ namespace BananaSocialNetwork.Controllers
         // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
         private void SaveFile(string fileName, string contentType, Stream inputStream, string userEmail, int albumId)
         {
-            using (var fileStream = System.IO.File.Create("D:\\Tests\\" + userEmail + albumId + fileName))           // ТУТ ПУТЬ КУДА СОХРАНЯТЬ ФОТО ДЛЯ СЕРВА!!!!!!!!!!!!!!!!!!!!!!!!
+            string name = @"/server_imgs/" + userEmail + Convert.ToString(albumId) + fileName;
+            string fileNamePath = Server.MapPath(name);
+            using (var fileStream = System.IO.File.Create(fileNamePath))           // ТУТ ПУТЬ КУДА СОХРАНЯТЬ ФОТО ДЛЯ СЕРВА!!!!!!!!!!!!!!!!!!!!!!!!
             {
                 inputStream.CopyTo(fileStream);
             }
@@ -67,7 +69,8 @@ namespace BananaSocialNetwork.Controllers
             {
 
                 SaveFile(file.FileName, file.ContentType, file.InputStream, user.Email, id);
-                photo.PhotoPath ="D:\\Tests\\" + user.Email + id + file.FileName;
+                string name = @"/server_imgs/" + user.Email + Convert.ToString(id) + file.FileName;
+                photo.PhotoPath = name;
                 db.Photos.Add(photo);
                 db.SaveChanges();
 
