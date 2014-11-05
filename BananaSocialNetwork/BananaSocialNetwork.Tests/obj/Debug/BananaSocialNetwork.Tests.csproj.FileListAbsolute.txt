@@ -86,3 +86,6 @@ C:\Users\Дмитрий\Desktop\bananarepositoty\BananaSocialNetwork\BananaSocia
 C:\Users\Дмитрий\Desktop\bananarepositoty\BananaSocialNetwork\BananaSocialNetwork.Tests\obj\Debug\BananaSocialNetwork.Tests.csprojResolveAssemblyReference.cache
 C:\Users\Дмитрий\Desktop\bananarepositoty\BananaSocialNetwork\BananaSocialNetwork.Tests\obj\Debug\BananaSocialNetwork.Tests.dll
 C:\Users\Дмитрий\Desktop\bananarepositoty\BananaSocialNetwork\BananaSocialNetwork.Tests\obj\Debug\BananaSocialNetwork.Tests.pdb
+C:\Users\кирилл\Documents\bananarepositoty\BananaSocialNetwork\BananaSocialNetwork.Tests\obj\Debug\BananaSocialNetwork.Tests.csprojResolveAssemblyReference.cache
+C:\Users\кирилл\Documents\bananarepositoty\BananaSocialNetwork\BananaSocialNetwork.Tests\obj\Debug\BananaSocialNetwork.Tests.dll
+C:\Users\кирилл\Documents\bananarepositoty\BananaSocialNetwork\BananaSocialNetwork.Tests\obj\Debug\BananaSocialNetwork.Tests.pdb

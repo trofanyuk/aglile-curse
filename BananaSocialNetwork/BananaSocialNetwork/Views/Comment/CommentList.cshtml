@@ -1,0 +1,16 @@
+﻿@model BananaSocialNetwork.Models.Photo
+
+@{
+    Layout = null;
+}
+
+<div class="display_block thumbs ">
+    @foreach (BananaSocialNetwork.Models.Comment comment in Model.Coments)
+    {
+       <div><label>@comment.Text </label></div>
+             
+              
+               <label>@comment.User.Email</label>           
+    }
+</div>
+

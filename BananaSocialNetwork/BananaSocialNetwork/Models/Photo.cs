@@ -14,5 +14,6 @@ namespace BananaSocialNetwork.Models
         public double GeoLong { get; set; } // долгота - для карт google
         public double GeoLat { get; set; } // широта - для карт google
         public virtual Album Album { get; set; }
+        public virtual IEnumerable<Comment> Coments { get; set; }
     }
 }

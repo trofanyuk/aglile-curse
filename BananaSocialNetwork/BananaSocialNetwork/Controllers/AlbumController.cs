@@ -90,8 +90,7 @@ namespace BananaSocialNetwork.Controllers
         public ActionResult Details(int id)
         {
             Album album = db.Albums.Find(id);
-            album.Photos = db.Photos.Where(m => m.Album.Id == album.Id);
-            ViewBag.Photos = album.Photos;
+            album.Photos = db.Photos.Where(m => m.Album.Id == album.Id);    
             if (album.Photos.Count() == 0)
             {
                 ViewBag.id = album.Id;

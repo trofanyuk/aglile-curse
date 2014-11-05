@@ -160,6 +160,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AlbumController.cs" />
+    <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -217,9 +218,18 @@
     <Compile Include="Migrations\201410301336285_countphotos.Designer.cs">
       <DependentUpon>201410301336285_countphotos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201411051021416_comment.cs" />
+    <Compile Include="Migrations\201411051021416_comment.Designer.cs">
+      <DependentUpon>201411051021416_comment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201411051033051_comment1.cs" />
+    <Compile Include="Migrations\201411051033051_comment1.Designer.cs">
+      <DependentUpon>201411051033051_comment1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Album.cs" />
+    <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Photo.cs" />
@@ -320,6 +330,12 @@
     <Content Include="Views\Album\AddAlbumPartial.cshtml" />
     <Content Include="Views\Photo\CommentsPartial.cshtml" />
     <Content Include="Views\Photo\AddPhotoPartial.cshtml" />
+    <Content Include="Views\Comment\Create.cshtml" />
+    <Content Include="Views\Comment\Delete.cshtml" />
+    <Content Include="Views\Comment\Details.cshtml" />
+    <Content Include="Views\Comment\Edit.cshtml" />
+    <Content Include="Views\Comment\Index.cshtml" />
+    <Content Include="Views\Comment\CommentList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -369,6 +385,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201410301336285_countphotos.resx">
       <DependentUpon>201410301336285_countphotos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201411051021416_comment.resx">
+      <DependentUpon>201411051021416_comment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201411051033051_comment1.resx">
+      <DependentUpon>201411051033051_comment1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
