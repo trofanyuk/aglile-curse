@@ -52,19 +52,12 @@ namespace BananaSocialNetwork.Controllers
         [Authorize]
         public ActionResult Edit(User user)
         {
-            //Изменяем данные об игроке в таблице
             db.Entry(user).State = EntityState.Modified;
             db.SaveChanges();
             // перенаправляем на главную страницу
             return RedirectToAction("Index");
         }
 
-        [HttpGet]
-        [Authorize]
-        public ActionResult AddAlbumPartial()
-        {
-            return PartialView();
-        }
         [Authorize]
         public string GetAutorizeUser()
         {

@@ -317,7 +317,9 @@
     <Content Include="Scripts\photo.dialog.js" />
     <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\Profile\Edit.cshtml" />
-    <Content Include="Views\Profile\AddAlbumPartial.cshtml" />
+    <Content Include="Views\Album\AddAlbumPartial.cshtml" />
+    <Content Include="Views\Photo\CommentsPartial.cshtml" />
+    <Content Include="Views\Photo\AddPhotoPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

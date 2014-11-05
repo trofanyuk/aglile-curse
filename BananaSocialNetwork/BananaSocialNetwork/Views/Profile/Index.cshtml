@@ -14,7 +14,9 @@
         <div class="float_left">
             <div class="first_column margin_10">
                 <div class="avatar_form margin_10">
-                    <div></div>
+                    <div>
+                        <img style="background-image: url(@Model.AvatatPath)" src="@Model.AvatatPath" />
+                    </div>
                     <div>
                         @Html.DisplayFor(model => model.Firstname)
                         @Html.DisplayFor(model => model.Surname)

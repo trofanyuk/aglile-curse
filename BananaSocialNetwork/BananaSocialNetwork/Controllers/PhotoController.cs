@@ -57,31 +57,37 @@ namespace BananaSocialNetwork.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Photo photo, int id, HttpPostedFileBase[] file1)
+        public ActionResult Create(Photo photo, int id, HttpPostedFileBase[] files)
         {
             User user = db.Users.Where(m => m.Email == HttpContext.User.Identity.Name).FirstOrDefault();
             Album album = db.Albums.Find(id);
             photo.Album = album;
 
-
-
-            foreach (var file in file1)
+            foreach (var file in files)
             {
-
                 SaveFile(file.FileName, file.ContentType, file.InputStream, user.Email, id);
                 string name = @"/server_imgs/" + user.Email + Convert.ToString(id) + file.FileName;
                 photo.PhotoPath = name;
                 db.Photos.Add(photo);
                 db.SaveChanges();
-
             }
-           
-
-          // return RedirectToAction("Index");
-
 
             return RedirectToAction("Index", "Album");
         }
+
+        [HttpGet]
+        public ActionResult AddPhotoPartial()
+        {
+            return View();
+        }
+
+        //public void CreatePhoto(HttpPostedFileBase[] files, int id)
+        //{
+        //    foreach (var file in files)
+        //    {
+
+        //    }
+        //}
 
         // GET: /Photo/Edit/5
         public ActionResult Edit(int? id)
@@ -140,6 +146,11 @@ namespace BananaSocialNetwork.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult CommentsPartial(int? id)
+        {
+            Photo photo = db.Photos.Find(id);
+            return PartialView(photo);
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

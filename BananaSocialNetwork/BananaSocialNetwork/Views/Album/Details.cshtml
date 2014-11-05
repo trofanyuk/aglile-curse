@@ -4,60 +4,14 @@
     Layout = "~/Views/Shared/_UsersLayout.cshtml";
 }
 
-@*<div>
-        <h4>Album</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.Name)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Name)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Adress)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Adress)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.GeoLong)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.GeoLong)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.GeoLat)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.GeoLat)
-            </dd>
-
-        </dl>
-    </div>
-
-    @foreach (BananaSocialNetwork.Models.Photo photo in ViewBag.Photos)
-    {
-
-        <label>@photo.Name</label>
-
-
-    }
-
-    <p>
-        @Html.ActionLink("Back to List", "Index")
-    </p>*@
+@System.Web.Optimization.Scripts.Render("~/bundles/modal_dialogs")
 
 <div class="middle_content min_width profile_bg">
     <div class="album">
-        <div>@Html.DisplayFor(model => model.Name)</div>
+        <div>
+            <p class="float_left">@Model.Name</p>
+            <p class="float_right" onclick="show_Add_Photo()">+ Add photo</p>
+        </div>
         <div class="display_block thumbs ">
             @foreach (BananaSocialNetwork.Models.Photo photo in Model.Photos)
             {

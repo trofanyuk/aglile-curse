@@ -194,6 +194,8 @@
 
             // Raise the visible flag
             overlayVisible = true;
+
+            showComments();
         }
 
         function hideOverlay() {
@@ -226,7 +228,6 @@
 
             setTimeout(function () {
                 showImage(index);
-                showComments();
             }, 0);
         }
 
@@ -299,22 +300,14 @@
             var place = placeholders.eq(cur_index);
             if (place.find('div.commentsBlock').length <= 0) {
                 var id = items.eq(index).attr('data-id');
-
-                var div = $("<div class='comtrols_div'>");
-                var mess_div = $("<div class='mess_div'>");
-                var btns_div = $("<div class='btns_div'>");
-                var content = $("<div class='commentsBlock'>");
-                var textbox = $("<textarea>");
-                var delete_btn = $("<a href='/Photo/Delete/"+ id +"' class='btn btn-danger btn-block'>Delete</a>");
-                var send_btn = $("<a href='' class='btn btn-success btn-block'>Send</a>");
-
-                textbox.appendTo(mess_div);
-                delete_btn.appendTo(btns_div);
-                send_btn.appendTo(btns_div);
-                mess_div.appendTo(div);
-                btns_div.appendTo(div);
-                div.appendTo(content);
-                place.append(content);
+                $.ajax({
+                    type: "GET",
+                    url: "/Photo/CommentsPartial/" + id,
+                    success: function (viewHTML) {
+                        place.append(viewHTML);
+                    },
+                    error: function (mess) {  }
+                });
             }
             else {
                 return;

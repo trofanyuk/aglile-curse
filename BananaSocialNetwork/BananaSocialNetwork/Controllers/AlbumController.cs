@@ -37,12 +37,14 @@ namespace BananaSocialNetwork.Controllers
             }
         }
 
+        [Authorize]
         public ActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult Create(Album json)
         {
             User user = db.Users.Where(m => m.Email == HttpContext.User.Identity.Name).FirstOrDefault();
@@ -63,6 +65,7 @@ namespace BananaSocialNetwork.Controllers
             return View("Index", "Profile");
         }
 
+        [Authorize]
         public ActionResult Delete(int id = 0)
         {
             Album album = db.Albums.Find(id);
@@ -75,6 +78,7 @@ namespace BananaSocialNetwork.Controllers
 
 
         [HttpPost, ActionName("Delete")]
+        [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
             Album album = db.Albums.Find(id);
@@ -98,6 +102,13 @@ namespace BananaSocialNetwork.Controllers
                 return View(album);
             }
             //return View(album);
+        }
+
+        [HttpGet]
+        [Authorize]
+        public ActionResult AddAlbumPartial()
+        {
+            return PartialView();
         }
 
     }

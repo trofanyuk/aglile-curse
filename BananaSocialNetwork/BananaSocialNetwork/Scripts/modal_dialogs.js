@@ -1,8 +1,11 @@
-﻿function showModal_Add_Album() {
+﻿
+// Albums // 
+
+function showModal_Add_Album() {
 
     $.ajax({
         type: "GET",
-        url: "/Profile/AddAlbumPartial/",
+        url: "/Album/AddAlbumPartial/",
         //data: someArguments,
         success: function (viewHTML) {
             $("body").append(viewHTML);
@@ -46,4 +49,57 @@ function confirm_add_album() {
 
     close_add_album();
     window.location = "";
+}
+
+// Photos //
+
+function show_Add_Photo() {
+    $.ajax({
+        type: "GET",
+        url: "/Photo/AddPhotoPartial/",
+        //data: someArguments,
+        success: function (viewHTML) {
+            $("body").append(viewHTML);
+
+            //var files = $('#files');
+            //files.bind({
+            //    change: function () {
+            //        displayFiles(this.files);
+            //    }
+            //});
+
+            //function displayFiles(files) {
+            //    $.each(files, function (i, file) {
+            //        alert(file.name);
+            //    })
+            //}
+        },
+        error: function (errorData) { }
+    });
+}
+
+function add_photo()
+{
+    //$.ajax({
+    //    type: "GET",
+    //    url: "/Photo/CreatePhoto/",
+        
+    //    //data: someArguments,
+    //    success: function (viewHTML) {
+
+    //    },
+    //    error: function (errorData) { }
+    //});
+
+    var form = $('#files_form');
+    $.ajax({
+        url: '/Photo/CreatePhoto/',
+        type: 'POST',
+        data: form,
+        //processData: false,
+        //contentType: false,
+        success: function () {
+            alert();
+        }
+    });
 }

@@ -58,6 +58,7 @@ a{
 
 /*--- бшоюдючыхе осмйрш ---*/
 #nav ul{
+    z-index:2000;
     top:70px;
 	list-style:none;
 	position:absolute;
