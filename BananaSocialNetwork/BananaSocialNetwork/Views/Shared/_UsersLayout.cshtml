@@ -34,8 +34,13 @@
                                 </a>
                                 <ul>
                                     <li><a href="/Profile/Index">Profile</a></li>
-                                    <li><a href="#">Settings</a></li>
-                                    <li><a href="#">Logout</a></li>
+                                    <li>@Html.ActionLink("Settings", "Edit")</li>
+                                    <li>
+                                        <form method="post" action="/Account/LogOff" id="logoutForm">
+                                            @Html.AntiForgeryToken()
+                                            <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+                                        </form>
+                                    </li>
                                 </ul>
                             </li>
                         </ul>

@@ -14,7 +14,6 @@
 @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true, "")
     <div class="container middle_content min_width">
         <div class="display_block">
             <div class="width_50per float_left" style="margin-top:120px;">
@@ -25,6 +24,7 @@
             <div class="width_50per float_right" style="margin-top: 60px;">
                 <div class="enter_form">
                     <div class="header_form"><p class="header_text">Authorization</p></div>
+                    <div class="margin_10">@Html.ValidationSummary(true, "")</div>
                     <div class="margin_10">@Html.ValidationMessageFor(m => m.Email, "")</div>
                     <div class="margin_10">@Html.TextBoxFor(m => m.Email, new { @placeholder = "Example@mail.com" })</div>
                     <div class="margin_10">@Html.ValidationMessageFor(m => m.Password, "")</div>
