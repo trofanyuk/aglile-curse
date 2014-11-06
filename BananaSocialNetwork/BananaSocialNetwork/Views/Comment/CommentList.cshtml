@@ -1,16 +1,21 @@
 ﻿@model BananaSocialNetwork.Models.Photo
-
 @{
     Layout = null;
 }
 
-<div class="display_block thumbs ">
-    @foreach (BananaSocialNetwork.Models.Comment comment in Model.Coments)
-    {
-       <div><label>@comment.Text </label></div>
-             
-              
-               <label>@comment.User.Email</label>           
-    }
-</div>
+@foreach (BananaSocialNetwork.Models.Comment comment in Model.Coments)
+{
+    <div style="border-top: solid 1px #EEE; border-bottom: none; text-align: left;">
+        <div style="display:inline-block; background-color: red; width:50px; height:50px; margin:5px;">
+        </div>
+        <div style="display:inline-block; vertical-align:top; width: 380px;">
+            <div style="margin-top:10px;">
+                <p style="font-weight:bold;" class="dark_green_text">@comment.User.Email</p> 
+            </div>
+            <div style="padding-top:5px;">
+                <p style="font-size:13px;">@comment.Text</p>
+            </div>
+        </div>
+    </div>
+}
 

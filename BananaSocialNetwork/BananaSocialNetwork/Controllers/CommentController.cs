@@ -41,19 +41,24 @@ namespace BananaSocialNetwork.Controllers
             return View();
         }
 
+        public ActionResult OneComment(Comment comment)
+        {
+            return View(comment);
+        }
+
         // POST: /Comment/Create
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
         // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
 
-        public ActionResult Create(Comment comment, int Id)
+        public ActionResult Create(string text, int Id)
         {
-
+            Comment comment = new Comment();
             User user = db.Users.Where(m => m.Email == HttpContext.User.Identity.Name).FirstOrDefault();
             Photo photo = db.Photos.Find(Id);
-           // (photo.Coments as List<Comment>).Add(comment);
-           //(user.Comments as List<Comment>).Add(comment);
 
+            comment.DateCreate = DateTime.Parse(DateTime.Now.ToString("d MMM yyyy"));
+            comment.Text = text;
             comment.User = user;
             comment.Photo = photo;
 
@@ -61,14 +66,14 @@ namespace BananaSocialNetwork.Controllers
                 db.SaveChanges();
                
 
-            return View(comment);
+            return View("OneComment", comment);
         }
 
-        public ActionResult CommentList(Comment comment, int Id)
+        public ActionResult CommentList(int Id)
         {
             
             Photo photo = db.Photos.Find(Id);
-            photo.Coments = db.Comments.Where(m => m.Photo.Id == photo.Id); 
+            photo.Coments = db.Comments.Where(m => m.Photo.Id == photo.Id).ToList(); 
 
             return View(photo);
 

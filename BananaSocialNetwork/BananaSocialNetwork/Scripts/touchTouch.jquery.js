@@ -25,7 +25,7 @@
 			index = 0,
 			allitems = this,
 			items = allitems,
-			cur_index = 0;
+            current_pos = 0;
 
         // Appending the markup to the page
         overlay.hide().appendTo('body');
@@ -194,8 +194,6 @@
 
             // Raise the visible flag
             overlayVisible = true;
-
-            showComments();
         }
 
         function hideOverlay() {
@@ -220,7 +218,7 @@
 
             // This will trigger a smooth css transition
             slider.css('left', (-index * 100) + '%');
-            cur_index = index;
+            current_pos = index;
         }
 
         // Preload an image by its index in the items array
@@ -228,6 +226,7 @@
 
             setTimeout(function () {
                 showImage(index);
+                showComments(current_pos);
             }, 0);
         }
 
@@ -243,7 +242,7 @@
             loadImage(items.eq(index).attr('href'), function () {
                 placeholders.eq(index).html(this);
             });
-
+            
         }
 
         // Load the image and execute a callback function.
@@ -251,12 +250,11 @@
 
         function loadImage(src, callback) {
 
-            var img = $('<img>').on('load', function () {
-                callback.call(img);
-            });
-
+            var presenter = $("<div class='presenter'>");
+            var img = $("<img>");
             img.attr('src', src);
-            
+            presenter.append(img);
+            callback.call(presenter);
         }
 
         function showNext() {
@@ -295,18 +293,52 @@
             }
         }
 
-        function showComments()
+        function showComments(index)
         {
-            var place = placeholders.eq(cur_index);
-            if (place.find('div.commentsBlock').length <= 0) {
+            var place = placeholders.eq(index).find("div.presenter");
+            if (place.find('div.commentsBlock').length <= 0)
+            {
                 var id = items.eq(index).attr('data-id');
                 $.ajax({
+                    async: false,
                     type: "GET",
                     url: "/Photo/CommentsPartial/" + id,
                     success: function (viewHTML) {
                         place.append(viewHTML);
                     },
                     error: function (mess) {  }
+                });
+                //alert(id);
+                var all_comments = $(".all_comments").eq(index);
+                $.ajax({
+                    async: false,
+                    type: "GET",
+                    url: "/Comment/CommentList/" + id,
+                    success: function (viewHTML)
+                    {
+                        all_comments.append(viewHTML);
+
+                        var send_btn = $(".send_btn").on("click", function (e)
+                        {
+                            var mes_text = $(".com_text").eq(index).val();
+                            var id_mes = $(".id_mes").eq(index).val();
+
+                            //alert("index: " + current_pos + " text " + mes_text + " id " + id_mes);
+                            $.ajax({
+                                async: false,
+                                type: "POST",
+                                url: "/Comment/Create/",
+                                data: { text: mes_text, id: id_mes },
+                                success: function (viewHTML)
+                                {
+                                    alert(current_pos);
+                                    var coms = $$(".all_comments").eq(current_pos);
+                                    coms.append(coms);
+                                }
+                            });
+                        });
+                    },
+                    error: function (mess) { }
                 });
             }
             else {

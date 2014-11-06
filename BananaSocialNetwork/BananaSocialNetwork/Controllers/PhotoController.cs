@@ -65,29 +65,25 @@ namespace BananaSocialNetwork.Controllers
 
             foreach (var file in files)
             {
-                SaveFile(file.FileName, file.ContentType, file.InputStream, user.Email, id);
-                string name = @"/server_imgs/" + user.Email + Convert.ToString(id) + file.FileName;
-                photo.PhotoPath = name;
-                db.Photos.Add(photo);
-                db.SaveChanges();
+                if (file != null)
+                {
+                    SaveFile(file.FileName, file.ContentType, file.InputStream, user.Email, id);
+                    string name = @"/server_imgs/" + user.Email + Convert.ToString(id) + file.FileName;
+                    photo.PhotoPath = name;
+                    db.Photos.Add(photo);
+                    db.SaveChanges();
+                }
             }
 
-            return RedirectToAction("Index", "Album");
+            return RedirectToAction("Details/" + id, "Album");
         }
 
         [HttpGet]
-        public ActionResult AddPhotoPartial()
+        public ActionResult AddPhotoPartial(int id)
         {
+            ViewBag.Al_Id = id;
             return View();
         }
-
-        //public void CreatePhoto(HttpPostedFileBase[] files, int id)
-        //{
-        //    foreach (var file in files)
-        //    {
-
-        //    }
-        //}
 
         // GET: /Photo/Edit/5
         public ActionResult Edit(int? id)

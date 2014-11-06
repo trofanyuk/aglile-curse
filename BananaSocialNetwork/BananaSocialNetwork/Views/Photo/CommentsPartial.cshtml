@@ -3,11 +3,15 @@
 <div class="commentsBlock">
     <div class="comtrols_div">
         <div class="mess_div">
-            <textarea></textarea>
+            <div class="all_comments" style="min-height:30px;">
+
+            </div>
+                <textarea placeholder="" class="com_text" name="text"></textarea>
+                <input type="hidden" class="id_mes" name="id_mes" value="@Model.Id"/>
         </div>
         <div class="btns_div">
             <a href='/Photo/Delete/@Model.Id' class='btn btn-danger btn-block'>Delete</a>
-            <a href='/Comment/Create/@Model.Id' class='btn btn-success btn-block'>Send</a>
+            <a class='btn btn-success btn-block send_btn'>Send</a>
             <a href='/Comment/CommentList/@Model.Id' class='btn btn-success btn-block'>CommentsList</a>
         </div>
     </div>

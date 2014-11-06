@@ -52,18 +52,12 @@
 	text-align: center;
 	width:100%;
 	display:inline-block;
-    z-index:1100;
 }
 
 .commentsBlock{
-    /*height:auto;*/
-    max-width:80%;
-    min-width:767px;
     min-height:10px;
     background-color:white;
-    z-index:2000;
     margin:auto;
-
 }
 
 .commentsBlock .comtrols_div{
@@ -73,16 +67,16 @@
 .commentsBlock .comtrols_div .mess_div{
     float:left;
     width:450px;
+    margin:10px;
 }
 
 .commentsBlock .comtrols_div .mess_div textarea{
     line-height:normal;
-    margin-top:10px;
-    margin-bottom:10px;
-    float:left; 
     height:100px;
     width:450px;
     resize:none;
+    margin-top:5px;
+    border:solid 1px lightgray;
 }
 
 .commentsBlock .comtrols_div .btns_div{
@@ -90,6 +84,8 @@
     width:200px;
     height:120px;
     margin:10px;
+    padding:5px;
+    border-left:solid 1px #EEE;
 }
 
 /* The before element moves the
@@ -103,14 +99,18 @@
 	margin-right:-1px;
 }
 
-#gallerySlider .placeholder img{
-	display: inline-block;
-	max-height: 80%;
+#gallerySlider .placeholder .presenter{
+    display:inline-table;
+    vertical-align: top;
+    width:auto;
+    max-height: 80%;
+    max-width:80%;
+    background-color:white;
+}
+
+#gallerySlider .placeholder .presenter img{
+    max-height: 70%;
 	max-width: 80%;
-    min-width:767px;
-	vertical-align: top;
-    margin-top:20px;
-    z-index:1500;
 }
 
 #gallerySlider.rightSpring{

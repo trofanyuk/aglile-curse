@@ -54,52 +54,18 @@ function confirm_add_album() {
 // Photos //
 
 function show_Add_Photo() {
+    var album_id = $("#al_id").val().toString();
     $.ajax({
         type: "GET",
-        url: "/Photo/AddPhotoPartial/",
+        url: "/Photo/AddPhotoPartial/" + album_id,
         //data: someArguments,
         success: function (viewHTML) {
             $("body").append(viewHTML);
-
-            //var files = $('#files');
-            //files.bind({
-            //    change: function () {
-            //        displayFiles(this.files);
-            //    }
-            //});
-
-            //function displayFiles(files) {
-            //    $.each(files, function (i, file) {
-            //        alert(file.name);
-            //    })
-            //}
         },
         error: function (errorData) { }
     });
 }
 
-function add_photo()
-{
-    //$.ajax({
-    //    type: "GET",
-    //    url: "/Photo/CreatePhoto/",
-        
-    //    //data: someArguments,
-    //    success: function (viewHTML) {
-
-    //    },
-    //    error: function (errorData) { }
-    //});
-
-    var form = $('#files_form');
-    $.ajax({
-        url: '/Photo/CreatePhoto/',
-        type: 'POST',
-        data: form,
-        //processData: false,
-        //contentType: false,
-        success: function () {
-            alert();
-        }
-    });
+function close_add_photo() {
+    var dialog = $("#add_photo_dialog").remove();
 }
