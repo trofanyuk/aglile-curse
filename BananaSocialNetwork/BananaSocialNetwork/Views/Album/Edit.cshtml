@@ -1,4 +1,5 @@
-﻿@model BananaSocialNetwork.Models.Photo
+﻿@model BananaSocialNetwork.Models.Album
+
 <script src="http://maps.google.com/maps/api/js?sensor=true" type="text/javascript"></script>
 
 
@@ -13,13 +14,6 @@
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.Id)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.PhotoPath, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.PhotoPath)
-                @Html.ValidationMessageFor(model => model.PhotoPath)
-            </div>
-        </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Adress, new { @class = "control-label col-md-2" })
@@ -56,9 +50,8 @@
             @section scripts {
                 <script type="text/javascript">
                     var markers = new Array();
-                    var GeoLong = @Model.GeoLong.ToString().Replace(',', '.');
+                   var GeoLong = @Model.GeoLong.ToString().Replace(',', '.');
                     var GeoLat = @Model.GeoLat.ToString().Replace(',', '.');
-
 
                     $(document).ready(function () {
                         GetMapMarker();
@@ -89,6 +82,7 @@
                             title: 'Станции метро'
                         });
 
+                        markers[0] = marker;
 
                         google.maps.event.addListener(map, 'click', function (e) {
 
@@ -143,10 +137,4 @@
         </div>
     </div>
 }
-
-
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 

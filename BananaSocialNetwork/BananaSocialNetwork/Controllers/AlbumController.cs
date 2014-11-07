@@ -11,6 +11,8 @@ using Microsoft.Owin.Security;
 using BananaSocialNetwork.Models;
 using System.Collections.Generic;
 using System.Web.Helpers;
+using System.Net;
+using System.Data.Entity;
 
 namespace BananaSocialNetwork.Controllers
 {
@@ -108,6 +110,32 @@ namespace BananaSocialNetwork.Controllers
         public ActionResult AddAlbumPartial()
         {
             return PartialView();
+        }
+
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Album album = db.Albums.Find(id);
+            if (album == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(album);
+        }
+
+       
+        [HttpPost]
+
+        public ActionResult Edit(Album album, int id)
+        {
+            db.Entry(album).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+
         }
 
     }

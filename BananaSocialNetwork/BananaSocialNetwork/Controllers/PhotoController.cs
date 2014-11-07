@@ -97,6 +97,7 @@ namespace BananaSocialNetwork.Controllers
             {
                 return HttpNotFound();
             }
+
             return View(photo);
         }
 
@@ -104,16 +105,13 @@ namespace BananaSocialNetwork.Controllers
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
         // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,PhotoPath,Adress,GeoLong,GeoLat")] Photo photo)
+
+        public ActionResult Edit(Photo photo, int id, HttpPostedFileBase file)
         {
-            if (ModelState.IsValid)
-            {
-                db.Entry(photo).State = EntityState.Modified;
+                db.Entry(photo).State = EntityState.Modified;            
                 db.SaveChanges();
                 return RedirectToAction("Index");
-            }
-            return View(photo);
+            
         }
 
         // GET: /Photo/Delete/5
