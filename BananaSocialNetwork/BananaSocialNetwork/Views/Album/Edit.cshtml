@@ -9,7 +9,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-
+     @Html.Hidden("DateCreate", DateTime.Parse(DateTime.Now.ToString("d MMM yyyy")))
     <div class="form-horizontal">
         <h4>Photo</h4>
         <hr />

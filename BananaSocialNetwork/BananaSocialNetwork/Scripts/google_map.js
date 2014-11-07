@@ -34,6 +34,9 @@ function GetMap() {
 }
 
 function placeMarker(position, map) {
+
+
+
     var marker = new google.maps.Marker({
         position: position,
         map: map
@@ -97,10 +100,10 @@ function GetMapMarker() {
     map = new google.maps.Map(document.getElementById("canvas"), mapOptions);
     var marker = new google.maps.Marker({
         position: myLatlng,
-        map: map,
-        title: 'Станции метро'
+        map: map
     });
 
+    markers[0] = marker;
 
     google.maps.event.addListener(map, 'click', function (e) {
 
