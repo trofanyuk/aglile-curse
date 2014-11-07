@@ -108,10 +108,9 @@ namespace BananaSocialNetwork.Controllers
 
         public ActionResult Edit(Photo photo, int id, HttpPostedFileBase file)
         {
-                db.Entry(photo).State = EntityState.Modified;            
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            
+            db.Entry(photo).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         // GET: /Photo/Delete/5

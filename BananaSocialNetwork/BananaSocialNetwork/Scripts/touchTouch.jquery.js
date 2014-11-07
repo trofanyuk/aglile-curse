@@ -194,6 +194,7 @@
 
             // Raise the visible flag
             overlayVisible = true;
+            
         }
 
         function hideOverlay() {
@@ -219,7 +220,7 @@
             // This will trigger a smooth css transition
             slider.css('left', (-index * 100) + '%');
             current_pos = index;
-            //showComments(current_pos);
+            showComments(index);
         }
 
         // Preload an image by its index in the items array
@@ -241,7 +242,8 @@
             // Call the load function with the href attribute of the item
             loadImage(items.eq(index).attr('href'), index, function () {
                 placeholders.eq(index).html(this);
-                showComments(index);
+
+                showComments(current_pos);
             });
         }
 
@@ -260,6 +262,7 @@
 
             // If this is not the last image
             if (index + 1 < items.length) {
+                var coms = $(".commentsBlock").remove();
                 index++;
                 offsetSlider(index);
                 preload(index + 1);
@@ -278,6 +281,7 @@
 
             // If this is not the first image
             if (index > 0) {
+                var coms = $(".commentsBlock").remove();
                 index--;
                 offsetSlider(index);
                 preload(index - 1);
@@ -302,49 +306,7 @@
             {
                 //var d = $("<div style='background-color:red; heigth:200px; width:100px;'>").appendTo(place);
                 var id = items.eq(index).attr('data-id');
-                getCommentsControls(id, place);
-
-                //alert(index);
-                //$.ajax({
-                //    async: false,
-                //    type: "GET",
-                //    url: "/Photo/CommentsPartial/" + id,
-                //    success: function (viewHTML) {
-                //        place.append(viewHTML);
-                        
-                //        var all_comments = $(".all_comments").eq(current_pos);
-                //        $.ajax({
-                //            async: false,
-                //            type: "GET",
-                //            url: "/Comment/CommentList/" + id,
-                //            success: function (viewHTML) {
-                //                all_comments.append(viewHTML);
-                //                //alert(viewHTML);
-                //                //var send_btn = $(".send_btn").on("click", function (e) {
-                //                //    var mes_text = $(".com_text").eq(index).val();
-                //                //    var id_mes = $(".id_mes").eq(index).val();
-
-                //                //    //alert("index: " + current_pos + " text " + mes_text + " id " + id_mes);
-                //                //    $.ajax({
-                //                //        async: false,
-                //                //        type: "POST",
-                //                //        url: "/Comment/Create/",
-                //                //        data: { text: mes_text, id: id_mes },
-                //                //        success: function (viewHTML) {
-                //                //            //alert(current_pos);
-                //                //            var coms = $(".all_comments").eq(current_pos);
-                //                //            coms.append(coms);
-                //                //        }
-                //                //    });
-                //                //});
-                //            },
-                //            error: function (mess) { }
-                //        });
-
-                //    },
-                //    error: function (mess) {  }
-                //});
-                
+                getCommentsControls(id, place);    
             }
             else {
                 return;
@@ -358,8 +320,8 @@
                 type: "GET",
                 url: "/Photo/CommentsPartial/" + id,
                 success: function (viewHTML) {
-                    
                     place.append(viewHTML);
+                    var _index = placeholders.eq(index).find(".index").val(index);
                     var all_comments = place.find(".all_comments");
                     getCommentsList(id, all_comments);
                 }
@@ -380,3 +342,20 @@
     };
 
 })(jQuery);
+
+function sendCom() {
+    var place = $(".placeholder");
+    var mes_div = $(".mess_div");
+    var mess_text = mes_div.find("textarea").val();
+    var id_mess = mes_div.find("#id_mes").val();
+    $.ajax({
+        async: false,
+        type: "POST",
+        url: "/Comment/Create/",
+        data: { text: mess_text, id: id_mess },
+        success: function (viewHTML) {
+            var coms = mes_div.find(".all_comments");
+            coms.append(viewHTML);
+        }
+    });
+}

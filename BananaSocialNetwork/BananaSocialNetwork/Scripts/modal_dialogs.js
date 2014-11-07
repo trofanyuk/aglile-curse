@@ -25,7 +25,7 @@ function confirm_add_album() {
     var geolong = $("#GeoLong").val();
     var geolat = $("#GeoLat").val();
 
-    if (name.val() == "" || location.val() == "") {
+    if (name.val() == "") {
         alert_div.css("visibility", "visible");
         return;
     }

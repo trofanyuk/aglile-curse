@@ -34,7 +34,6 @@ function GetMap() {
 }
 
 function placeMarker(position, map) {
-    alert();
     var marker = new google.maps.Marker({
         position: position,
         map: map
@@ -46,9 +45,9 @@ function placeMarker(position, map) {
     markers[0] = marker;
     var GeoLong = document.getElementById('GeoLong');
     var GeoLat = document.getElementById('GeoLat');
-
-    GeoLong.value = marker.position.lng();
-    GeoLat.value = marker.position.lat();
+    //alert(marker.position.lng()).replace('.', ',');
+    GeoLong.value = String(marker.position.lng()).replace('.', ',');
+    GeoLat.value = String(marker.position.lat()).replace('.', ',');
     map.panTo(position);
 }
 
@@ -68,11 +67,43 @@ function codeAddress() {
             markers[0] = marker;
             var GeoLong = document.getElementById('GeoLong');
             var GeoLat = document.getElementById('GeoLat');
-
-            GeoLong.value = marker.position.lng();
-            GeoLat.value = marker.position.lat();
+            //alert(marker.position.lng()).replace('.', ',');
+            GeoLong.value = String(marker.position.lng()).replace('.', ',');
+            GeoLat.value = String(marker.position.lat()).replace('.', ',');
+            
         } else {
             alert('Geocode was not successful for the following reason: ' + status);
         }
+    });
+}
+
+function GetMapMarker() {
+    geocoder = new google.maps.Geocoder();
+
+    google.maps.visualRefresh = true;
+    // установка основных координат
+    var Odessa = new google.maps.LatLng(GeoLat, GeoLong);
+
+    // Установка общих параметров отображения карты, как масштаб, центральная точка и тип карты
+    var mapOptions = {
+        zoom: 15,
+        center: Odessa,
+        mapTypeId: google.maps.MapTypeId.G_NORMAL_MAP
+    };
+
+    var myLatlng = new google.maps.LatLng(GeoLat, GeoLong);
+
+    // Встраиваем гугл-карты в элемент на странице и получаем объект карты
+    map = new google.maps.Map(document.getElementById("canvas"), mapOptions);
+    var marker = new google.maps.Marker({
+        position: myLatlng,
+        map: map,
+        title: 'Станции метро'
+    });
+
+
+    google.maps.event.addListener(map, 'click', function (e) {
+
+        placeMarker(e.latLng, map);
     });
 }

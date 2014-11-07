@@ -184,3 +184,35 @@
 	background-position:right top;
 	right:40px;
 }
+
+.menu_div{
+    border:solid 1px #B2BDCB;
+    padding-top:10px;
+}
+.main-item{
+    color:black;
+    outline:none;
+}
+
+.sub-menu 
+{ 
+   margin-top:20px;
+   visibility:hidden;
+   list-style:none;
+   display:none;
+   border-top:none;
+}
+.main-item:focus {
+    border-bottom: none;
+    outline:none;
+}
+.sub-menu li{
+    height:20px;
+}
+.main-item:focus ~ .sub-menu, 
+.main-item:active ~ .sub-menu, 
+.sub-menu:hover 
+{ 
+   visibility:visible; 
+   display:block;
+}
