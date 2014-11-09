@@ -85,6 +85,14 @@ namespace BananaSocialNetwork.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult EditPhotoPartial(int id)
+        {
+            ViewBag.Ph_Id = id;
+            Photo photo = db.Photos.Find(id);
+            return View(photo);
+        }
+
         // GET: /Photo/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -106,11 +114,16 @@ namespace BananaSocialNetwork.Controllers
         // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
 
-        public ActionResult Edit(Photo photo, int id, HttpPostedFileBase file)
+        public ActionResult Edit(Photo json)
         {
+            Photo photo = db.Photos.Find(json.Id);
+            photo.Adress = json.Adress;
+            photo.GeoLat = json.GeoLat;
+            photo.GeoLong = json.GeoLong;
+            
             db.Entry(photo).State = EntityState.Modified;
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return null;
         }
 
         // GET: /Photo/Delete/5
@@ -129,14 +142,14 @@ namespace BananaSocialNetwork.Controllers
         }
 
         // POST: /Photo/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        [HttpGet]
         public ActionResult DeleteConfirmed(int id)
         {
             Photo photo = db.Photos.Find(id);
+            int al_id = photo.Album.Id;
             db.Photos.Remove(photo);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Details/" + al_id, "Album");
         }
 
         public ActionResult CommentsPartial(int? id)

@@ -16,10 +16,15 @@ html, body {
 *{
     margin:0px;
     padding:0px;
+    font-family: tahoma, tahoma, verdana, arial, sans-serif;
 }
 
 a{
      text-decoration:none;
+}
+
+.border_none{
+    border:none;
 }
 
 .green_text{
@@ -65,6 +70,7 @@ a{
 
 /*--- ¬€œ¿ƒ¿ﬁŸ»≈ œ”Õ “€ ---*/
 #nav ul{
+    width:100%;
     z-index:2000;
     top:70px;
 	list-style:none;
@@ -152,6 +158,7 @@ a{
 
 .render_body{
     padding-bottom: 30px;
+
 }
 
 .footer {
@@ -209,10 +216,74 @@ a{
         margin: 10px;
     }
 
+.margin_5 {
+        margin: 5px;
+    }
+
+.middle_content{
+    border:solid 1px #25AD9F;
+    border-top:none;
+}
+
+/*  Menu Drop  */
+.menu_div{
+    border:solid 1px #EEE;
+}
+.main-item{
+    line-height:30px;
+    outline:none;
+    background-color:#f5f3f3;
+}
+.main-item a {
+    color: #2B587A;
+    cursor:pointer;
+}
+.sub-menu 
+{ 
+   margin-left:-1px;
+   visibility:hidden;
+   list-style:none;
+   display:none;
+   border-top:none;
+   position:absolute;
+   border:solid 1px #EEE;
+   border-top:none;
+}
+.main-item a:focus , .main-item a:hover{
+    color:black;
+    text-decoration:none;
+    border-bottom: none;
+    outline:none;
+}
+.sub-menu li{
+    color: #2B587A;
+    text-align:left;
+    padding:10px;
+    border-bottom:solid 1px #EEE;
+    height:35px;
+    background-color:white;
+}
+.sub-menu li i{
+    padding-right:5px;
+}
+.sub-menu li a{
+    color:#2B587A;
+    text-decoration:none;
+    cursor:pointer;
+}
+.sub-menu li a:hover{
+    color:black;
+    text-decoration:none;
+}
+.main-item:focus ~ .sub-menu,
+.main-item:active ~ .sub-menu,
+.sub-menu:hover {
+    visibility: visible;
+    display: block;
+}
+
 /* Top Buttons */
 .top_btn_href{
-    /*padding-top:28px;*/ 
-    /*padding-bottom:28px;*/ 
     line-height:70px;
     color:white;
     text-decoration:none;
@@ -295,7 +366,7 @@ a{
     .middle_content .reg_form {
     width: 100%;
     height: 400px;
-    border: solid 1px #25AD9F;
+    /*border: solid 1px #25AD9F;*/
     margin: auto;
 }
 
@@ -451,9 +522,22 @@ a{
 }*/
 
 /* Album/Details */
-
+.middle_content .album .al_header{
+    height:40px;
+    border-bottom:solid 1px #e1e0e0;
+}
+.middle_content .album .al_header .al_name{
+    margin:10px;
+    cursor:default;
+}
+.middle_content .album .al_header .menu_div{
+    margin: 5px 20px;
+    width:150px;
+    text-align:center;
+    border:solid 1px #e1e0e0;
+}
 .middle_content .album .photo_content{
-    width:180px;
+    width:179px;
     height:190px;
 
     background-color: white;
@@ -478,13 +562,7 @@ a{
 }
 
 .thumbs a{
-	/*display:inline-block;*/
     float:left;
-	/*border:7px solid #303030;*/
-	/*box-shadow:0 1px 3px rgba(0,0,0,0.5);*/
-	/*border-radius:4px;*/
-	/*margin: 6px 6px 40px;*/
-	/*position:relative;*/
 	text-decoration:none;
 	
 	background-position:center center;

@@ -25,7 +25,7 @@
                     <div class="s_btn float_left" style="width:auto; height:70px;">
                         <ul id="nav">
                             <li style="height:70px;">
-                                <a href="#" title="" class="display_block">
+                                <a href="/Profile/Index" title="" class="display_block">
                                     <img style="height:50px; width:50px;" class="float_left" />
                                     <p class="float_left text">
                                         @User.Identity.GetUserName()
@@ -33,12 +33,12 @@
                                     </p>
                                 </a>
                                 <ul>
-                                    <li><a href="/Profile/Index">Profile</a></li>
-                                    <li>@Html.ActionLink("Settings", "Edit")</li>
+                                    <li><a href="/Profile/Edit"><i class="fa fa-cogs fa-1x margin_5"></i>Edit profile</a></li>
                                     <li>
                                         <form method="post" action="/Account/LogOff" id="logoutForm">
                                             @Html.AntiForgeryToken()
-                                            <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+                                            <a href="javascript:document.getElementById('logoutForm').submit()">
+                                                <i class="fa fa-sign-out fa-1x margin_5"></i>Log off</a>
                                         </form>
                                     </li>
                                 </ul>

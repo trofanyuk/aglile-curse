@@ -93,16 +93,8 @@ namespace BananaSocialNetwork.Controllers
         {
             Album album = db.Albums.Find(id);
             album.Photos = db.Photos.Where(m => m.Album.Id == album.Id);    
-            if (album.Photos.Count() == 0)
-            {
-                ViewBag.id = album.Id;
-                return View("~/Views/Photo/NonPhoto.cshtml");
-            }
-            else
-            {
-                return View(album);
-            }
-            //return View(album);
+
+            return View(album);
         }
 
         [HttpGet]
@@ -129,14 +121,33 @@ namespace BananaSocialNetwork.Controllers
 
        
         [HttpPost]
-
-        public ActionResult Edit(Album album, int id)
+        public ActionResult Edit(Album json)
         {
+            Album album = db.Albums.Find(json.Id);
+            album.Adress = json.Adress;
+            album.GeoLat = json.GeoLat;
+            album.GeoLong = json.GeoLong;
+            album.Name = json.Name;
+
             db.Entry(album).State = EntityState.Modified;
             db.SaveChanges();
-            return RedirectToAction("Index");
-
+            return null;
         }
 
+        [HttpGet]
+        public ActionResult EditAlbumPartial(int id)
+        {
+            Album album = db.Albums.Find(id);
+            return View(album);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
     }
 }

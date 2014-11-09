@@ -103,14 +103,16 @@
     display:inline-table;
     vertical-align: top;
     width:auto;
-    max-height: 80%;
-    max-width:80%;
+    max-height: 500px;
+    max-width:900px;
     background-color:white;
 }
 
 #gallerySlider .placeholder .presenter img{
-    max-height: 70%;
-	max-width: 80%;
+    margin: 10px;
+    margin-top:40px;
+    max-height: 500px;
+	max-width:900px;
 }
 
 #gallerySlider.rightSpring{
@@ -183,36 +185,4 @@
 #nextArrow{
 	background-position:right top;
 	right:40px;
-}
-
-.menu_div{
-    border:solid 1px #B2BDCB;
-    padding-top:10px;
-}
-.main-item{
-    color:black;
-    outline:none;
-}
-
-.sub-menu 
-{ 
-   margin-top:20px;
-   visibility:hidden;
-   list-style:none;
-   display:none;
-   border-top:none;
-}
-.main-item:focus {
-    border-bottom: none;
-    outline:none;
-}
-.sub-menu li{
-    height:20px;
-}
-.main-item:focus ~ .sub-menu, 
-.main-item:active ~ .sub-menu, 
-.sub-menu:hover 
-{ 
-   visibility:visible; 
-   display:block;
 }

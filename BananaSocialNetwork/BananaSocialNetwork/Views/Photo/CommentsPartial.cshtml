@@ -13,29 +13,12 @@
         </div>
         <div class="btns_div" style="padding-top:20px;">
             <div class="menu_div">
-                <a class="main-item" href="javascript:void(0);" tabindex="1">Settings</a>
-                <ul class="sub-menu">
-                    <li><a href="#1">подпункт 1</a></li>
-                    <li><a href="#2">подпункт 2</a></li>
-                    <li><a href='/Photo/Edit/@Model.Id'>CommentsList</a></li>
+                <div class="main-item" tabindex="1"><a href="javascript:void(0);">Settings</a></div>
+                <ul class="sub-menu" style="width:189px;">
+                    <li><a onclick="show_Edit_Photo()"><i class="fa fa-gear fa-1x"></i>Edit</a></li>
+                    <li><a href='/Photo/DeleteConfirmed/@Model.Id'><i class="fa fa-trash fa-1x"></i>Delete</a></li>
                 </ul>
             </div>
-            @*<a class="main-item" href="javascript:void(0);" tabindex="1">Settings</a>
-            <ul class="sub-menu">
-                <li><a href="#1">подпункт 1</a></li>
-                <li><a href="#2">подпункт 2</a></li>
-                <li><a href='/Photo/Edit/@Model.Id'>CommentsList</a></li>
-            </ul>*@
-            @*<ul class="settings_menu">
-                    <li>
-                        <a href="javascript:void(0);" tabindex='1'>Settings</a>
-                        <ul>
-                            <li><a href='/Photo/Delete/@Model.Id' class='btn btn-danger btn-block'>Delete</a></li>
-                            <li><a href='/Comment/CommentList/@Model.Id' class='btn btn-success btn-block'>CommentsList</a></li>
-
-                        </ul>
-                    </li>
-                </ul>*@
         </div>
     </div>
 </div>

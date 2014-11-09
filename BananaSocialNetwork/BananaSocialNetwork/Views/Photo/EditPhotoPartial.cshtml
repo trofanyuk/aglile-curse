@@ -3,39 +3,44 @@
 }
 @model BananaSocialNetwork.Models.Photo
 
-@using (Html.BeginForm("Create", "Photo", FormMethod.Post, new { enctype = "multipart/form-data", Id = "add_photo_dialog" }))
+@using (Html.BeginForm("Edit", "Photo", FormMethod.Post, new { enctype = "multipart/form-data", Id = "edit_photo_dialog" }))
 {
     <div style="width: 100%; height: 100%; text-align: center; font-family: tahoma, tahoma, verdana, arial, sans-serif; font-size:13px; position:absolute; top:0px; left:0px;" id="add_album_dialog">
         <div style="width: 500px; height: 465px; background-color: white; display: inline-block; margin-top: 5%; border: solid 1px #229a8d">
             <div style="height: 40px; background-color: #25AD9F">
-                <p style="float:left; margin-left:10px; margin-top:10px; color:white;">Add photo</p>
-                <p style="float: right; margin-right: 20px; margin-top: 10px; color: white; cursor: pointer;" onclick="close_add_photo()">close</p>
+                <p style="float:left; margin-left:10px; margin-top:10px; color:white;">Edit photo</p>
+                <p style="float: right; margin-right: 20px; margin-top: 10px; color: white; cursor: pointer;" onclick="close_edit_photo()">close</p>
             </div>
             <div style="margin-top:25px; margin-left:30px; margin-right:30px;">
-                <div>
-                    <input type="file" id="files" name="files" multiple/>
-                </div>
                 <div style="height:30px; width: 100%; display:inline-block; margin-top:5px;">
                     <input type="text" style="float: left; height: 100%; width: 70%; border: solid 1px #25AD9F" id="Adress" placeholder="Enter adress" />
                     <input type="button" style="float: right; height: 100%; width: 30%; border: solid 1px #25AD9F; border-left:none;" value="Accept" onclick="codeAddress()" />
                 </div>
-
+                @Html.HiddenFor(model => model.PhotoPath)
                 @Html.HiddenFor(model => model.GeoLong, new { Id = "GeoLong" })
                 @Html.HiddenFor(model => model.GeoLat, new { Id = "GeoLat", })
-                <input type="hidden" name="id" value="@ViewBag.Al_Id" />
+                <input type="hidden" name="id" value="@ViewBag.Ph_Id" />
             </div>
             <div style="height:300px; margin-top:0px;">
                 <div id="canvas" style="height: 300px; width: 440px; margin-left: 30px; margin-right: 30px; padding: 0px;">
                     <script>
-                        GetMap();
+                        var markers = new Array();
+                        var GeoLong = @Model.GeoLong.ToString().Replace(',', '.');
+                        var GeoLat = @Model.GeoLat.ToString().Replace(',', '.');
+
+
+                        $(document).ready(function () {
+                            GetMapMarker();
+                        });
                     </script>
                 </div>
             </div>
             <div style="height: 30px; background-color: #EFEFEF; margin-top:7px;">
                 <input class="btn-success"
-                       type="submit" value="Add photo"
-                       style="height: 25px; width: 150px; margin-top:2px; margin-right:30px; float:right; border:none;"/>
+                       type="button" value="Save"
+                       style="height: 25px; width: 150px; margin-top:2px; margin-right:30px; float:right; border:none;" 
+                       onclick="save_edit_photo()"/>
             </div>
         </div>
     </div>
-    }
+}

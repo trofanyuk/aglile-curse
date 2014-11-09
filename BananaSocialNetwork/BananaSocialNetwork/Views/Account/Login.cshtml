@@ -14,7 +14,7 @@
 @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
-    <div class="container middle_content min_width">
+    <div class="container middle_content min_width " style="border:none">
         <div class="display_block">
             <div class="width_50per float_left" style="margin-top:120px;">
                 <p class="bigger_text">Welcome to Banana Social Network</p>
