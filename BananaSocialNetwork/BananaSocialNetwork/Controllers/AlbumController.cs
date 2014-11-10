@@ -129,6 +129,15 @@ namespace BananaSocialNetwork.Controllers
             album.GeoLong = json.GeoLong;
             album.Name = json.Name;
 
+            album.Photos = db.Photos.Where(m => m.Album.Id == json.Id);
+            foreach(Photo photo in album.Photos)
+            {
+                photo.Adress = album.Adress;
+                photo.GeoLat = album.GeoLat;
+                photo.GeoLong = album.GeoLong;
+                db.Entry(photo).State = EntityState.Modified;
+
+            }
             db.Entry(album).State = EntityState.Modified;
             db.SaveChanges();
             return null;
