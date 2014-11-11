@@ -5,15 +5,24 @@
 
 @foreach (BananaSocialNetwork.Models.Comment comment in Model.Coments)
 {
-    <div style="border-top: solid 1px #EEE; border-bottom: none; text-align: left;">
-        <div style="display:inline-block; background-color: red; width:50px; height:50px; margin:5px;">
-        </div>
-        <div style="display:inline-block; vertical-align:top; width: 380px;">
-            <div style="margin-top:10px;">
-                <p style="font-weight:bold;" class="dark_green_text">@comment.User.Email</p> 
+    string id_div = "com_" + comment.Id;
+    <div style="border-top: solid 1px #EEE; border-bottom: none; text-align: left;" id="@id_div">
+        <div class="display_block">
+            <div class="float_left" style="width:90%">
+                <div style="display:inline-block; background-color: red; width:50px; height:50px; margin:5px;">
+                    @* Avatar *@
+                </div>
+                <div style="display:inline-block; vertical-align:top; width: 380px;">
+                    <div style="margin-top:10px;">
+                        <p style="font-weight:bold;" class="dark_green_text">@comment.User.Email</p>
+                    </div>
+                    <div style="padding-top:5px;">
+                        <p style="font-size:13px;">@comment.Text</p>
+                    </div>
+                </div>
             </div>
-            <div style="padding-top:5px;">
-                <p style="font-size:13px;">@comment.Text</p>
+            <div class="float_right" style="width:10%">
+                <a onclick="del_comment(@comment.Id, @id_div)" style="padding-top:50px;" class="dark_green_text">X</a>
             </div>
         </div>
     </div>

@@ -126,8 +126,7 @@ namespace BananaSocialNetwork.Controllers
         }
 
         // POST: /Comment/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        [HttpPost]
         public ActionResult DeleteConfirmed(int id)
         {
             Comment comment = db.Comments.Find(id);

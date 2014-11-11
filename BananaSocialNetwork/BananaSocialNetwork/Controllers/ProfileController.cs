@@ -12,7 +12,7 @@ using BananaSocialNetwork.Models;
 using System.Collections.Generic;
 using System.Data.Entity;
 using Newtonsoft.Json;
-
+using System.IO;
 
 namespace BananaSocialNetwork.Controllers
 {
@@ -65,6 +65,36 @@ namespace BananaSocialNetwork.Controllers
             var user = (from usr in db.Users where usr.Email == login select usr).First();
             var jsonUser = JsonConvert.SerializeObject(user);
             return jsonUser;
+        }
+
+        private void SaveFile(string fileName, string contentType, Stream inputStream, string userEmail)
+        {
+            string name = @"/server_imgs/" + userEmail + fileName;
+            string fileNamePath = Server.MapPath(name);
+            using (var fileStream = System.IO.File.Create(fileNamePath)) // ТУТ ПУТЬ КУДА СОХРАНЯТЬ ФОТО ДЛЯ СЕРВА!!!!!!!!!!!!!!!!!!!!!!!!
+            {
+                inputStream.CopyTo(fileStream);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult AddAvatar(HttpPostedFileBase file)
+        {
+
+            User user = db.Users.Where(m => m.Email == HttpContext.User.Identity.Name).FirstOrDefault();
+
+                if (file != null)
+                {
+                    SaveFile(file.FileName, file.ContentType, file.InputStream, user.Email);
+                    string name = @"/server_imgs/" + user.Email + file.FileName;
+                    user.AvatatPath = name;
+                    db.Entry(user).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+
+                return RedirectToAction("Index");
+
+
         }
 	}
 }

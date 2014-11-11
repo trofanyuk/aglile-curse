@@ -70,7 +70,7 @@ namespace BananaSocialNetwork.Controllers
             var user = await UserManager.FindAsync(model.Email, model.Password);
             if (user != null)
             {
-                if (user.EmailConfirmed == true)
+                if (user.EmailConfirmed)
                 {
                     var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
                     switch (result)
@@ -193,7 +193,7 @@ namespace BananaSocialNetwork.Controllers
                 }
                 catch (Exception ex)
                 {
-
+                    
                 }
             }
             return View(model);

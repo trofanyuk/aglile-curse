@@ -93,6 +93,13 @@ namespace BananaSocialNetwork.Controllers
             return View(photo);
         }
 
+        [HttpGet]
+        public ActionResult PhotoInMapPartial(int id)
+        {
+            Photo photo = db.Photos.Find(id);
+            return View(photo);
+        }
+
         // GET: /Photo/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -160,7 +167,7 @@ namespace BananaSocialNetwork.Controllers
 
         public ActionResult CommentsSend(int? id)
         {
-            User user = db.Users.Where(m => m.Email == HttpContext.User.Identity.Name).FirstOrDefault();
+            //User user = db.Users.Where(m => m.Email == HttpContext.User.Identity.Name).FirstOrDefault();
             Photo photo = db.Photos.Find(id);
             
             return PartialView(photo);

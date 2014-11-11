@@ -70,6 +70,35 @@
     margin:10px;
 }
 
+.commentsBlock .comtrols_div .mess_div .show_in_map{
+    margin-bottom:10px; 
+    text-align:center;
+}
+.commentsBlock .comtrols_div .mess_div .show_in_map i{
+    margin:5px;
+}
+.commentsBlock .comtrols_div .mess_div .show_in_map a{
+    font-size:12px;
+    cursor:pointer;
+    color:#2B587A;
+    text-decoration:none;
+}
+
+.commentsBlock .comtrols_div .mess_div .show_in_map a:hover, 
+.commentsBlock .comtrols_div .mess_div .show_in_map a:active{
+    color:black;
+    text-decoration:none;
+}
+
+.commentsBlock .comtrols_div .mess_div .send_btn {
+        width: 100px;
+        margin:0px;
+        margin-top:5px;
+        -webkit-border-radius: 0px;
+        -moz-border-radius: 0px;
+        border-radius: 0px;
+    }
+
 .commentsBlock .comtrols_div .mess_div textarea{
     line-height:normal;
     height:100px;

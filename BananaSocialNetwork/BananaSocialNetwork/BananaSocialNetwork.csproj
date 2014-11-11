@@ -170,62 +170,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201410171225078_InitialCreate.cs" />
-    <Compile Include="Migrations\201410171225078_InitialCreate.Designer.cs">
-      <DependentUpon>201410171225078_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201410171418309_Updates.cs" />
-    <Compile Include="Migrations\201410171418309_Updates.Designer.cs">
-      <DependentUpon>201410171418309_Updates.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201410171420332_Updates_Age.cs" />
-    <Compile Include="Migrations\201410171420332_Updates_Age.Designer.cs">
-      <DependentUpon>201410171420332_Updates_Age.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201410220759323_Album.cs" />
-    <Compile Include="Migrations\201410220759323_Album.Designer.cs">
-      <DependentUpon>201410220759323_Album.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201410220809181_Album2.cs" />
-    <Compile Include="Migrations\201410220809181_Album2.Designer.cs">
-      <DependentUpon>201410220809181_Album2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201410220812000_Album3.cs" />
-    <Compile Include="Migrations\201410220812000_Album3.Designer.cs">
-      <DependentUpon>201410220812000_Album3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201410220832181_Album4.cs" />
-    <Compile Include="Migrations\201410220832181_Album4.Designer.cs">
-      <DependentUpon>201410220832181_Album4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201410220930185_Album5.cs" />
-    <Compile Include="Migrations\201410220930185_Album5.Designer.cs">
-      <DependentUpon>201410220930185_Album5.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201410231139025_Photo.cs" />
-    <Compile Include="Migrations\201410231139025_Photo.Designer.cs">
-      <DependentUpon>201410231139025_Photo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201410290812374_User.cs" />
-    <Compile Include="Migrations\201410290812374_User.Designer.cs">
-      <DependentUpon>201410290812374_User.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201410291115313_AlbumCreateDAte.cs" />
-    <Compile Include="Migrations\201410291115313_AlbumCreateDAte.Designer.cs">
-      <DependentUpon>201410291115313_AlbumCreateDAte.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201410301336285_countphotos.cs" />
-    <Compile Include="Migrations\201410301336285_countphotos.Designer.cs">
-      <DependentUpon>201410301336285_countphotos.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201411051021416_comment.cs" />
-    <Compile Include="Migrations\201411051021416_comment.Designer.cs">
-      <DependentUpon>201411051021416_comment.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201411051033051_comment1.cs" />
-    <Compile Include="Migrations\201411051033051_comment1.Designer.cs">
-      <DependentUpon>201411051033051_comment1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Album.cs" />
@@ -340,6 +284,7 @@
     <Content Include="Views\Album\Edit.cshtml" />
     <Content Include="Views\Photo\EditPhotoPartial.cshtml" />
     <Content Include="Views\Album\EditAlbumPartial.cshtml" />
+    <Content Include="Views\Photo\PhotoInMapPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -352,50 +297,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201410171225078_InitialCreate.resx">
-      <DependentUpon>201410171225078_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201410171418309_Updates.resx">
-      <DependentUpon>201410171418309_Updates.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201410171420332_Updates_Age.resx">
-      <DependentUpon>201410171420332_Updates_Age.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201410220759323_Album.resx">
-      <DependentUpon>201410220759323_Album.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201410220809181_Album2.resx">
-      <DependentUpon>201410220809181_Album2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201410220812000_Album3.resx">
-      <DependentUpon>201410220812000_Album3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201410220832181_Album4.resx">
-      <DependentUpon>201410220832181_Album4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201410220930185_Album5.resx">
-      <DependentUpon>201410220930185_Album5.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201410231139025_Photo.resx">
-      <DependentUpon>201410231139025_Photo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201410290812374_User.resx">
-      <DependentUpon>201410290812374_User.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201410291115313_AlbumCreateDAte.resx">
-      <DependentUpon>201410291115313_AlbumCreateDAte.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201410301336285_countphotos.resx">
-      <DependentUpon>201410301336285_countphotos.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201411051021416_comment.resx">
-      <DependentUpon>201411051021416_comment.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201411051033051_comment1.resx">
-      <DependentUpon>201411051033051_comment1.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

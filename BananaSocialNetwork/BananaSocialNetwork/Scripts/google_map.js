@@ -110,3 +110,29 @@ function GetMapMarker() {
         placeMarker(e.latLng, map);
     });
 }
+
+function ShowPhotoLocation() {
+    geocoder = new google.maps.Geocoder();
+
+    google.maps.visualRefresh = true;
+    // установка основных координат
+    var Odessa = new google.maps.LatLng(GeoLat, GeoLong);
+
+    // Установка общих параметров отображения карты, как масштаб, центральная точка и тип карты
+    var mapOptions = {
+        zoom: 15,
+        center: Odessa,
+        mapTypeId: google.maps.MapTypeId.G_NORMAL_MAP
+    };
+
+    var myLatlng = new google.maps.LatLng(GeoLat, GeoLong);
+
+    // Встраиваем гугл-карты в элемент на странице и получаем объект карты
+    map = new google.maps.Map(document.getElementById("canvas"), mapOptions);
+    var marker = new google.maps.Marker({
+        position: myLatlng,
+        map: map
+    });
+
+
+}

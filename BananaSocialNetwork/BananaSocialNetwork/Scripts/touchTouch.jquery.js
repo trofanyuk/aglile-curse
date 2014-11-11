@@ -356,6 +356,21 @@ function sendCom() {
         success: function (viewHTML) {
             var coms = mes_div.find(".all_comments");
             coms.append(viewHTML);
+            mes_div.find("textarea").val("");
+        }
+    });
+}
+
+function del_comment(id, id_com)
+{
+    //alert(id_com);
+    $.ajax({
+        async: false,
+        type: "POST",
+        url: "/Comment/DeleteConfirmed/",
+        data: { id: id },
+        success: function (viewHTML) {
+            id_com.remove();
         }
     });
 }

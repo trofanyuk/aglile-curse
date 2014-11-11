@@ -142,3 +142,19 @@ function save_edit_photo() {
 function close_edit_photo() {
     var dialog = $("#edit_photo_dialog").remove();
 }
+
+function show_Photo_in_map() {
+    var photo_id = $("#id_mes").val().toString();
+    $.ajax({
+        type: "GET",
+        url: "/Photo/PhotoInMapPartial/" + photo_id,
+        success: function (viewHTML) {
+            $("#galleryOverlay").append(viewHTML);
+        },
+        error: function (errorData) { }
+    });
+}
+
+function close_photo_in_map() {
+    var dialog = $("#photo_int_map").remove();
+}
