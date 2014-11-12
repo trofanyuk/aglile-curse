@@ -452,8 +452,6 @@ a{
 .middle_content .profile .avatar_form{
     max-width:200px;
     max-height:300px;
-    /*background-color:white;*/
-    /*border:solid 1px #AAAAAA;*/
 }
 
 .middle_content .profile .avatar_form img{
@@ -506,27 +504,78 @@ a{
     text-decoration:none;
 }
 
-/*@media(max-width:1199px)
-{
-    .middle_content .online_form{
-        width:550px;
-    }
-    .middle_content .friends_form{
-        width:250px;
-    }
+/*  Profile/Edit  */
+
+.middle_content .edit_page{
+    width:100%;
+}
+.middle_content .edit_page .edit_avatar{
+    max-height:400px; 
+    max-width:300px;
+    margin:auto;
+    margin-top:10px;
+}
+.middle_content .edit_page .edit_avatar img{
+    max-height:400px; 
+    max-width:300px;
 }
 
-@media(max-width:990px){
-    .middle_content .online_form {
-        width: 505px;
-    }
+.middle_content .edit_page .btn-file {
+  position: relative;
+  overflow: hidden;
+}
+.middle_content .edit_page .btn-file input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  background: red;
+  cursor: inherit;
+  display: block;
+}
+.middle_content .edit_page input[readonly] {
+  background-color: white !important;
+  cursor: text !important;
+}
 
-    .middle_content .friends_form {
-        width: 205px;
-    }
-}*/
+.middle_content .edit_page .div_header{
+    height:30px;
+    border-bottom:solid 1px #e1e0e0;
+    padding:0px;
+    margin:0px;
+}
+.middle_content .edit_page .content_label{
+    width:100%;
+    padding-right:20px;
+}
+.middle_content .edit_page .content_label div{
+    /*float:right;*/
+}
+.middle_content .edit_page .content_label div p{
+    margin: 0px;
+    text-align:right;
+    font-size:11px;
+}
 
+.middle_content .edit_page .content_label .editor{
+    width:230px;
+}
+
+.middle_content .edit_page .content_label .editor input[type='text'],
+.middle_content .edit_page .content_label .editor input[type='number']
+{
+    width:100%;
+}
 /* Album/Details */
+
+.album{
+    width:100%;
+}
 .middle_content .album .al_header{
     height:40px;
     border-bottom:solid 1px #e1e0e0;

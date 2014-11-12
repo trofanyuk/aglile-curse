@@ -16,20 +16,7 @@
                 <div class="avatar_form margin_10">
                     <div style="max-width:200px; max-height:300px; min-height:50px;">
                        
-                            <img style="background-image: url(@Model.AvatatPath)" src="@Model.AvatatPath" />
-                       @using (Html.BeginForm("AddAvatar", "Profile", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                        {
-                        <input accept="image/*" id="file1" name="file" type="file" style="width:200px;" value=" " />
-
-                        <div class="form-group">
-                            <div class="col-md-offset-2 col-md-10">
-                                <input type="submit" value="AddAvatar" class="btn btn-default" />
-                            </div>
-                        </div>
-                        }
-                       
-                           
-                        
+                            <img style="background-image: url(@Model.AvatatPath)" src="@Model.AvatatPath" />       
                     </div>
                     <div>
                         @Html.DisplayFor(model => model.Firstname)

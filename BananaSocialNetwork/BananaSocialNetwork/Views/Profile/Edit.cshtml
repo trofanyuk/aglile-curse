@@ -1,105 +1,154 @@
-﻿@model BananaSocialNetwork.Models.User
+﻿@using BananaSocialNetwork.Models
+@model BananaSocialNetwork.Models.User
 
 @{
     Layout = "~/Views/Shared/_UsersLayout.cshtml";
 }
 
-
-
 <div class="middle_content min_width profile_bg">
-    <div class="album">
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
+    <script>
+        $(document).on('change', '.btn-file :file', function () {
+            var input = $(this),
+                numFiles = input.get(0).files ? input.get(0).files.length : 1,
+                label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+            input.trigger('fileselect', [numFiles, label]);
+        });
+        $(document).ready(function () {
+            $('.btn-file :file').on('fileselect', function (event, numFiles, label) {
 
-            <div class="form-horizontal">
-                @*<h4>User</h4>*@
-                <hr />
-                @Html.ValidationSummary(true)
-                @Html.HiddenFor(model => model.Id)
-                @Html.HiddenFor(model => model.RegistrationDate)
-                @Html.HiddenFor(model => model.PasswordHash)
-                @Html.HiddenFor(model => model.SecurityStamp)
-                @Html.HiddenFor(model => model.EmailConfirmed)
+                var input = $(this).parents('.input-group').find(':text'),
+                    log = numFiles > 1 ? numFiles + ' files selected' : label;
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Firstname, new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Firstname)
-                        @Html.ValidationMessageFor(model => model.Firstname)
-                    </div>
+                if (input.length) {
+                    input.val(log);
+                } else {
+                    if (log) alert(log);
+                }
+
+            });
+        });
+    </script>
+    <div class="edit_page">
+
+        <div class="form-horizontal">
+
+            <div class="display_block text-center" style="width:100%;">
+                <div class="float_left width_50per">
+                    <div class="div_header"><p class="text-center">Main</p></div>
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        @Html.ValidationSummary(true)
+                        @Html.HiddenFor(model => model.Id)
+                        @Html.HiddenFor(model => model.RegistrationDate)
+                        @Html.HiddenFor(model => model.PasswordHash)
+                        @Html.HiddenFor(model => model.SecurityStamp)
+                        @Html.HiddenFor(model => model.EmailConfirmed)
+                        @Html.HiddenFor(model => model.Email)
+                        @Html.HiddenFor(model => model.UserName)
+                        @Html.HiddenFor(model => model.AvatatPath)
+
+                        <div class="display_block content_label margin_10">
+                            <div class="width_50per float_left">
+                                <p>Firstname:</p>
+                            </div>
+                            <div class="width_50per float_right editor">
+                                @Html.EditorFor(model => model.Firstname)
+                            </div>
+                        </div>
+                        <div class="display_block content_label margin_10">
+                            <div class="width_50per float_left">
+                                <p>Surname:</p>
+                            </div>
+                            <div class="width_50per float_right editor">
+                                @Html.EditorFor(model => model.Surname)
+                            </div>
+                        </div>
+                        <div class="display_block content_label margin_10">
+                            <div class="width_50per float_left">
+                                <p>Age:</p>
+                            </div>
+                            <div class="width_50per float_right editor">
+                                @Html.EditorFor(model => model.Age)
+                            </div>
+                        </div>
+                        <div class="display_block content_label margin_10">
+                            <div class="width_50per float_left">
+                                <p>Gender:</p>
+                            </div>
+                            <div class="width_50per float_right editor">
+                                @if (Model.Sex == Sexs.Male)
+                                {
+                                    <p class="float_left" style="padding-right: 5px;">Male</p>
+                                    <input type="radio" name="Sex" value="Male" checked="checked" class="float_left" />
+                                    <p class="float_left" style="padding-left:15px; padding-right: 5px;">Female</p>
+                                    <input type="radio" name="Sex" value="Female" class="float_left" />
+                                }
+                                else
+                                {
+                                    <p class="float_left" style="padding-right: 5px;">Male</p>
+                                    <input type="radio" name="Sex" value="Male" class="float_left" />
+                                    <p class="float_left" style="padding-left:15px; padding-right: 5px;">Female</p>
+                                    <input type="radio" name="Sex" value="Female" class="float_left" checked="checked" />
+                                }
+                            </div>
+                        </div>
+                        <div class="display_block content_label margin_10">
+                            <div class="width_50per float_left">
+                                <p>Adress:</p>
+                            </div>
+                            <div class="width_50per float_right editor">
+                                @Html.EditorFor(model => model.Adress)
+                            </div>
+                        </div>
+                        <div class="display_block content_label margin_10">
+                            <div class="width_50per float_left">
+                                <p>Phone number:</p>
+                            </div>
+                            <div class="width_50per float_right editor">
+                                @Html.EditorFor(model => model.PhoneNumber)
+                            </div>
+                        </div>
+
+                        <div class="form-group text-center">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Save" class="btn btn-default" />
+                            </div>
+                        </div>
+
+                    }
                 </div>
+                <div class="float_right width_50per">
+                    <div class="div_header"><p class="text-center">Avatar</p></div>
+                    <div style="border-left: solid 1px #e1e0e0; width: 100%;">
+                        <div class="edit_avatar">
+                            <img src="@Model.AvatatPath" />
+                        </div>
+                        @using (Html.BeginForm("AddAvatar", "Profile", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            <input accept="image/*" id="file" name="file" type="file" />
+                            @*<div class="input-group" style="width:300px;">
+                                    <span class="input-group-btn">
+                                        <span class="btn btn-primary btn-file">
+                                            Browse&hellip; <input type="file" multiple>
+                                        </span>
+                                    </span>
+                                    <input type="text" class="form-control" readonly>
+                                </div>*@
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Surname, new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Surname)
-                        @Html.ValidationMessageFor(model => model.Surname)
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="AddAvatar" class="btn btn-default" />
+                                </div>
+                            </div>
+                        }
                     </div>
-                </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Age, new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Age)
-                        @Html.ValidationMessageFor(model => model.Age)
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label col-md-2">Gender</label>
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Sex)
-                        @Html.ValidationMessageFor(model => model.Sex)
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Adress, new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Adress)
-                        @Html.ValidationMessageFor(model => model.Adress)
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.AvatatPath, new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.AvatatPath)
-                        @Html.ValidationMessageFor(model => model.AvatatPath)
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Email)
-                        @Html.ValidationMessageFor(model => model.Email)
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.PhoneNumber, new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.PhoneNumber)
-                        @Html.ValidationMessageFor(model => model.PhoneNumber)
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.UserName, new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.UserName)
-                        @Html.ValidationMessageFor(model => model.UserName)
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Save" class="btn btn-default" />
-                    </div>
                 </div>
             </div>
-        }
+
+
+        </div>
     </div>
 </div>
