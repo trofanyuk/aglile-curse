@@ -117,6 +117,25 @@
     border-left:solid 1px #EEE;
 }
 
+.commentsBlock .comment{
+    border-top: solid 1px #EEE;
+    border-bottom: none;
+    text-align: left;
+}
+.commentsBlock .comment .del{
+    width: 10%;
+    padding-top: 10px; 
+    text-align:right;
+}
+.commentsBlock .comment .del a{
+    text-decoration:none;
+    font-size:12px;
+    cursor:pointer;
+}
+.commentsBlock .comment .del a:hover,
+.commentsBlock .comment .del a:active{
+    color:black;
+}
 /* The before element moves the
  * image halfway from the top */
 

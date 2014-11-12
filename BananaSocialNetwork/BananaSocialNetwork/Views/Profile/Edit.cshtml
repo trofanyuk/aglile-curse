@@ -18,7 +18,9 @@
                 @Html.ValidationSummary(true)
                 @Html.HiddenFor(model => model.Id)
                 @Html.HiddenFor(model => model.RegistrationDate)
-
+                @Html.HiddenFor(model => model.PasswordHash)
+                @Html.HiddenFor(model => model.SecurityStamp)
+                @Html.HiddenFor(model => model.EmailConfirmed)
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.Firstname, new { @class = "control-label col-md-2" })
