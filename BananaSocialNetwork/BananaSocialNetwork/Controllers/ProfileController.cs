@@ -24,14 +24,14 @@ namespace BananaSocialNetwork.Controllers
         public ActionResult Index()
         {
             User user = db.Users.Where(m => m.Email == HttpContext.User.Identity.Name).FirstOrDefault();
-            user.Albums = db.Albums.Where(m => m.User.Id == user.Id ).OrderByDescending(t=>t.DateCreate);
+            user.Albums = db.Albums.Where(m => m.User.Id == user.Id).OrderByDescending(t => t.DateCreate);
 
-            for (int i = 0; i < user.Albums.Count(); i++ )
+            for (int i = 0; i < user.Albums.Count(); i++)
             {
                 var album = user.Albums.ElementAt(i);
                 album.CountPhotos = db.Photos.Where(m => m.Album.Id == album.Id).Count();
             }
-            //ViewBag.Albums = user.Albums;
+
             return View(user);
         }
 
@@ -39,7 +39,7 @@ namespace BananaSocialNetwork.Controllers
         [Authorize]
         public ActionResult Edit()
         {
-            // Находим в базе студента
+
             User user = db.Users.Where(m => m.Email == HttpContext.User.Identity.Name).FirstOrDefault();
             if (user != null)
             {
@@ -54,7 +54,7 @@ namespace BananaSocialNetwork.Controllers
         {
             db.Entry(user).State = EntityState.Modified;
             db.SaveChanges();
-            // перенаправляем на главную страницу
+
             return RedirectToAction("Index");
         }
 
@@ -71,7 +71,7 @@ namespace BananaSocialNetwork.Controllers
         {
             string name = @"/server_imgs/" + userEmail + fileName;
             string fileNamePath = Server.MapPath(name);
-            using (var fileStream = System.IO.File.Create(fileNamePath)) // ТУТ ПУТЬ КУДА СОХРАНЯТЬ ФОТО ДЛЯ СЕРВА!!!!!!!!!!!!!!!!!!!!!!!!
+            using (var fileStream = System.IO.File.Create(fileNamePath))
             {
                 inputStream.CopyTo(fileStream);
             }
@@ -83,18 +83,18 @@ namespace BananaSocialNetwork.Controllers
 
             User user = db.Users.Where(m => m.Email == HttpContext.User.Identity.Name).FirstOrDefault();
 
-                if (file != null)
-                {
-                    SaveFile(file.FileName, file.ContentType, file.InputStream, user.Email);
-                    string name = @"/server_imgs/" + user.Email + file.FileName;
-                    user.AvatatPath = name;
-                    db.Entry(user).State = EntityState.Modified;
-                    db.SaveChanges();
-                }
+            if (file != null)
+            {
+                SaveFile(file.FileName, file.ContentType, file.InputStream, user.Email);
+                string name = @"/server_imgs/" + user.Email + file.FileName;
+                user.AvatatPath = name;
+                db.Entry(user).State = EntityState.Modified;
+                db.SaveChanges();
+            }
 
-                return RedirectToAction("Index");
+            return RedirectToAction("Index");
 
 
         }
-	}
+    }
 }

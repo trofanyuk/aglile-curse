@@ -167,7 +167,7 @@ namespace BananaSocialNetwork.Controllers
 
         public ActionResult CommentsSend(int? id)
         {
-            //User user = db.Users.Where(m => m.Email == HttpContext.User.Identity.Name).FirstOrDefault();
+            
             Photo photo = db.Photos.Find(id);
             
             return PartialView(photo);

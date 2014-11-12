@@ -61,12 +61,13 @@ namespace BananaSocialNetwork.Controllers
 
         //
         // POST: /Account/Login
-        [HttpPost]
+
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        [HttpPost]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
-            
+
             var user = await UserManager.FindAsync(model.Email, model.Password);
             if (user != null)
             {
@@ -76,7 +77,7 @@ namespace BananaSocialNetwork.Controllers
                     switch (result)
                     {
                         case SignInStatus.Success:
-                            return RedirectToAction("Index", "Profile", user );
+                            return RedirectToAction("Index", "Profile", user);
                         case SignInStatus.LockedOut:
                             return View("Lockout");
                         case SignInStatus.RequiresVerification:
@@ -112,7 +113,7 @@ namespace BananaSocialNetwork.Controllers
             var user = await UserManager.FindByIdAsync(await SignInManager.GetVerifiedUserIdAsync());
             if (user != null)
             {
-                var code = await UserManager.GenerateTwoFactorTokenAsync(user.Id, provider);
+                // зачем нужен этот код 2??? var code = await UserManager.GenerateTwoFactorTokenAsync(user.Id, provider);
             }
             return View(new VerifyCodeViewModel { Provider = provider, ReturnUrl = returnUrl, RememberMe = rememberMe });
         }
@@ -193,7 +194,7 @@ namespace BananaSocialNetwork.Controllers
                 }
                 catch (Exception ex)
                 {
-                    
+                    throw ex;
                 }
             }
             return View(model);
@@ -209,20 +210,20 @@ namespace BananaSocialNetwork.Controllers
             {
                 return View("Error");
             }
-            //System.Web.HttpContext.Current.Response.Write("<SCRIPT LANGUAGE='JavaScript'>alert('Hello this is an Alert')</SCRIPT>");
+
             var user = UserManager.FindById(userId);
 
             // дата регистрации больше 7 дней
-            if (!IsValidAccount(user)) 
+            if (!IsValidAccount(user))
             {
                 return View("RegistrationCanceled");
-            } 
+            }
             // дата регистрации меньше 7 дней или равна последнему дню регистрации 
-            else 
+            else
             {
                 var result = UserManager.ConfirmEmail(userId, code);
                 return View(result.Succeeded ? "ConfirmedEmail" : "Error");
-            } 
+            }
 
         }
 
@@ -231,7 +232,7 @@ namespace BananaSocialNetwork.Controllers
         [AllowAnonymous]
         public ActionResult ConfirmedEmail()
         {
-            //System.Web.HttpContext.Current.Response.Write("<SCRIPT LANGUAGE='JavaScript'>alert('Hello this is an Alert')</SCRIPT>");
+
             return View("ConfirmedEmail");
         }
 
@@ -258,13 +259,6 @@ namespace BananaSocialNetwork.Controllers
                     // Don't reveal that the user does not exist or is not confirmed
                     return View("ForgotPasswordConfirmation");
                 }
-
-                // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                // Send an email with this link
-                // string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                // var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
-                // await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                // return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
 
             // If we got this far, something failed, redisplay form
@@ -463,7 +457,10 @@ namespace BananaSocialNetwork.Controllers
         {
             DateTime tempDate = user.RegistrationDate.AddDays(7);
             if (user.RegistrationDate.CompareTo(tempDate) <= 0)
+            {
                 return true;
+            }
+
             return false;
         }
 

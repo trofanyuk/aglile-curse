@@ -18,8 +18,7 @@ namespace BananaSocialNetwork.Controllers
 {
     public class AlbumController : Controller
     {
-        //ApplicationUserManager userManager;
-        // GET: /Album/
+
 
         ApplicationDbContext db = new ApplicationDbContext();
         public ActionResult Index()
@@ -92,7 +91,7 @@ namespace BananaSocialNetwork.Controllers
         public ActionResult Details(int id)
         {
             Album album = db.Albums.Find(id);
-            album.Photos = db.Photos.Where(m => m.Album.Id == album.Id);    
+            album.Photos = db.Photos.Where(m => m.Album.Id == album.Id);
 
             return View(album);
         }
@@ -119,7 +118,7 @@ namespace BananaSocialNetwork.Controllers
             return View(album);
         }
 
-       
+
         [HttpPost]
         public ActionResult Edit(Album json)
         {
@@ -130,7 +129,7 @@ namespace BananaSocialNetwork.Controllers
             album.Name = json.Name;
 
             album.Photos = db.Photos.Where(m => m.Album.Id == json.Id);
-            foreach(Photo photo in album.Photos)
+            foreach (Photo photo in album.Photos)
             {
                 photo.Adress = album.Adress;
                 photo.GeoLat = album.GeoLat;

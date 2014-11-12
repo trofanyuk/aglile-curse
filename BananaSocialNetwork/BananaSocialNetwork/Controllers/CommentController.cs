@@ -62,18 +62,18 @@ namespace BananaSocialNetwork.Controllers
             comment.User = user;
             comment.Photo = photo;
 
-                db.Comments.Add(comment);
-                db.SaveChanges();
-               
+            db.Comments.Add(comment);
+            db.SaveChanges();
+
 
             return View("OneComment", comment);
         }
 
         public ActionResult CommentList(int Id)
         {
-            
+
             Photo photo = db.Photos.Find(Id);
-            photo.Coments = db.Comments.Where(m => m.Photo.Id == photo.Id).ToList(); 
+            photo.Coments = db.Comments.Where(m => m.Photo.Id == photo.Id).ToList();
 
             return View(photo);
 
@@ -99,7 +99,7 @@ namespace BananaSocialNetwork.Controllers
         // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="Id,Text,DateCreate")] Comment comment)
+        public ActionResult Edit([Bind(Include = "Id,Text,DateCreate")] Comment comment)
         {
             if (ModelState.IsValid)
             {

@@ -10,9 +10,9 @@ namespace BananaSocialNetwork.Controllers
     {
         //
         // GET: /Search/
-        public ActionResult Index()
-        {
-            return View();
-        }
-	}
+            public ActionResult Index()
+            {
+                return View();
+            }
+    }
 }

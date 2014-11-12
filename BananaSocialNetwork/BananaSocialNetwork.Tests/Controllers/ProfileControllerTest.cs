@@ -9,7 +9,7 @@ namespace BananaSocialNetwork.Tests.Controllers
     public class ProfileControllerTest
     {
         [TestMethod]
-        public void IndexViewResultNotNull() // ActionResult Index()
+        public void IndexViewResultNotNull() 
         {
             ProfileController controller = new ProfileController();
             ViewResult result = controller.Index() as ViewResult;
@@ -17,35 +17,30 @@ namespace BananaSocialNetwork.Tests.Controllers
         }
 
         [TestMethod]
-        public void DetailsViewResultNotNull() //ActionResult Details(int id)
+        public void DetailsViewResultNotNull() 
         {
             ProfileController controller = new ProfileController();
-            //ViewResult result = controller.Details(0) as ViewResult;
-            //Assert.IsNotNull(result);
         }
 
         [TestMethod]
-        public void CreateViewResultNotNull() //ActionResult Create()
+        public void CreateViewResultNotNull() 
         {
             ProfileController controller = new ProfileController();
-            //ViewResult result = controller.Create() as ViewResult;
-            //Assert.IsNotNull(result);
+
         }
 
         [TestMethod]
-        public void EditViewResultNotNull() //ActionResult Edit()
+        public void EditViewResultNotNull() 
         {
             ProfileController controller = new ProfileController();
-            //ViewResult result = controller.Edit(0) as ViewResult;
-            //Assert.IsNotNull(result);
+
         }
 
         [TestMethod]
-        public void DeleteViewResultNotNull() //ActionResult Delete()
+        public void DeleteViewResultNotNull() 
         {
             ProfileController controller = new ProfileController();
-            //ViewResult result = controller.Delete(0) as ViewResult;
-            //Assert.IsNotNull(result);
+
         }
     }
 }
