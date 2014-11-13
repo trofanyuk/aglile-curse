@@ -113,7 +113,7 @@ namespace BananaSocialNetwork.Controllers
             var user = await UserManager.FindByIdAsync(await SignInManager.GetVerifiedUserIdAsync());
             if (user != null)
             {
-                // зачем нужен этот код 2??? var code = await UserManager.GenerateTwoFactorTokenAsync(user.Id, provider);
+                await UserManager.GenerateTwoFactorTokenAsync(user.Id, provider);
             }
             return View(new VerifyCodeViewModel { Provider = provider, ReturnUrl = returnUrl, RememberMe = rememberMe });
         }
