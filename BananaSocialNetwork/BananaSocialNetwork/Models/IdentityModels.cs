@@ -29,14 +29,14 @@ namespace BananaSocialNetwork.Models
 
         public virtual IEnumerable<Album> Albums { get; set; }
         // Друзья пользователя
-        public virtual IEnumerable<User> Friends { get; set; }
+        public virtual IEnumerable<Friends> Friends { get; set; }
 
         public virtual IEnumerable<Comment> Comments { get; set; }
         
         public User()
         {
             Albums = new List<Album>();
-            Friends = new List<User>();
+            //Friends = new List<User>();
 
         }
 
@@ -58,6 +58,8 @@ namespace BananaSocialNetwork.Models
         public DbSet<Album> Albums { get; set; }
         public DbSet<Photo> Photos { get; set; }
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<Friends> Friends { get; set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

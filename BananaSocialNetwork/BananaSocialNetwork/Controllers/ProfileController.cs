@@ -13,18 +13,21 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using Newtonsoft.Json;
 using System.IO;
+using System.Net;
 
 namespace BananaSocialNetwork.Controllers
 {
     public class ProfileController : Controller
     {
         ApplicationDbContext db = new ApplicationDbContext();
+       
         //
         // GET: /Default/
         public ActionResult Index()
         {
             User user = db.Users.ToList().Where(m => m.Email == HttpContext.User.Identity.Name).FirstOrDefault();
             user.Albums = db.Albums.ToList().Where(m => m.User.Id == user.Id).OrderByDescending(t => t.DateCreate);
+            user.Friends = db.Friends.ToList().Where(m => m.user.Id == user.Id);
 
             for (int i = 0; i < user.Albums.Count(); i++)
             {
@@ -92,8 +95,35 @@ namespace BananaSocialNetwork.Controllers
             }
 
             return RedirectToAction("Edit");
+        }
 
+        //public ActionResult Delete(string id)
+        //{
+           
+        //    User user = db.Users.Where(m => m.Email == HttpContext.User.Identity.Name).FirstOrDefault();
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Friends friends = db.Friends.Where(m=> m.user.Id == user.Id && m.friend.Id == id).First();
+        //    if (friends == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(friends);
+        //}
 
+        // POST: /Fr/Delete/5
+        
+       
+        public ActionResult Delete(string id)
+        {
+            User user = db.Users.Where(m => m.Email == HttpContext.User.Identity.Name).FirstOrDefault();
+            Friends friends = db.Friends.Where(m => m.user.Id == user.Id && m.friend.Id == id).FirstOrDefault();
+
+            db.Friends.Remove(friends);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }

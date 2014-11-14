@@ -15,8 +15,8 @@
             <div class="first_column margin_10">
                 <div class="avatar_form margin_10">
                     <div style="max-width:200px; max-height:300px; min-height:50px;">
-                       
-                            <img style="background-image: url(@Model.AvatatPath)" src="@Model.AvatatPath" />       
+
+                        <img style="background-image: url(@Model.AvatatPath)" src="@Model.AvatatPath" />
                     </div>
                     <div>
                         @Html.DisplayFor(model => model.Firstname)
@@ -64,7 +64,7 @@
                                         @if (album.Photos.Count() <= 0)
                                         {
                                             <a href="/Album/Details/@album.Id">
-                                                <div class="photo" 
+                                                <div class="photo"
                                                      style="background-image: url(/Content/img/empty-album.png); ">
 
                                                 </div>
@@ -73,7 +73,7 @@
                                         else
                                         {
                                             <a href="/Album/Details/@album.Id">
-                                                <div class="photo" 
+                                                <div class="photo"
                                                      style="background-image: url(@album.Photos.Last().PhotoPath); ">
 
                                                 </div>
@@ -82,7 +82,7 @@
 
                                     </div>
                                     <div class="photo_count display_block" style="width:100%;">
-                                        @if(@album.Name.Length > 10)
+                                        @if (@album.Name.Length > 10)
                                         {
                                             string name = @album.Name.Substring(0, 10) + "...";
                                             <span class="text">@name</span>
@@ -107,10 +107,10 @@
                                     foreach (var photo in album.Photos)
                                     {
                                         @*<a href="@photo.PhotoPath"
-                    style="background-image: url(@photo.PhotoPath);"
-                    title=""
-                    class="photo_content margin_10"
-                    data-id="@photo.Id"></a>*@
+                                            style="background-image: url(@photo.PhotoPath);"
+                                            title=""
+                                            class="photo_content margin_10"
+                                            data-id="@photo.Id"></a>*@
 
                                         <a href="@photo.PhotoPath" class="float_left margin_10" data-id="@photo.Id">
                                             <div class="photo float_left"
@@ -126,10 +126,24 @@
             </div>
         </div>
     </div>
-   @using (Html.BeginForm("Index", "Search", FormMethod.Get))
-{
+    @using (Html.BeginForm("Index", "Search", FormMethod.Get))
+    {
 
-    <input type="submit" value="Search" />
-}
-    
+        <input type="submit" value="Search" />
+    }
+
+    @foreach (BananaSocialNetwork.Models.Friends friend in Model.Friends)
+    {
+
+         using (Html.BeginForm("Delete", "Profile", FormMethod.Get))
+            {
+                <div>@friend.friend.UserName</div>
+                <input type="hidden" value="@friend.friend.Id" name="id" />
+                <input type="submit" value="Delete" />
+            }
+        
+        
+    }
+
+
 </div>

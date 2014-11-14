@@ -13,12 +13,20 @@
     <title>SearchOnName</title>
 </head>
 <body>
+
     <div>
         @foreach (BananaSocialNetwork.Models.User user in ViewBag.Users)
         {
-            <label>@user.UserName</label>
+            using (Html.BeginForm("AddFriend", "Search", FormMethod.Get))
+            {
+                <div>@user.UserName</div>
+          
+                <input type="hidden" value="@user.Id" name="idFriend" />
+                <input type="submit" value="Add" />
+            }
         }
     </div>
+
 </body>
 </html>
 

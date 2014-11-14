@@ -30,7 +30,10 @@ namespace BananaSocialNetwork.Controllers
         [HttpGet]
         public ActionResult SearchOnName(string search)
         {
+            User user = db.Users.Where(m => m.Email == HttpContext.User.Identity.Name).FirstOrDefault();
             List<User> users;
+            List<User> notFriends = new List<User>();
+
 
             search = search.Trim(' ');
 
@@ -47,8 +50,30 @@ namespace BananaSocialNetwork.Controllers
                 users = db.Users.Where(m => m.Firstname == FirstName && m.Surname == SureName).ToList<User>();
             }
 
-            ViewBag.Users = users;
+            foreach (User friend in users)
+            {
+                if (db.Friends.Where(m => m.user.Id == user.Id && m.friend.Id == friend.Id).FirstOrDefault() == null)
+                {
+                    notFriends.Add(friend);
+                }
+
+            }
+            ViewBag.Users = notFriends;
             return View();
+        }
+
+        public ActionResult AddFriend(string idFriend)
+        {
+            User friend = db.Users.Where(m => m.Id == idFriend).FirstOrDefault();
+            User user = db.Users.Where(m => m.Email == HttpContext.User.Identity.Name).FirstOrDefault();
+
+            Friends friends = new Friends(user, friend);
+            db.Friends.Add(friends);       
+            db.SaveChanges();
+
+            return RedirectToAction("Index", "Profile");
+
+
         }
     }
 }
