@@ -285,6 +285,7 @@
     <Content Include="Views\Photo\EditPhotoPartial.cshtml" />
     <Content Include="Views\Album\EditAlbumPartial.cshtml" />
     <Content Include="Views\Photo\PhotoInMapPartial.cshtml" />
+    <Content Include="Views\Search\SearchOnName.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

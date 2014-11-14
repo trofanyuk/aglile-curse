@@ -452,6 +452,7 @@ a{
 .middle_content .profile .avatar_form{
     max-width:200px;
     max-height:300px;
+    text-align:center;
 }
 
 .middle_content .profile .avatar_form img{
@@ -488,9 +489,17 @@ a{
 }
 
 .middle_content .profile .photo{
+    line-height:50px;
     width:120px;
     height:120px;
     background-color:#25AD9F;
+
+    background-position:center center;
+	background-repeat: no-repeat;
+	
+	background-size:cover;
+	-moz-background-size:cover;
+	-webkit-background-size:cover;
 }
 
 .middle_content .profile .photo_count{
@@ -520,27 +529,18 @@ a{
     max-width:300px;
 }
 
-.middle_content .edit_page .btn-file {
-  position: relative;
-  overflow: hidden;
+.middle_content .edit_page input[type=file] {
+  margin: auto;
+  margin-top:20px;
+  border: solid 1px #e1e0e0;
 }
-.middle_content .edit_page .btn-file input[type=file] {
-  position: absolute;
-  top: 0;
-  right: 0;
-  min-width: 100%;
-  min-height: 100%;
-  font-size: 100px;
-  text-align: right;
-  filter: alpha(opacity=0);
-  opacity: 0;
-  background: red;
-  cursor: inherit;
-  display: block;
+.middle_content .edit_page input[type=submit] { 
+    margin-top: 20px;
 }
-.middle_content .edit_page input[readonly] {
-  background-color: white !important;
-  cursor: text !important;
+.middle_content .edit_page .avatar_note{
+    font-size: 10px;
+    text-align: left;
+    margin: 10px;
 }
 
 .middle_content .edit_page .div_header{

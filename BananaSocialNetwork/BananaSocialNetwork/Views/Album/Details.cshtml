@@ -5,7 +5,7 @@
 }
 
 @System.Web.Optimization.Scripts.Render("~/bundles/modal_dialogs")
-<input type="hidden" value="@Model.Id" id="al_id"/>
+<input type="hidden" value="@Model.Id" id="al_id" />
 <div class="middle_content min_width profile_bg">
     <div class="album">
         <div class="al_header">
@@ -19,23 +19,23 @@
                 </ul>
             </div>
         </div>
-        @if(@Model.Photos.Count() > 0)
+        @if (@Model.Photos.Count() > 0)
         {
             <div class="display_block thumbs ">
-            @foreach (BananaSocialNetwork.Models.Photo photo in Model.Photos)
-            {
-                <a href="@photo.PhotoPath"
-                   style="background-image: url(@photo.PhotoPath);"
-                   title=""
-                   class="photo_content margin_10"
-                   data-id="@photo.Id"></a>
-            }
-        </div>
+                @foreach (BananaSocialNetwork.Models.Photo photo in Model.Photos)
+                {
+                    <a href="@photo.PhotoPath"
+                       style="background-image: url(@photo.PhotoPath);"
+                       title=""
+                       class="photo_content margin_10"
+                       data-id="@photo.Id"></a>
+                }
+            </div>
         }
         else
         {
-            <p style="text-align:center; margin-top:20px; font-size:13px; cursor:pointer;" 
+            <p style="text-align:center; margin-top:20px; font-size:13px; cursor:pointer;"
                onclick="show_Add_Photo()">No photos. Please add new photos.</p>
         }
-    </div> 
+    </div>
 </div>

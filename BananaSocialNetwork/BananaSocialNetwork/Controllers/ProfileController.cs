@@ -20,18 +20,17 @@ namespace BananaSocialNetwork.Controllers
     {
         ApplicationDbContext db = new ApplicationDbContext();
         //
-        // GET: /Default1/
+        // GET: /Default/
         public ActionResult Index()
         {
-            User user = db.Users.Where(m => m.Email == HttpContext.User.Identity.Name).FirstOrDefault();
-            user.Albums = db.Albums.Where(m => m.User.Id == user.Id).OrderByDescending(t => t.DateCreate);
+            User user = db.Users.ToList().Where(m => m.Email == HttpContext.User.Identity.Name).FirstOrDefault();
+            user.Albums = db.Albums.ToList().Where(m => m.User.Id == user.Id).OrderByDescending(t => t.DateCreate);
 
             for (int i = 0; i < user.Albums.Count(); i++)
             {
-                var album = user.Albums.ElementAt(i);
-                album.CountPhotos = db.Photos.Where(m => m.Album.Id == album.Id).Count();
+                Album album = user.Albums.ElementAt(i);
+                album.Photos = db.Photos.ToList().Where(m => m.Album.Id == album.Id);
             }
-
             return View(user);
         }
 
@@ -55,7 +54,7 @@ namespace BananaSocialNetwork.Controllers
             db.Entry(user).State = EntityState.Modified;
             db.SaveChanges();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Edit");
         }
 
         [Authorize]
@@ -92,7 +91,7 @@ namespace BananaSocialNetwork.Controllers
                 db.SaveChanges();
             }
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Edit");
 
 
         }

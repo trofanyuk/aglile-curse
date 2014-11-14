@@ -6,28 +6,6 @@
 }
 
 <div class="middle_content min_width profile_bg">
-    <script>
-        $(document).on('change', '.btn-file :file', function () {
-            var input = $(this),
-                numFiles = input.get(0).files ? input.get(0).files.length : 1,
-                label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-            input.trigger('fileselect', [numFiles, label]);
-        });
-        $(document).ready(function () {
-            $('.btn-file :file').on('fileselect', function (event, numFiles, label) {
-
-                var input = $(this).parents('.input-group').find(':text'),
-                    log = numFiles > 1 ? numFiles + ' files selected' : label;
-
-                if (input.length) {
-                    input.val(log);
-                } else {
-                    if (log) alert(log);
-                }
-
-            });
-        });
-    </script>
     <div class="edit_page">
 
         <div class="form-horizontal">
@@ -80,17 +58,17 @@
                             <div class="width_50per float_right editor">
                                 @if (Model.Sex == Sexs.Male)
                                 {
-                                    <p class="float_left" style="padding-right: 5px;">Male</p>
-                                    <input type="radio" name="Sex" value="Male" checked="checked" class="float_left" />
-                                    <p class="float_left" style="padding-left:15px; padding-right: 5px;">Female</p>
-                                    <input type="radio" name="Sex" value="Female" class="float_left" />
+                                <p class="float_left" style="padding-right: 5px;">Male</p>
+                                <input type="radio" name="Sex" value="Male" checked="checked" class="float_left" />
+                                <p class="float_left" style="padding-left:15px; padding-right: 5px;">Female</p>
+                                <input type="radio" name="Sex" value="Female" class="float_left" />
                                 }
                                 else
                                 {
-                                    <p class="float_left" style="padding-right: 5px;">Male</p>
-                                    <input type="radio" name="Sex" value="Male" class="float_left" />
-                                    <p class="float_left" style="padding-left:15px; padding-right: 5px;">Female</p>
-                                    <input type="radio" name="Sex" value="Female" class="float_left" checked="checked" />
+                                <p class="float_left" style="padding-right: 5px;">Male</p>
+                                <input type="radio" name="Sex" value="Male" class="float_left" />
+                                <p class="float_left" style="padding-left:15px; padding-right: 5px;">Female</p>
+                                <input type="radio" name="Sex" value="Female" class="float_left" checked="checked" />
                                 }
                             </div>
                         </div>
@@ -113,7 +91,7 @@
 
                         <div class="form-group text-center">
                             <div class="col-md-offset-2 col-md-10">
-                                <input type="submit" value="Save" class="btn btn-default" />
+                                <input type="submit" value="Save profile" class="btn btn-default" />
                             </div>
                         </div>
 
@@ -128,19 +106,14 @@
                         @using (Html.BeginForm("AddAvatar", "Profile", FormMethod.Post, new { enctype = "multipart/form-data" }))
                         {
                             <input accept="image/*" id="file" name="file" type="file" />
-                            @*<div class="input-group" style="width:300px;">
-                                    <span class="input-group-btn">
-                                        <span class="btn btn-primary btn-file">
-                                            Browse&hellip; <input type="file" multiple>
-                                        </span>
-                                    </span>
-                                    <input type="text" class="form-control" readonly>
-                                </div>*@
 
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" value="AddAvatar" class="btn btn-default" />
+                                    <input type="submit" value="Change avatar" class="btn btn-default" />
                                 </div>
+                            </div>
+                            <div>
+                                <p class="avatar_note">Note: Maximum display of avatar in main page 200x300 pixels.</p>
                             </div>
                         }
                     </div>

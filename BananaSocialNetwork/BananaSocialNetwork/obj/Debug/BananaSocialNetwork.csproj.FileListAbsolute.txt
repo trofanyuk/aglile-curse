@@ -168,7 +168,6 @@ C:\Users\Дмитрий\Desktop\bananarepositoty\BananaSocialNetwork\BananaSocia
 C:\Users\Дмитрий\Desktop\bananarepositoty\BananaSocialNetwork\BananaSocialNetwork\obj\Debug\BananaSocialNetwork.dll
 C:\Users\Дмитрий\Desktop\bananarepositoty\BananaSocialNetwork\BananaSocialNetwork\obj\Debug\BananaSocialNetwork.pdb
 C:\Users\Дмитрий\Desktop\bananarepositoty\BananaSocialNetwork\BananaSocialNetwork\obj\Debug\BananaSocialNetwork.csprojResolveAssemblyReference.cache
-C:\Users\Дмитрий\Documents\bananarepositoty\BananaSocialNetwork\BananaSocialNetwork\obj\Debug\BananaSocialNetwork.csprojResolveAssemblyReference.cache
 C:\Users\кирилл\Documents\bananarepositoty\BananaSocialNetwork\BananaSocialNetwork\obj\Debug\BananaSocialNetwork.csprojResolveAssemblyReference.cache
 D:\Team\Repository\BananaSocialNetwork\BananaSocialNetwork\bin\BananaSocialNetwork.dll.config
 D:\Team\Repository\BananaSocialNetwork\BananaSocialNetwork\bin\BananaSocialNetwork.dll
@@ -223,3 +222,4 @@ D:\Team\Repository\BananaSocialNetwork\BananaSocialNetwork\bin\Microsoft.Owin.Se
 D:\Team\Repository\BananaSocialNetwork\BananaSocialNetwork\obj\Debug\BananaSocialNetwork.csprojResolveAssemblyReference.cache
 D:\Team\Repository\BananaSocialNetwork\BananaSocialNetwork\obj\Debug\BananaSocialNetwork.dll
 D:\Team\Repository\BananaSocialNetwork\BananaSocialNetwork\obj\Debug\BananaSocialNetwork.pdb
+C:\Users\Дмитрий\Documents\bananarepositoty\BananaSocialNetwork\BananaSocialNetwork\obj\Debug\BananaSocialNetwork.csprojResolveAssemblyReference.cache

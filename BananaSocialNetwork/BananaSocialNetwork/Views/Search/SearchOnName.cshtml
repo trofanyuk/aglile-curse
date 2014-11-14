@@ -1,0 +1,24 @@
+﻿@model BananaSocialNetwork.Models.User
+
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SearchOnName</title>
+</head>
+<body>
+    <div>
+        @foreach (BananaSocialNetwork.Models.User user in ViewBag.Users)
+        {
+            <label>@user.UserName</label>
+        }
+    </div>
+</body>
+</html>
+

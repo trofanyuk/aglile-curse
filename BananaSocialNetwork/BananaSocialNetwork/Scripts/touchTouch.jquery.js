@@ -299,12 +299,9 @@
         function showComments(index)
         {
             var place = placeholders.eq(index).find("div.presenter");
-            //var d = $("<div style='background-color:red; heigth:200px; width:100px;'>").appendTo(place);
-            //alert(place);
            
             if (place.find('div.commentsBlock').length <= 0)
             {
-                //var d = $("<div style='background-color:red; heigth:200px; width:100px;'>").appendTo(place);
                 var id = items.eq(index).attr('data-id');
                 getCommentsControls(id, place);    
             }
