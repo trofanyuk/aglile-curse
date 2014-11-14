@@ -2,9 +2,9 @@
     min-width: 767px;
 }
 
-.soc_container{
-    width:1000px;
-    margin:auto;
+.soc_container {
+    width: 1000px;
+    margin: auto;
 }
 
 html, body {
@@ -13,109 +13,119 @@ html, body {
     padding: 0px;
 }
 
-*{
-    margin:0px;
-    padding:0px;
+* {
+    margin: 0px;
+    padding: 0px;
     font-family: tahoma, tahoma, verdana, arial, sans-serif;
 }
 
-a{
-     text-decoration:none;
+a {
+    text-decoration: none;
 }
 
-.border_none{
-    border:none;
+.border_none {
+    border: none;
 }
 
-.green_text{
+.green_text {
     color: #25AD9F;
 }
 
-.dark_green_text{
+.dark_green_text {
     color: #147269;
 }
 
-.validation-summary-errors ul{
-    list-style:none;
+.validation-summary-errors ul {
+    list-style: none;
 }
 /*------------------------------------*\
 	НАВИГАЦИЯ
 \*------------------------------------*/
-#nav{
-	float:left;
-	width:100%;
-	list-style:none;
-	font-weight:bold;
-	margin-bottom:10px;
-    background-color:#25AD9F;
-}
-#nav li{
-	float:left;
-	margin-right:10px;
-	position:relative;
-	display:block;
-}
-#nav li a{
-    padding:10px;
-    color:white;
-    text-decoration:none;
-}
-#nav li a .text{
-    padding-left:20px;
-}
-#nav li a:hover{
-	background-color:white;
-    color: #25AD9F;
+#nav {
+    float: left;
+    width: 100%;
+    list-style: none;
+    font-weight: bold;
+    margin-bottom: 10px;
+    background-color: #25AD9F;
 }
 
-/*--- ВЫПАДАЮЩИЕ ПУНКТЫ ---*/
-#nav ul{
-    width:100%;
-    z-index:2000;
-    top:70px;
-	list-style:none;
-	position:absolute;
-	left:-9999px; /* Скрываем за экраном, когда не нужно (данный метод лучше, чем display:none;) */
-	opacity:0; /* Устанавливаем начальное состояние прозрачности */
-	-webkit-transition:0.25s linear opacity; /* В Webkit выпадающие пункты будут проявляться */
-}
-#nav ul li{
-	padding-top:0px; 
-	float:none;
-	background-color:#25AD9F;
-}
-#nav ul a{
-    margin-left:-1px;
-	white-space:nowrap; 
-	display:block;
-    border-left:solid 1px #25AD9F;
-    border-bottom:solid 1px #25AD9F;
-    border-right:solid 1px #25AD9F;
-}
-#nav li:hover ul{ /* Выводим выпадающий пункт при наведении курсора */
-	left:0; /* Приносим его обратно на экран, когда нужно */
-	opacity:1; /* Делаем непрозрачным */
-}
-#nav li:hover a{ /* Устанавливаем стили для верхнего уровня, когда выводится выпадающий список */
-    color: #25AD9F;
-	background-color:white;
-    text-decoration:none;
-    border-bottom:solid 1px #25AD9F;
-    border-right:solid 1px #25AD9F;
-}
-#nav li:hover ul a{ 
-    min-width:100px;
-	color:#23988c;
-    text-decoration:none;
-}
-#nav li:hover ul li a:hover{ /* Устанавливаем стили для выпадающих пунктов, когда курсор наводится на конкретный пункт */
-	background-color:#25AD9F;
-    color:white;
-}
+    #nav li {
+        float: left;
+        margin-right: 10px;
+        position: relative;
+        display: block;
+    }
+
+        #nav li a {
+            padding: 10px;
+            color: white;
+            text-decoration: none;
+        }
+
+            #nav li a .text {
+                padding-left: 20px;
+            }
+
+            #nav li a:hover {
+                background-color: white;
+                color: #25AD9F;
+            }
+
+    /*--- ВЫПАДАЮЩИЕ ПУНКТЫ ---*/
+    #nav ul {
+        width: 100%;
+        z-index: 2000;
+        top: 70px;
+        list-style: none;
+        position: absolute;
+        left: -9999px; /* Скрываем за экраном, когда не нужно (данный метод лучше, чем display:none;) */
+        opacity: 0; /* Устанавливаем начальное состояние прозрачности */
+        -webkit-transition: 0.25s linear opacity; /* В Webkit выпадающие пункты будут проявляться */
+    }
+
+        #nav ul li {
+            padding-top: 0px;
+            float: none;
+            background-color: #25AD9F;
+        }
+
+        #nav ul a {
+            margin-left: -1px;
+            white-space: nowrap;
+            display: block;
+            border-left: solid 1px #25AD9F;
+            border-bottom: solid 1px #25AD9F;
+            border-right: solid 1px #25AD9F;
+        }
+
+    #nav li:hover ul { /* Выводим выпадающий пункт при наведении курсора */
+        left: 0; /* Приносим его обратно на экран, когда нужно */
+        opacity: 1; /* Делаем непрозрачным */
+    }
+
+    #nav li:hover a { /* Устанавливаем стили для верхнего уровня, когда выводится выпадающий список */
+        color: #25AD9F;
+        background-color: white;
+        text-decoration: none;
+        border-bottom: solid 1px #25AD9F;
+        border-right: solid 1px #25AD9F;
+    }
+
+    #nav li:hover ul a {
+        min-width: 100px;
+        color: #23988c;
+        text-decoration: none;
+    }
+
+    #nav li:hover ul li a:hover { /* Устанавливаем стили для выпадающих пунктов, когда курсор наводится на конкретный пункт */
+        background-color: #25AD9F;
+        color: white;
+    }
 
 
 .header {
-    min-width:1000px;
+    min-width: 1000px;
     height: 70px;
     background-color: #25AD9F;
 }
@@ -135,9 +145,19 @@ a{
         margin-right: 50px;
     }
 
-    .header .btn_bounds{
+    .header .btn_bounds {
         width: 70px;
         height: 70px;
+    }
+
+    .h_avatar {
+        height: 50px;
+        width: 50px;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
     }
 
 .s_btn {
@@ -152,23 +172,22 @@ a{
     }
 
 .wrap {
-    min-height:100%;
+    min-height: 100%;
     height: auto !important;
 }
 
-.render_body{
+.render_body {
     padding-bottom: 30px;
-
 }
 
 .footer {
     height: 25px;
     width: auto;
-    min-width:1000px;
+    min-width: 1000px;
     border: none;
     background-color: #25AD9F;
-    margin-top: -25px; 
-    overflow:hidden;
+    margin-top: -25px;
+    overflow: hidden;
 }
 
 
@@ -213,68 +232,76 @@ a{
 }
 
 .margin_10 {
-        margin: 10px;
-    }
+    margin: 10px;
+}
 
 .margin_5 {
-        margin: 5px;
-    }
+    margin: 5px;
+}
 
-.middle_content{
-    border:solid 1px #25AD9F;
-    border-top:none;
+.middle_content {
+    border: solid 1px #25AD9F;
+    border-top: none;
 }
 
 /*  Menu Drop  */
-.menu_div{
-    border:solid 1px #EEE;
+.menu_div {
+    border: solid 1px #EEE;
 }
-.main-item{
-    line-height:30px;
-    outline:none;
-    background-color:#f5f3f3;
+
+.main-item {
+    line-height: 30px;
+    outline: none;
+    background-color: #f5f3f3;
 }
-.main-item a {
-    color: #2B587A;
-    cursor:pointer;
+
+    .main-item a {
+        color: #2B587A;
+        cursor: pointer;
+    }
+
+.sub-menu {
+    margin-left: -1px;
+    visibility: hidden;
+    list-style: none;
+    display: none;
+    border-top: none;
+    position: absolute;
+    border: solid 1px #EEE;
+    border-top: none;
 }
-.sub-menu 
-{ 
-   margin-left:-1px;
-   visibility:hidden;
-   list-style:none;
-   display:none;
-   border-top:none;
-   position:absolute;
-   border:solid 1px #EEE;
-   border-top:none;
-}
-.main-item a:focus , .main-item a:hover{
-    color:black;
-    text-decoration:none;
+
+.main-item a:focus, .main-item a:hover {
+    color: black;
+    text-decoration: none;
     border-bottom: none;
-    outline:none;
+    outline: none;
 }
-.sub-menu li{
+
+.sub-menu li {
     color: #2B587A;
-    text-align:left;
-    padding:10px;
-    border-bottom:solid 1px #EEE;
-    height:35px;
-    background-color:white;
+    text-align: left;
+    padding: 10px;
+    border-bottom: solid 1px #EEE;
+    height: 35px;
+    background-color: white;
 }
-.sub-menu li i{
-    padding-right:5px;
-}
-.sub-menu li a{
-    color:#2B587A;
-    text-decoration:none;
-    cursor:pointer;
-}
-.sub-menu li a:hover{
-    color:black;
-    text-decoration:none;
-}
+
+    .sub-menu li i {
+        padding-right: 5px;
+    }
+
+    .sub-menu li a {
+        color: #2B587A;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+        .sub-menu li a:hover {
+            color: black;
+            text-decoration: none;
+        }
+
 .main-item:focus ~ .sub-menu,
 .main-item:active ~ .sub-menu,
 .sub-menu:hover {
@@ -283,27 +310,27 @@ a{
 }
 
 /* Top Buttons */
-.top_btn_href{
-    line-height:70px;
-    color:white;
-    text-decoration:none;
+
+.top_btn_href {
+    line-height: 70px;
+    color: white;
+    text-decoration: none;
 }
 
-.top_btn_href:hover{
-    color:white;
-    text-decoration:none;
+    .top_btn_href:hover {
+        color: white;
+        text-decoration: none;
+    }
+
+.singup {
+    padding-left: 13px;
+    padding-right: 13px;
 }
 
-.singup{
-    padding-left:13px;
-    padding-right:13px;
+.login {
+    padding-left: 18px;
+    padding-right: 18px;
 }
-
-.login{
-    padding-left:18px;
-    padding-right:18px;
-}
-
 
 /* Account/Login */
 
@@ -338,32 +365,32 @@ a{
         padding-top: 10px;
     }
 
-.middle_content .enter_form input[type="text"] {
-    width: 100%;
-    height: 50px;
-    border: solid 1px #25AD9F;
-    outline: none;
-}
+    .middle_content .enter_form input[type="text"] {
+        width: 100%;
+        height: 50px;
+        border: solid 1px #25AD9F;
+        outline: none;
+    }
 
-.middle_content .enter_form input[type="password"] {
-    width: 100%;
-    height: 50px;
-    border: solid 1px #25AD9F;
-    outline: none;
-}
+    .middle_content .enter_form input[type="password"] {
+        width: 100%;
+        height: 50px;
+        border: solid 1px #25AD9F;
+        outline: none;
+    }
 
-.middle_content .enter_form input[type="submit"] {
-    width: 100%;
-    height: 50px;
-}
+    .middle_content .enter_form input[type="submit"] {
+        width: 100%;
+        height: 50px;
+    }
 
-.middle_content .enter_form .remember_text {
-    color: #25AD9F;
-}
+    .middle_content .enter_form .remember_text {
+        color: #25AD9F;
+    }
 
 /* Account/Register */
 
-    .middle_content .reg_form {
+.middle_content .reg_form {
     width: 100%;
     height: 400px;
     /*border: solid 1px #25AD9F;*/
@@ -418,222 +445,294 @@ a{
         height: 50px;
     }
 
-    .middle_content .reg_form .note{
-        color:#929292;
-        font-size:10px;
+    .middle_content .reg_form .note {
+        color: #929292;
+        font-size: 10px;
     }
 
-    .middle_content .reg_form .validation_conteiner{
-        height:75px;
-        vertical-align:central;
+    .middle_content .reg_form .validation_conteiner {
+        height: 75px;
+        vertical-align: central;
     }
 
-    .middle_content .reg_form .validation_conteiner .validation_text{
-        color:red;
-        line-height:0px;
-    }
+        .middle_content .reg_form .validation_conteiner .validation_text {
+            color: red;
+            line-height: 0px;
+        }
 
 /* Profile/Index */
 
-.profile_bg{
-    background-color:#EFEFEF;
-}
-
-.middle_content .profile .header_form {
-        width: 100%;
-        height: 30px;
-        background-color: #EFEFEF;
-    }
-
-.middle_content .profile .first_column{
-    width:200px;
-}
-
-.middle_content .profile .avatar_form{
-    max-width:200px;
-    max-height:300px;
-    text-align:center;
-}
-
-.middle_content .profile .avatar_form img{
-    max-width: 200px;
-    max-height: 300px;
-}
-
-.middle_content .profile .online_form{
-    height:40px;
-    width:720px;
-    background-color:white;
-    border:solid 1px #AAAAAA;
-}
-
-.middle_content .profile .about_form{
-    height:125px;
-    width:280px;
-    background-color:white;
-    border:solid 1px #AAAAAA;
-}
-
-.middle_content .profile .friends_form{
-    height:125px;
-    width:420px;
-    background-color:white;
-    border:solid 1px #AAAAAA;
-}
-
-.middle_content .profile .status_form{
-    height:100px;
-    width:200px;
-    background-color:white;
-    border:solid 1px #AAAAAA;
-}
-
-.middle_content .profile .photo{
-    line-height:50px;
-    width:120px;
-    height:120px;
-    background-color:#25AD9F;
-
-    background-position:center center;
-	background-repeat: no-repeat;
-	
-	background-size:cover;
-	-moz-background-size:cover;
-	-webkit-background-size:cover;
-}
-
-.middle_content .profile .photo_count{
-    background-color:#EFEFEF;
-}
-
-.middle_content .profile .photo_count .text{
-    font-size:11px;
-    padding-left:5px;
-    color:#25AD9F;
-    text-decoration:none;
-}
-
-/*  Profile/Edit  */
-
-.middle_content .edit_page{
-    width:100%;
-}
-.middle_content .edit_page .edit_avatar{
-    max-height:400px; 
-    max-width:300px;
-    margin:auto;
-    margin-top:10px;
-}
-.middle_content .edit_page .edit_avatar img{
-    max-height:400px; 
-    max-width:300px;
-}
-
-.middle_content .edit_page input[type=file] {
-  margin: auto;
-  margin-top:20px;
-  border: solid 1px #e1e0e0;
-}
-.middle_content .edit_page input[type=submit] { 
-    margin-top: 20px;
-}
-.middle_content .edit_page .avatar_note{
-    font-size: 10px;
-    text-align: left;
-    margin: 10px;
-}
-
-.middle_content .edit_page .div_header{
-    height:30px;
-    border-bottom:solid 1px #e1e0e0;
-    padding:0px;
-    margin:0px;
-}
-.middle_content .edit_page .content_label{
-    width:100%;
-    padding-right:20px;
-}
-.middle_content .edit_page .content_label div{
-    /*float:right;*/
-}
-.middle_content .edit_page .content_label div p{
-    margin: 0px;
-    text-align:right;
-    font-size:11px;
-}
-
-.middle_content .edit_page .content_label .editor{
-    width:230px;
-}
-
-.middle_content .edit_page .content_label .editor input[type='text'],
-.middle_content .edit_page .content_label .editor input[type='number']
-{
-    width:100%;
-}
-/* Album/Details */
-
-.album{
-    width:100%;
-}
-.middle_content .album .al_header{
-    height:40px;
-    border-bottom:solid 1px #e1e0e0;
-}
-.middle_content .album .al_header .al_name{
-    margin:10px;
-    cursor:default;
-}
-.middle_content .album .al_header .menu_div{
-    margin: 5px 20px;
-    width:150px;
-    text-align:center;
-    border:solid 1px #e1e0e0;
-}
-.middle_content .album .photo_content{
-    width:179px;
-    height:190px;
-
-    background-color: white;
-    border:solid 1px #AAAAAA;
-}
-
-.middle_content .album .photo{
-    /*width:170px;*/
-    /*height:170px;*/
-    /*border:solid 1px #AAAAAA;*/
-    /*border:solid 1px red;*/
-}
-
-.middle_content .album .photo_header{
+.profile_bg {
     background-color: #EFEFEF;
 }
 
-.thumbs{
-	width:auto;
-	margin:auto;
-	text-align:center;
+.middle_content .profile .header_form {
+    width: 100%;
+    height: 30px;
+    background-color: #EFEFEF;
 }
 
-.thumbs a{
-    float:left;
-	text-decoration:none;
-	
-	background-position:center center;
-	background-repeat: no-repeat;
-	
-	background-size:cover;
-	-moz-background-size:cover;
-	-webkit-background-size:cover;
+.middle_content .profile .first_column {
+    width: 200px;
 }
-/*@media (min-width: 992px) and (max-width: 1199px){
-    .middle_content .album .photo_content {
-        width: 168px;
-        height: 178px;
 
+.middle_content .profile .avatar_form {
+    max-width: 200px;
+    max-height: 300px;
+    text-align: center;
+}
+
+    .middle_content .profile .avatar_form img {
+        max-width: 200px;
+        max-height: 300px;
     }
-    .middle_content .album .photo {
-        width: 168px;
-        height: 168px;
+
+.middle_content .profile .online_form {
+    height: 40px;
+    width: 720px;
+    background-color: white;
+    border: solid 1px #AAAAAA;
+}
+
+.middle_content .profile .about_form {
+    height: 125px;
+    width: 280px;
+    background-color: white;
+    border: solid 1px #AAAAAA;
+}
+
+.middle_content .profile .friends_form {
+    height: 125px;
+    width: 420px;
+    background-color: white;
+    border: solid 1px #AAAAAA;
+}
+
+.middle_content .profile .status_form {
+    height: 100px;
+    width: 200px;
+    background-color: white;
+    border: solid 1px #AAAAAA;
+}
+
+.middle_content .profile .photo {
+    line-height: 50px;
+    width: 120px;
+    height: 120px;
+    background-color: #25AD9F;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+}
+
+.middle_content .profile .photo_count {
+    background-color: #EFEFEF;
+}
+
+    .middle_content .profile .photo_count .text {
+        font-size: 11px;
+        padding-left: 5px;
+        color: #25AD9F;
+        text-decoration: none;
     }
-}*/
+
+/*  Profile/Edit  */
+
+.middle_content .edit_page {
+    width: 100%;
+}
+
+    .middle_content .edit_page .edit_avatar {
+        max-height: 400px;
+        max-width: 300px;
+        margin: auto;
+        margin-top: 10px;
+    }
+
+        .middle_content .edit_page .edit_avatar img {
+            max-height: 400px;
+            max-width: 300px;
+        }
+
+    .middle_content .edit_page input[type=file] {
+        margin: auto;
+        margin-top: 20px;
+        border: solid 1px #e1e0e0;
+    }
+
+    .middle_content .edit_page input[type=submit] {
+        margin-top: 20px;
+    }
+
+    .middle_content .edit_page .avatar_note {
+        font-size: 10px;
+        text-align: left;
+        margin: 10px;
+    }
+
+    .middle_content .edit_page .div_header {
+        height: 30px;
+        border-bottom: solid 1px #e1e0e0;
+        padding: 0px;
+        margin: 0px;
+    }
+
+    .middle_content .edit_page .content_label {
+        width: 100%;
+        padding-right: 20px;
+    }
+
+        .middle_content .edit_page .content_label div {
+            /*float:right;*/
+        }
+
+            .middle_content .edit_page .content_label div p {
+                margin: 0px;
+                text-align: right;
+                font-size: 11px;
+            }
+
+        .middle_content .edit_page .content_label .editor {
+            width: 230px;
+        }
+
+            .middle_content .edit_page .content_label .editor input[type='text'],
+            .middle_content .edit_page .content_label .editor input[type='number'] {
+                width: 100%;
+            }
+
+/*  /Search  */
+
+.search .s_header {
+    height: 50px;
+    border-bottom: solid 1px #e1e0e0;
+}
+
+    .search .s_header .s_placeholder {
+        padding: 10px;
+        text-align: center;
+    }
+
+    .search .s_header input[type='text'] {
+        width: 70%;
+    }
+
+    .search .s_header input[type='button'] {
+        width: 20%;
+    }
+
+.search .filters {
+    width: 20%;
+    border-left: solid 1px #e1e0e0;
+    padding: 10px;
+}
+
+    .search .filters .filters_h_text {
+        color: #555;
+        font-weight: bold;
+    }
+
+.search .results {
+    padding: 10px;
+}
+
+    .search .results .f_placeholder {
+        width: 100%;
+        padding-bottom: 5px;
+        border-bottom: solid 1px #e1e0e0;
+    }
+
+    .search .results .f_placeholde .f_controls{
+    }
+        .search .results .f_placeholder .f_avatar {
+            width: 100px;
+            height: 100px;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            -moz-background-size: cover;
+            -webkit-background-size: cover;
+        }
+
+        .search .results .f_placeholder .f_controls .name_text {
+            color: #555;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        .search .results .f_placeholder .f_controls .f_b_pos {
+            position: absolute;
+            margin-top: 30px;
+            margin-left: 10px;
+        }
+
+        .search .f_btn{
+            background-color:  #25AD9F;
+            border: solid 1px #147269;
+            color: white;
+            outline: none;
+            padding: 5px 20px;
+        }
+        .search .f_btn:hover,
+        .search .f_btn:active{
+            background-color:  #147269;
+        }
+        .search .find_field{
+            height:32px;
+        }
+
+/* Album/Details */
+
+.album {
+    width: 100%;
+}
+
+.middle_content .album .al_header {
+    height: 40px;
+    border-bottom: solid 1px #e1e0e0;
+}
+
+    .middle_content .album .al_header .al_name {
+        margin: 10px;
+        cursor: default;
+    }
+
+    .middle_content .album .al_header .menu_div {
+        margin: 5px 20px;
+        width: 150px;
+        text-align: center;
+        border: solid 1px #e1e0e0;
+    }
+
+.middle_content .album .photo_content {
+    width: 179px;
+    height: 190px;
+    background-color: white;
+    border: solid 1px #AAAAAA;
+}
+
+.middle_content .album .photo {
+
+}
+
+.middle_content .album .photo_header {
+    background-color: #EFEFEF;
+}
+
+.thumbs {
+    width: auto;
+    margin: auto;
+    text-align: center;
+}
+
+    .thumbs a {
+        float: left;
+        text-decoration: none;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+    }

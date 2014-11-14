@@ -1,5 +1,21 @@
-﻿///  input file  ///
+﻿///  search  ///
 
+function find_peoples() {
+    var search = $('#search_field').val();
+    if (search != '') {
+        $.ajax({
+            type: "GET",
+            url: "/Search/SearchOnName/",
+            data: { search: search },
+            success: function (viewHTML) {
+                var div = $("#find_result");
+                div.html("");
+                div.append(viewHTML);
+            },
+            error: function (errorData) { }
+        });
+    }
+}
 
 // Albums // 
 

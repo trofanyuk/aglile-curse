@@ -42,7 +42,18 @@
                 </div>
                 <div class="float_right">
                     <div class="friends_form margin_10">
-                        <div class="header_form"></div>
+                        <div class="header_form"><p>Friends</p></div>
+                        <div>
+                            @foreach (BananaSocialNetwork.Models.Friends friend in Model.Friends)
+                            {
+                                using (Html.BeginForm("Delete", "Profile", FormMethod.Get))
+                                {
+                                    <div>@friend.friend.UserName</div>
+                                    <input type="hidden" value="@friend.friend.Id" name="id" />
+                                    <input type="submit" value="Delete" />
+                                }
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
@@ -106,12 +117,6 @@
                                 {
                                     foreach (var photo in album.Photos)
                                     {
-                                        @*<a href="@photo.PhotoPath"
-                                            style="background-image: url(@photo.PhotoPath);"
-                                            title=""
-                                            class="photo_content margin_10"
-                                            data-id="@photo.Id"></a>*@
-
                                         <a href="@photo.PhotoPath" class="float_left margin_10" data-id="@photo.Id">
                                             <div class="photo float_left"
                                                  style="background-image: url(@photo.PhotoPath); ">
@@ -131,19 +136,4 @@
 
         <input type="submit" value="Search" />
     }
-
-    @foreach (BananaSocialNetwork.Models.Friends friend in Model.Friends)
-    {
-
-         using (Html.BeginForm("Delete", "Profile", FormMethod.Get))
-            {
-                <div>@friend.friend.UserName</div>
-                <input type="hidden" value="@friend.friend.Id" name="id" />
-                <input type="submit" value="Delete" />
-            }
-        
-        
-    }
-
-
 </div>

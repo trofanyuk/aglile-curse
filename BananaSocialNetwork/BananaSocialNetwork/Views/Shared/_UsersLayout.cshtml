@@ -1,4 +1,5 @@
 ﻿@using Microsoft.AspNet.Identity
+@using BananaSocialNetwork.Models
 @{
     Layout = null;
 }
@@ -24,7 +25,12 @@
                         <ul id="nav">
                             <li style="height:70px;">
                                 <a href="/Profile/Index" title="" class="display_block">
-                                    <img style="height:50px; width:50px;" class="float_left" />
+                                    @{
+                                        ApplicationDbContext db = new ApplicationDbContext();
+                                        string id = User.Identity.GetUserId();
+                                        var user = (from usr in db.Users where usr.Id == id select usr).First();
+                                    }
+                                    <div class="h_avatar float_left" style="background-image:url(@user.AvatatPath)"></div>
                                     <p class="float_left text">
                                         @User.Identity.GetUserName()
                                         <i class="fa fa-angle-double-down" style="margin-left:10px;"></i>
@@ -44,10 +50,7 @@
                         </ul>
                     </div>
                 </div>
-                
-                @*<div class="s_btn right_btn">
-                <a href="/Account/Login" class="top_btn_href login">Login</a>
-            </div>*@
+
             </div>
         </div>
         <div class="render_body soc_container">
