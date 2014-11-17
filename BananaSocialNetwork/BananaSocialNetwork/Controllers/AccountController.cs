@@ -165,7 +165,9 @@ namespace BananaSocialNetwork.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = model.Email, Email = model.Email, RegistrationDate = DateTime.Parse(DateTime.Now.ToString("d MMM yyyy")) };
+                var user = new User { UserName = model.Email, Email = model.Email, 
+                    RegistrationDate = DateTime.Parse(DateTime.Now.ToString("d MMM yyyy")) , 
+                    AvatatPath = @"/server_imgs/temp.png"};
                 try
                 {
                     var tUser = await UserManager.FindAsync(model.Email, model.Password);

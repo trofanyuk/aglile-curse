@@ -15,12 +15,16 @@
             <div class="first_column margin_10">
                 <div class="avatar_form margin_10">
                     <div style="max-width:200px; max-height:300px; min-height:50px;">
-
                         <img style="background-image: url(@Model.AvatatPath)" src="@Model.AvatatPath" />
                     </div>
-                    <div>
-                        @Html.DisplayFor(model => model.Firstname)
-                        @Html.DisplayFor(model => model.Surname)
+                    <div class="controls">
+                        <div>
+                            @Html.DisplayFor(model => model.Firstname)
+                            @Html.DisplayFor(model => model.Surname)
+                        </div>
+                        <div style="margin-top:5px;">
+                            <input type="submit" value="Add" class="green_btn"/>
+                        </div>
                     </div>
                 </div>
 
@@ -34,7 +38,9 @@
             <div class="display_block">
                 <div class="float_left">
                     <div class="about_form margin_10">
-                        <div class="header_form"></div>
+                        <div class="header_form">
+                            <p><i class="fa fa-info margin_5"></i>Information</p>
+                        </div>
                         <div><span>Age </span>@Html.DisplayFor(model => model.Age)</div>
                         <div><span>Gender </span>@Html.DisplayFor(model => model.Sex)</div>
                         <div><span>Lives in </span>@Html.DisplayFor(model => model.Adress)</div>
@@ -42,25 +48,47 @@
                 </div>
                 <div class="float_right">
                     <div class="friends_form margin_10">
-                        <div class="header_form"><p>Friends</p></div>
+                        <div class="header_form">
+                        <p><i class="fa fa-users margin_5"></i>Friends</p></div>
                         <div>
                             @foreach (BananaSocialNetwork.Models.Friends friend in Model.Friends)
                             {
-                                using (Html.BeginForm("Delete", "Profile", FormMethod.Get))
-                                {
-                                    <div>@friend.friend.UserName</div>
-                                    <input type="hidden" value="@friend.friend.Id" name="id" />
-                                    <input type="submit" value="Delete" />
-                                }
+                                <div class="margin_5 display_block">
+                                    <div class="friend display_block" style="background-image: url(@friend.friend.AvatatPath)">
+                                        <div class="float_left">
+                                            @{
+                                                string name = friend.friend.Firstname;
+                                                string surname = friend.friend.Surname;
+                                                
+                                                if (name != null && name.Length > 10)
+                                                {
+                                                    name = name.Substring(0,10) + "...";
+                                                }
+                                                if (surname != null && surname.Length > 10)
+                                                {
+                                                    surname = name.Substring(0,10) + "...";
+                                                }
+                                            }
+                                            <p>@name @surname</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                //using (Html.BeginForm("Delete", "Profile", FormMethod.Get))
+                                //{
+                                @*<div>@friend.friend.UserName</div>
+                                        <input type="hidden" value="@friend.friend.Id" name="id" />
+                                        <input type="submit" value="Delete" />
+                                    }*@
                             }
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="margin_10" style="width:720px;">
+            <div class="margin_10">
                 <div class="tabbable" style="border:solid 1px #AAAAAA; background-color:white;">
                     <div class="header_form">
-                        <a class="margin_10 float_right" onclick="showModal_Add_Album()">+ Create album</a>
+                        <a class="margin_10 float_right" onclick="showModal_Add_Album()"><i class="fa fa-plus"></i>Create album</a>
                     </div>
                     <ul class="nav nav-tabs">
                         <li class="active"><a href="#tab1" data-toggle="tab"><i class="fa fa-folder fa-1x"></i></a></li>
@@ -110,7 +138,6 @@
                                 <div></div>
                             }
                         </div>
-
                         <div class="tab-pane" id="tab2">
                             <div class="display_block thumbs ">
                                 @foreach (BananaSocialNetwork.Models.Album album in Model.Albums)
@@ -131,9 +158,4 @@
             </div>
         </div>
     </div>
-    @using (Html.BeginForm("Index", "Search", FormMethod.Get))
-    {
-
-        <input type="submit" value="Search" />
-    }
 </div>

@@ -161,7 +161,6 @@ a {
     }
 
 .s_btn {
-    border: none;
     background-color: #25AD9F;
     color: white;
     outline: none;
@@ -243,6 +242,20 @@ a {
     border: solid 1px #25AD9F;
     border-top: none;
 }
+
+.green_btn {
+    width: 100%;
+    background-color: #25AD9F;
+    border: solid 1px #147269;
+    color: white;
+    outline: none;
+    padding: 5px 20px;
+}
+
+    .green_btn:hover,
+    .green_btn:active {
+        background-color: #147269;
+    }
 
 /*  Menu Drop  */
 .menu_div {
@@ -472,14 +485,45 @@ a {
     background-color: #EFEFEF;
 }
 
+.middle_content .profile .header_form p{
+    margin:0px 10px; 
+    padding-top: 3px;
+    cursor: default; 
+    color:#555;
+}
+
+.middle_content .profile .header_form a{
+    margin:0px 10px; 
+    padding-top: 5px;
+    color:#555;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.middle_content .profile .header_form a i{
+    margin: 0px 3px;
+}
+
 .middle_content .profile .first_column {
     width: 200px;
 }
 
 .middle_content .profile .avatar_form {
-    max-width: 200px;
-    max-height: 300px;
+    width: 200px;
+    height: auto;
     text-align: center;
+    background-color: white;
+}
+
+.middle_content .profile .avatar_form .controls{
+    text-align: center;
+    height: auto;
+    padding: 20px;
+    border-left: solid 1px #AAAAAA;
+    border-right: solid 1px #AAAAAA;
+    border-bottom: solid 1px #AAAAAA;
 }
 
     .middle_content .profile .avatar_form img {
@@ -502,10 +546,34 @@ a {
 }
 
 .middle_content .profile .friends_form {
-    height: 125px;
+    min-height: 125px;
     width: 420px;
     background-color: white;
     border: solid 1px #AAAAAA;
+}
+
+.middle_content .profile .friends_form .friend{
+    line-height: 50px;
+    width: 91px;
+    height: 91px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+}
+
+.middle_content .profile .friends_form .friend p{
+    display: inline-block;
+    padding: 0px;
+    margin: 0px;
+    margin-left: 5px;
+    margin-top: 60px;
+    line-height: 11px;
+    display: inline-block;
+    font-size: 11px;
+    font-weight: bold;
+    color: white;
 }
 
 .middle_content .profile .status_form {
@@ -519,7 +587,6 @@ a {
     line-height: 50px;
     width: 120px;
     height: 120px;
-    background-color: #25AD9F;
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
