@@ -7,6 +7,7 @@
 {
     using (Html.BeginForm("AddFriend", "Search", FormMethod.Get))
     {
+
         <input type="hidden" name="idFriend" value="@user.Id" />
         <div>
             <div class="display_block f_placeholder">
@@ -14,7 +15,9 @@
                     <div class="f_avatar" style="background-image: url(@user.AvatatPath);"></div>
                 </div>
                 <div class="float_left f_controls">
-                    <p class="name_text">@user.UserName</p>
+                    <a href="~/Profile/Index?userId=@user.Id" class="name_text">
+                        @user.UserName
+                    </a>
                     <input type="submit" value="Add to friends" class="f_b_pos f_btn" />
                 </div>
             </div>

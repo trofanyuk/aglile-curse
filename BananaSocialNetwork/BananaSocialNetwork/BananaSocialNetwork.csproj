@@ -175,6 +175,14 @@
     <Compile Include="Migrations\201411141104089_friends.Designer.cs">
       <DependentUpon>201411141104089_friends.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201411180016369_Friend2.cs" />
+    <Compile Include="Migrations\201411180016369_Friend2.Designer.cs">
+      <DependentUpon>201411180016369_Friend2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201411180053070_Subscribers.cs" />
+    <Compile Include="Migrations\201411180053070_Subscribers.Designer.cs">
+      <DependentUpon>201411180053070_Subscribers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Album.cs" />
@@ -183,6 +191,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Photo.cs" />
+    <Compile Include="Models\Subscribers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -293,6 +302,7 @@
     <Content Include="Views\Photo\PhotoInMapPartial.cshtml" />
     <Content Include="Views\Search\SearchOnName.cshtml" />
     <Content Include="Views\Profile\Delete.cshtml" />
+    <Content Include="Views\Profile\ShowUpdates.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -309,6 +319,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201411141104089_friends.resx">
       <DependentUpon>201411141104089_friends.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201411180016369_Friend2.resx">
+      <DependentUpon>201411180016369_Friend2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201411180053070_Subscribers.resx">
+      <DependentUpon>201411180053070_Subscribers.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

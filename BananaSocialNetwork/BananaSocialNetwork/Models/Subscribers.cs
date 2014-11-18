@@ -5,19 +5,18 @@ using System.Web;
 
 namespace BananaSocialNetwork.Models
 {
-    public class Friends
+    public class Subscribers
     {
         public int Id { get; set; }
         public User user { get; set; }
-        public User friend { get; set; }
-        public bool confirm { get; set; }
+        public User subscriber { get; set; }
 
-        public Friends(User user, User friend)
+        public Subscribers(User user, User subscriber)
         {
             this.user = user;
-            this.friend = friend;
+            this.subscriber = subscriber;
         }
-        public Friends()
+        public Subscribers()
         {
             
         }

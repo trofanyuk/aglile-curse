@@ -62,11 +62,14 @@ function confirm_add_album() {
     $.ajax({
         type: "POST",
         url: "/Album/Create/",
-        data: album
+        data: album,
+        success: function () {
+            window.location.href = "/Profile/Index/";
+        },
+        error: function (errorData) {
+            window.location.href = "/Profile/Index/";
+        }
     });
-
-    close_add_album();
-    window.location = "";
 }
 
 function show_Edit_Album() {

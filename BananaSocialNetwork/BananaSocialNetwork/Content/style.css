@@ -38,6 +38,22 @@ a {
 .validation-summary-errors ul {
     list-style: none;
 }
+
+.bold_text{
+    font-weight: bold;
+}
+
+.text-size-12{
+    font-size: 12px;
+}
+
+.text-size-11{
+    font-size: 11px;
+}
+
+.text-size-10{
+    font-size: 10px;
+}
 /*------------------------------------*\
 	Õ¿¬»√¿÷»ﬂ
 \*------------------------------------*/
@@ -543,6 +559,11 @@ a {
     width: 280px;
     background-color: white;
     border: solid 1px #AAAAAA;
+}
+
+.middle_content .profile .about_form .note{
+    color: #555;
+    width: 100%;
 }
 
 .middle_content .profile .friends_form {

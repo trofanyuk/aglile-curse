@@ -23,11 +23,16 @@ namespace BananaSocialNetwork.Controllers
        
         //
         // GET: /Default/
-        public ActionResult Index()
+        public ActionResult Index(string userId)
         {
+           
             User user = db.Users.ToList().Where(m => m.Email == HttpContext.User.Identity.Name).FirstOrDefault();
+            if(user.Id != userId && userId != null)
+            {
+                user = db.Users.ToList().Where(m => m.Id == userId).First();
+            }
             user.Albums = db.Albums.ToList().Where(m => m.User.Id == user.Id).OrderByDescending(t => t.DateCreate);
-            user.Friends = db.Friends.ToList().Where(m => m.user.Id == user.Id);
+            user.Friends = db.Friends.ToList().Where(m => m.user.Id == user.Id || m.friend.Id == user.Id && m.confirm == false);
 
             for (int i = 0; i < user.Albums.Count(); i++)
             {
@@ -124,6 +129,72 @@ namespace BananaSocialNetwork.Controllers
             db.Friends.Remove(friends);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult ConfirmFriend(string idFriend)
+        {  
+            User friend = db.Users.Where(m => m.Id == idFriend).FirstOrDefault();
+            User user = db.Users.Where(m => m.Email == HttpContext.User.Identity.Name).FirstOrDefault();
+
+            Friends friends = new Friends(user, friend);
+            friends.confirm = true;
+            db.Friends.Add(friends);
+            db.SaveChanges();
+
+            friends = db.Friends.Where(m => m.user.Id == idFriend && m.friend.Id == user.Id).First();
+            friends.confirm = true;
+            db.Entry(friends).State = EntityState.Modified;
+            db.SaveChanges();
+            
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult AddSubscribers(string idFriend)
+        {
+            User friend = db.Users.Where(m => m.Id == idFriend).FirstOrDefault();
+            User user = db.Users.Where(m => m.Email == HttpContext.User.Identity.Name).FirstOrDefault();
+
+            Subscribers subscribers = new Subscribers(user, friend);
+            db.Subscribers.Add(subscribers);
+            db.SaveChanges();
+
+            return RedirectToAction("Index", "Profile");
+        }
+
+        public ActionResult ShowUpdates()
+        {
+            List<Photo> photos = new List<Photo>();
+            using (db)
+            {
+
+                User user = db.Users.Where(m => m.Email == HttpContext.User.Identity.Name).FirstOrDefault();
+                user.Subscribers = db.Subscribers.Where(m => m.user.Id == user.Id && m.subscriber.Id != user.Id);
+
+              
+               // Subscribers subscribers = db.Subscribers.Where(m => m.Id == 1).First();
+                
+                
+
+                foreach (Subscribers sub in user.Subscribers)
+                {
+                    User a = db.Users.Where(m => m.Id == sub.subscriber.Id).First();
+                    a.Albums = db.Albums.Where(m => m.User.Id == a.Id);
+                    for (int i = 0; i < user.Albums.Count(); i++)
+                    {
+                        Album album = a.Albums.ElementAt(i);
+                        List<Photo> photosUser = db.Photos.ToList().Where(m => m.Album.Id == album.Id).ToList();
+                        foreach (Photo photo in photosUser)
+                        {
+                            photos.Add(photo);
+                        }
+                    }
+                   
+                   
+
+                }
+            }
+
+            return View(photos);
         }
     }
 }

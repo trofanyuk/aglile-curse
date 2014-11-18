@@ -23,7 +23,46 @@
                             @Html.DisplayFor(model => model.Surname)
                         </div>
                         <div style="margin-top:5px;">
-                            <input type="submit" value="Add" class="green_btn"/>
+                            @{
+                                if (User.Identity.Name.Equals(Model.UserName))
+                                {
+                                    <p class="bold_text text-size-12">Your profile</p>
+                                }
+                                else
+                                {
+                                    var u_name = User.Identity.Name;
+                                    var f_name = Model.UserName;
+                                    bool isFr = false;
+
+                                    foreach (BananaSocialNetwork.Models.Friends friend in Model.Friends)
+                                    {
+                                        if (friend.user.UserName == f_name && friend.friend.UserName == u_name && friend.confirm)
+                                        {
+                                            isFr = true;
+                                            <p class="bold_text text-size-12">Your friend</p>
+                                            using (Html.BeginForm("AddSubscribers", "Profile", FormMethod.Get))
+                                            {
+                                                <input type="hidden" value="@friend.friend.Id" name="idFriend" />
+                                                <input type="submit" value="Подписаться" class="green_btn" />
+                                            }
+                                            using (Html.BeginForm("Delete", "Profile", FormMethod.Get))
+                                            {
+                                                <input type="hidden" value="@friend.friend.Id" name="id" />
+                                                <input type="submit" value="Delete" class="green_btn" style="margin-top:2px;" />
+                                            }
+                                        }
+                                        else if (friend.confirm == false && Model.Id != friend.user.Id)
+                                        {
+                                            isFr = true;
+                                            <p class="bold_text text-size-12">Your request is not accepted</p>
+                                        }
+                                    }
+                                    if (!isFr)
+                                    {
+                                        <input type="submit" value="Add" class="green_btn" />
+                                    }
+                                }
+                            }
                         </div>
                     </div>
                 </div>
@@ -41,54 +80,67 @@
                         <div class="header_form">
                             <p><i class="fa fa-info margin_5"></i>Information</p>
                         </div>
-                        <div><span>Age </span>@Html.DisplayFor(model => model.Age)</div>
-                        <div><span>Gender </span>@Html.DisplayFor(model => model.Sex)</div>
-                        <div><span>Lives in </span>@Html.DisplayFor(model => model.Adress)</div>
+                        <div class="margin_10">
+                            <div class="note">
+                                <span class="width_50per float_left bold_text">Age: </span>
+                                <span class="width_50per float_right">@Html.DisplayFor(model => model.Age)</span>
+                            </div>
+                            <div class="note">
+                                <span class="width_50per float_left bold_text">Gender:</span>
+                                <span class="width_50per float_right">@Html.DisplayFor(model => model.Sex)</span>
+                            </div>
+                            <div class="note">
+                                <span class="width_50per float_left bold_text">Lives in:</span>
+                                <span class="width_50per float_right">@Html.DisplayFor(model => model.Adress)</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="float_right">
                     <div class="friends_form margin_10">
                         <div class="header_form">
-                        <p><i class="fa fa-users margin_5"></i>Friends</p></div>
+                            <p><i class="fa fa-users margin_5"></i>Friends</p>
+                        </div>
                         <div>
                             @foreach (BananaSocialNetwork.Models.Friends friend in Model.Friends)
                             {
-                                <div class="margin_5 display_block">
-                                    <div class="friend display_block" style="background-image: url(@friend.friend.AvatatPath)">
-                                        <div class="float_left">
-                                            @{
-                                                string name = friend.friend.Firstname;
-                                                string surname = friend.friend.Surname;
-                                                
-                                                if (name != null && name.Length > 10)
-                                                {
-                                                    name = name.Substring(0,10) + "...";
-                                                }
-                                                if (surname != null && surname.Length > 10)
-                                                {
-                                                    surname = name.Substring(0,10) + "...";
-                                                }
-                                            }
-                                            <p>@name @surname</p>
-                                        </div>
-                                    </div>
+                                if (friend.confirm == true)
+                                {
+                                    <div class="margin_5 display_block">
+                                        <a href="~/Profile/Index?userId=@friend.friend.Id">
+                                            <div class="friend display_block" style="background-image: url(@friend.friend.AvatatPath)">
+                                                <div class="float_left">
+                                                    @{
+                                    string name = friend.friend.Firstname;
+                                    string surname = friend.friend.Surname;
 
-                                </div>
-                                //using (Html.BeginForm("Delete", "Profile", FormMethod.Get))
-                                //{
-                                @*<div>@friend.friend.UserName</div>
-                                        <input type="hidden" value="@friend.friend.Id" name="id" />
-                                        <input type="submit" value="Delete" />
-                                    }*@
+                                    if (name != null && name.Length > 10)
+                                    {
+                                        name = name.Substring(0, 10) + "...";
+                                    }
+                                    if (surname != null && surname.Length > 10)
+                                    {
+                                        surname = name.Substring(0, 10) + "...";
+                                    }
+                                                    }
+                                                    <p>@name @surname</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                }
                             }
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="margin_10">
+            <div class="margin_10" style="width: 720px;">
                 <div class="tabbable" style="border:solid 1px #AAAAAA; background-color:white;">
                     <div class="header_form">
-                        <a class="margin_10 float_right" onclick="showModal_Add_Album()"><i class="fa fa-plus"></i>Create album</a>
+                        @if (User.Identity.Name.Equals(Model.UserName))
+                        {
+                            <a class="margin_10 float_right" onclick="showModal_Add_Album()"><i class="fa fa-plus"></i>Create album</a>
+                        }
                     </div>
                     <ul class="nav nav-tabs">
                         <li class="active"><a href="#tab1" data-toggle="tab"><i class="fa fa-folder fa-1x"></i></a></li>
@@ -158,4 +210,33 @@
             </div>
         </div>
     </div>
+
+    @foreach (BananaSocialNetwork.Models.Friends friend in Model.Friends)
+    {
+        if (friend.confirm == false && Model.Id != friend.user.Id)
+        {
+
+            <div class="float_left">
+                @{
+            string name = friend.user.Firstname;
+            string surname = friend.user.Surname;
+                }
+                <p>@name @surname</p>
+            </div>
+
+
+
+            using (Html.BeginForm("ConfirmFriend", "Profile", FormMethod.Get))
+            {
+                <input type="hidden" value="@friend.user.Id" name="idFriend" />
+                <input type="submit" value="Confirm" />
+            }
+        }
+    }
+
+    @using (Html.BeginForm("ShowUpdates", "Profile", FormMethod.Get))
+    {
+
+        <input type="submit" value="ShowUpdates" />
+    }
 </div>

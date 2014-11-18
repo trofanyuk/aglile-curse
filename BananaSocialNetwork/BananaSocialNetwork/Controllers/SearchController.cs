@@ -68,11 +68,11 @@ namespace BananaSocialNetwork.Controllers
             User user = db.Users.Where(m => m.Email == HttpContext.User.Identity.Name).FirstOrDefault();
 
             Friends friends = new Friends(user, friend);
+            friends.confirm = false;
             db.Friends.Add(friends);       
             db.SaveChanges();
 
             return RedirectToAction("Index", "Profile");
-
 
         }
     }

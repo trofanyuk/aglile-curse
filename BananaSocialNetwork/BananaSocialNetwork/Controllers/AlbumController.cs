@@ -78,14 +78,13 @@ namespace BananaSocialNetwork.Controllers
         }
 
 
-        [HttpPost, ActionName("Delete")]
         [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
             Album album = db.Albums.Find(id);
             db.Albums.Remove(album);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Profile");
         }
 
         public ActionResult Details(int id)

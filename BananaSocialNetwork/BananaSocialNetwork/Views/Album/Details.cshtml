@@ -10,14 +10,17 @@
     <div class="album">
         <div class="al_header">
             <p class="float_left al_name" id="album_name">@Model.Name</p>
-            <div class="menu_div float_right">
+            @if (User.Identity.Name.Equals(Model.User.UserName))
+            {
+               <div class="menu_div float_right">
                 <div class="main-item" tabindex="1"><a href="javascript:void(0);">Settings</a></div>
                 <ul class="sub-menu" style="width:150px;">
                     <li><a onclick="show_Add_Photo()"><i class="fa fa-plus fa-1x"></i>Add Photo</a></li>
                     <li><a onclick="show_Edit_Album()"><i class="fa fa-gear fa-1x"></i>Edit</a></li>
-                    <li><a><i class="fa fa-trash fa-1x"></i>Delete</a></li>
+                    <li><a href="~/Album/DeleteConfirmed/@Model.Id"><i class="fa fa-trash fa-1x"></i>Delete</a></li>
                 </ul>
-            </div>
+            </div> 
+            }
         </div>
         @if (@Model.Photos.Count() > 0)
         {
@@ -34,8 +37,15 @@
         }
         else
         {
-            <p style="text-align:center; margin-top:20px; font-size:13px; cursor:pointer;"
+            if (User.Identity.Name.Equals(Model.User.UserName))
+            {
+                <p style="text-align:center; margin-top:20px; font-size:13px; cursor:pointer;"
                onclick="show_Add_Photo()">No photos. Please add new photos.</p>
+            }
+            else
+            {
+                <p style="text-align:center; margin-top:20px; font-size:13px; cursor:pointer;">No photos. Please add new photos.</p>
+            }
         }
     </div>
 </div>
