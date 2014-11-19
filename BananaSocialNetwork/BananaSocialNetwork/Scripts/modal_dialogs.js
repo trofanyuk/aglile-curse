@@ -17,6 +17,23 @@ function find_peoples() {
     }
 }
 
+function add_friend(userId, elem)
+{
+    $.ajax({
+        type: "GET",
+        url: "/Search/AddFriend/",
+        data: { idFriend: userId },
+        success: function (viewHTML) {
+            $(elem).attr('disabled', 'disabled');
+            $(elem).css('background-color', 'white');
+            $(elem).css('color', '#555');
+            $(elem).val('Request sent');
+            alert();
+        },
+        error: function (errorData) { }
+    });
+}
+
 // Albums // 
 
 function showModal_Add_Album() {

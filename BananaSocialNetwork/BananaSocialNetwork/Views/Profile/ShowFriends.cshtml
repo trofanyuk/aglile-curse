@@ -1,0 +1,130 @@
+﻿@model BananaSocialNetwork.Models.User
+
+@{
+    Layout = "~/Views/Shared/_UsersLayout.cshtml";
+}
+<div class="middle_content">
+    <div class="profile">
+        <div>
+            <div class="tabbable" style="border:solid 1px #AAAAAA; background-color:white;">
+                <div class="header_form"></div>
+                <ul class="nav nav-tabs">
+                    @{
+                        var newFr = from fr in Model.Friends where fr.confirm == false && Model.Id != fr.user.Id select fr;
+                        var frmFr = from fr in Model.Friends where fr.confirm == false && Model.Id != fr.friend.Id select fr;
+                    }
+                    <li class="active"><a href="#tab1" data-toggle="tab">All friends</a></li>
+                    @if (newFr.Count() > 0)
+                    {
+                        <li><a href="#tab2" data-toggle="tab">Requests to me +@newFr.Count()</a></li>
+                    }
+                    @if (frmFr.Count() > 0)
+                    {
+                        <li><a href="#tab3" data-toggle="tab">Requests from me +@frmFr.Count()</a></li>
+                    }
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active display_block" id="tab1">
+                        @foreach (BananaSocialNetwork.Models.Friends friend in Model.Friends)
+                        {
+                            if (!friend.confirm)
+                            {
+                                break;
+                            }
+                        <div class="margin_5" style="border-bottom: solid 1px #e4e3e3;">
+
+                            <div class="display_block" style="width:100%;">
+                                <a href="~/Profile/Index?userId=@friend.friend.Id" class="float_left">
+                                    <div class="photo" style="background-image: url(@friend.friend.AvatatPath)"></div>
+                                </a>
+                                <div class="float_right" style="width:87%;">
+                                    <div class="display_block" style="width:100%;">
+                                        <div class="float_left width_50per">
+                                            <p>
+                                                <a href="~/Profile/Index?userId=@friend.friend.Id"
+                                                   class="sh_fr_name bold_text">@friend.friend.Firstname&nbsp;@friend.friend.Surname</a>
+                                            </p>
+                                        </div>
+                                        <div class="float_right sh_fr_btn_cont">
+                                            <p class="sh_fr_btn"><a class="sh_fr_btn">Show friends</a></p>
+                                            <p class="sh_fr_btn">
+                                                <a class="sh_fr_btn" href="Delete?id=@friend.friend.Id">Delete</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        }
+                    </div>
+                    @if (newFr.Count() > 0)
+                    {
+                        <div class="tab-pane display_block" id="tab2">
+                            @foreach (BananaSocialNetwork.Models.Friends friend in newFr)
+                            {
+                            <div class="margin_5" style="border-bottom: solid 1px #e4e3e3;">
+                                <div class="display_block" style="width:100%;">
+                                    <a href="~/Profile/Index?userId=@friend.user.Id" class="float_left">
+                                        <div class="photo" style="background-image: url(@friend.user.AvatatPath)"></div>
+                                    </a>
+                                    <div class="float_right" style="width:87%;">
+                                        <div class="display_block" style="width:100%;">
+                                            <div class="float_left width_50per">
+                                                <p>
+                                                    <a href="~/Profile/Index?userId=@friend.user.Id"
+                                                       class="sh_fr_name bold_text">@friend.user.Firstname&nbsp;@friend.user.Surname</a>
+                                                </p>
+                                            </div>
+                                            <div class="float_right sh_fr_btn_cont">
+                                                @*<p class="sh_fr_btn"><a class="sh_fr_btn">Show friends</a></p>
+                                                    <p class="sh_fr_btn">
+                                                        <a class="sh_fr_btn" href="Delete?id=@friend.friend.Id">Delete</a>
+                                                    </p>*@
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            }
+                        </div>
+                    }
+                    @if (frmFr.Count() > 0)
+                    {
+                        <div class="tab-pane" id="tab3">
+                            @foreach (BananaSocialNetwork.Models.Friends friend in frmFr)
+                            {
+                                <div class="margin_5" style="border-bottom: solid 1px #e4e3e3;">
+
+                                    <div class="display_block" style="width:100%;">
+                                        <a href="~/Profile/Index?userId=@friend.friend.Id" class="float_left">
+                                            <div class="photo" style="background-image: url(@friend.friend.AvatatPath)"></div>
+                                        </a>
+                                        <div class="float_right" style="width:87%;">
+                                            <div class="display_block" style="width:100%;">
+                                                <div class="float_left width_50per">
+                                                    <p>
+                                                        <a href="~/Profile/Index?userId=@friend.friend.Id"
+                                                           class="sh_fr_name bold_text">@friend.friend.Firstname&nbsp;@friend.friend.Surname</a>
+                                                    </p>
+                                                </div>
+                                                <div class="float_right sh_fr_btn_cont">
+                                                    @*<p class="sh_fr_btn"><a class="sh_fr_btn">Show friends</a></p>
+                                                        <p class="sh_fr_btn">
+                                                            <a class="sh_fr_btn" href="Delete?id=@friend.friend.Id">Delete</a>
+                                                        </p>*@
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

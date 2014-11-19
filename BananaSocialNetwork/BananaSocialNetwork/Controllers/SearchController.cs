@@ -69,9 +69,8 @@ namespace BananaSocialNetwork.Controllers
 
             Friends friends = new Friends(user, friend);
             friends.confirm = false;
-            db.Friends.Add(friends);       
+            db.Friends.Add(friends);
             db.SaveChanges();
-
             return RedirectToAction("Index", "Profile");
 
         }

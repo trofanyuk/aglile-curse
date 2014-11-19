@@ -5,11 +5,8 @@
 <div class="middle_content search">
     <div class="s_header">
         <div class="s_placeholder">
-            @using (Html.BeginForm("SearchOnName", "Search", FormMethod.Get))
-            {
-                <input type="text" value="" name="search" placeholder="Search" id="search_field" class="find_field" />
-                <input type="button" value="Search" onclick="find_peoples()" class="f_btn" />
-            }
+            <input type="text" value="" name="search" placeholder="Search" id="search_field" class="find_field" />
+            <input type="button" value="Search" onclick="find_peoples()" class="f_btn" />
         </div>
     </div>
     <div class="display_block" style="width: 100%;">
@@ -19,7 +16,7 @@
                 <div><p class="filters_h_text">Gender</p></div>
                 <div><input type="radio" /><span class="margin_5">Male</span></div>
                 <div><input type="radio" /><span class="margin_5">Female</span></div>
-                <div><input type="radio" checked="checked"/><span class="margin_5">Any</span></div>
+                <div><input type="radio" checked="checked" /><span class="margin_5">Any</span></div>
             </div>
         </div>
     </div>

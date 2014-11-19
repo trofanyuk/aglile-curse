@@ -4,26 +4,20 @@
     Layout = null;
 }
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Updates</title>
-</head>
-<body>
+
     @foreach (BananaSocialNetwork.Models.Photo photo in Model)
     {
+        
+        <div>
+            @photo.PhotoPath
+        </div>
          <div>
-           
              <a href="@photo.PhotoPath" class="float_left margin_10" data-id="@photo.Id">
                  <div class="photo float_left"
                       style="background-image: url(@photo.PhotoPath); ">
                  </div>
              </a>
-             
-
         </div>
     }
-</body>
-</html>
+

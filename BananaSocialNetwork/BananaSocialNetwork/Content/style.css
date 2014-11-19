@@ -691,6 +691,35 @@ a {
                 width: 100%;
             }
 
+/*  Show friends  */
+.sh_fr_name{
+    color: #555;
+    cursor: pointer;
+    text-decoration: none;
+}
+    .sh_fr_name:hover,
+    .sh_fr_name:active {
+        color: #555;
+    }
+.sh_fr_btn_cont{
+    border-left :solid 1px #e4e3e3;
+    padding: 5px;
+    margin-right: 10px;
+}
+.sh_fr_btn{
+    line-height: 5px;
+}
+.sh_fr_btn a{
+    font-size: 11px;
+    color:#555;
+    cursor: pointer;
+    text-decoration: none;
+}
+    .sh_fr_btn a:hover,
+    .sh_fr_btn a:active {
+        color:#555;
+        text-decoration: none;
+    }
 /*  /Search  */
 
 .search .s_header {

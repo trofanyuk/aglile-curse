@@ -18,7 +18,8 @@
                     <a href="~/Profile/Index?userId=@user.Id" class="name_text">
                         @user.UserName
                     </a>
-                    <input type="submit" value="Add to friends" class="f_b_pos f_btn" />
+                    <input type="button" value="Add to friends" class="f_b_pos f_btn"
+                           onclick="add_friend('@user.Id', this)" />
                 </div>
             </div>
         </div>

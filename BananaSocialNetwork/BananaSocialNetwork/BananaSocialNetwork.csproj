@@ -303,6 +303,7 @@
     <Content Include="Views\Search\SearchOnName.cshtml" />
     <Content Include="Views\Profile\Delete.cshtml" />
     <Content Include="Views\Profile\ShowUpdates.cshtml" />
+    <Content Include="Views\Profile\ShowFriends.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
