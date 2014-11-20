@@ -14,7 +14,7 @@
         <div class="float_left">
             <div class="first_column margin_10">
                 <div class="avatar_form margin_10">
-                    <div style="max-width:200px; max-height:300px; min-height:50px;">
+                    <div class="photo_holder">
                         <img style="background-image: url(@Model.AvatatPath)" src="@Model.AvatatPath" />
                     </div>
                     <div class="controls">
@@ -56,10 +56,18 @@
                                             isFr = true;
                                             <p class="bold_text text-size-12">Your request is not accepted</p>
                                         }
+                                        else if (friend.confirm == false && Model.Id == friend.user.Id)
+                                        {
+                                            isFr = true;
+
+                                            <input type="button" value="Confirm" class="green_btn"
+                                                   onclick="confirm_friend('@Model.Id', this)" />
+                                        }
                                     }
                                     if (!isFr)
                                     {
-                                        <input type="submit" value="Add" class="green_btn" />
+                                        <input type="button" value="Add" class="green_btn"
+                                               onclick="add_friend('@Model.Id', this)" />
                                     }
                                 }
                             }
@@ -102,12 +110,17 @@
                             @{
                                 var newFr = from fr in Model.Friends where fr.confirm == false && Model.Id != fr.user.Id select fr;
                             }
-                            <p><i class="fa fa-users margin_5"></i>Friends
-                            @if (@newFr.Count() > 0 && User.Identity.Name.Equals(Model.UserName))
-                            {
-                                <a>@newFr.Count()</a>
-                            }  
+
+                            <p>
+                                <a href="~/Profile/ShowFriends/">
+                                    <i class="fa fa-users margin_5"></i>Friends
+                                    @if (@newFr.Count() > 0 && User.Identity.Name.Equals(Model.UserName))
+                                    {
+                                        <span>@newFr.Count()</span>
+                                    }
+                                </a>
                             </p>
+
                         </div>
                         <div>
                             @foreach (BananaSocialNetwork.Models.Friends friend in Model.Friends)
@@ -147,7 +160,7 @@
                     <div class="header_form">
                         @if (User.Identity.Name.Equals(Model.UserName))
                         {
-                        <a class="margin_10 float_right" onclick="showModal_Add_Album()"><i class="fa fa-plus"></i>Create album</a>
+                            <a class="margin_10 float_right" onclick="showModal_Add_Album()"><i class="fa fa-plus"></i>Create album</a>
                         }
                     </div>
                     <ul class="nav nav-tabs">
@@ -158,44 +171,43 @@
                         <div class="tab-pane active display_block" id="tab1">
                             @foreach (BananaSocialNetwork.Models.Album album in Model.Albums)
                             {
-                            <div class="float_left margin_10">
-                                <div>
-                                    @if (album.Photos.Count() <= 0)
+                                <div class="float_left margin_10">
+                                    <div>
+                                        @if (album.Photos.Count() <= 0)
                                         {
-                                        <a href="/Album/Details/@album.Id">
-                                            <div class="photo"
-                                                 style="background-image: url(/Content/img/empty-album.png); ">
+                                            <a href="/Album/Details/@album.Id">
+                                                <div class="photo"
+                                                     style="background-image: url(/Content/img/empty-album.png); ">
 
-                                            </div>
-                                        </a>
+                                                </div>
+                                            </a>
                                         }
                                         else
                                         {
-                                        <a href="/Album/Details/@album.Id">
-                                            <div class="photo"
-                                                 style="background-image: url(@album.Photos.Last().PhotoPath); ">
+                                            <a href="/Album/Details/@album.Id">
+                                                <div class="photo"
+                                                     style="background-image: url(@album.Photos.Last().PhotoPath); ">
 
-                                            </div>
-                                        </a>
+                                                </div>
+                                            </a>
                                         }
-
-                                </div>
-                                <div class="photo_count display_block" style="width:100%;">
-                                    @if (@album.Name.Length > 10)
+                                    </div>
+                                    <div class="photo_count display_block" style="width:100%;">
+                                        @if (@album.Name.Length > 10)
                                         {
                                             string name = @album.Name.Substring(0, 10) + "...";
-                                        <span class="text">@name</span>
+                                            <span class="text">@name</span>
                                         }
                                         else
                                         {
-                                        <span class="text">@album.Name</span>
+                                            <span class="text">@album.Name</span>
                                         }
-                                    <div class="text-right float_right" style="margin-right:5px;">
-                                        <i class="fa fa-picture-o text"></i><span class="text">@album.Photos.Count()</span>
+                                        <div class="text-right float_right" style="margin-right:5px;">
+                                            <i class="fa fa-picture-o text"></i><span class="text">@album.Photos.Count()</span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div></div>
+                                <div></div>
                             }
                         </div>
                         <div class="tab-pane" id="tab2">
@@ -204,11 +216,11 @@
                                 {
                                     foreach (var photo in album.Photos)
                                     {
-                                <a href="@photo.PhotoPath" class="float_left margin_10" data-id="@photo.Id">
-                                    <div class="photo float_left"
-                                         style="background-image: url(@photo.PhotoPath); ">
-                                    </div>
-                                </a>
+                                        <a href="@photo.PhotoPath" class="float_left margin_10" data-id="@photo.Id">
+                                            <div class="photo float_left"
+                                                 style="background-image: url(@photo.PhotoPath); ">
+                                            </div>
+                                        </a>
                                     }
                                 }
                             </div>
@@ -219,40 +231,9 @@
         </div>
     </div>
 
-    @foreach (BananaSocialNetwork.Models.Friends friend in Model.Friends)
-    {
-        if (friend.confirm == false && Model.Id != friend.user.Id)
-        {
-
-            <div class="float_left">
-                @{
-            string name = friend.user.Firstname;
-            string surname = friend.user.Surname;
-                }
-                <p>@name @surname</p>
-            </div>
-
-
-
-            using (Html.BeginForm("ConfirmFriend", "Profile", FormMethod.Get))
-            {
-                <input type="hidden" value="@friend.user.Id" name="idFriend" />
-                <input type="submit" value="Confirm" />
-            }
-        }
-    }
-
     @using (Html.BeginForm("ShowUpdates", "Profile", FormMethod.Get))
     {
 
         <input type="submit" value="ShowUpdates" />
     }
-
-
-    @using (Html.BeginForm("ShowFriends", "Profile", FormMethod.Get))
-    {
-
-        <input type="submit" value="ShowFriends" />
-    }
-
 </div>

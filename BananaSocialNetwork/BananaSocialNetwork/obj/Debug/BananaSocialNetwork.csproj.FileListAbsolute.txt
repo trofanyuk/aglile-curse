@@ -222,7 +222,6 @@ D:\Team\Repository\BananaSocialNetwork\BananaSocialNetwork\bin\Microsoft.Owin.Se
 D:\Team\Repository\BananaSocialNetwork\BananaSocialNetwork\obj\Debug\BananaSocialNetwork.csprojResolveAssemblyReference.cache
 D:\Team\Repository\BananaSocialNetwork\BananaSocialNetwork\obj\Debug\BananaSocialNetwork.dll
 D:\Team\Repository\BananaSocialNetwork\BananaSocialNetwork\obj\Debug\BananaSocialNetwork.pdb
-C:\Users\Дмитрий\Documents\bananarepositoty\BananaSocialNetwork\BananaSocialNetwork\obj\Debug\BananaSocialNetwork.csprojResolveAssemblyReference.cache
 C:\Users\кирилл\Documents\bananarepositoty\BananaSocialNetwork\BananaSocialNetwork\obj\Debug\BananaSocialNetwork.Migrations.friends.resources
 C:\Users\кирилл\Documents\bananarepositoty\BananaSocialNetwork\BananaSocialNetwork\obj\Debug\BananaSocialNetwork.csproj.GenerateResource.Cache
 C:\Users\Дмитрий\Documents\bananarepositoty\BananaSocialNetwork\BananaSocialNetwork\obj\Debug\BananaSocialNetwork.Migrations.friends.resources
@@ -285,3 +284,6 @@ C:\Users\Дмитрий\Desktop\BananaSocialNetwork\BananaSocialNetwork\obj\Debu
 C:\Users\Дмитрий\Desktop\BananaSocialNetwork\BananaSocialNetwork\obj\Debug\BananaSocialNetwork.csproj.GenerateResource.Cache
 C:\Users\Дмитрий\Desktop\BananaSocialNetwork\BananaSocialNetwork\obj\Debug\BananaSocialNetwork.dll
 C:\Users\Дмитрий\Desktop\BananaSocialNetwork\BananaSocialNetwork\obj\Debug\BananaSocialNetwork.pdb
+C:\Users\Дмитрий\Documents\bananarepositoty\BananaSocialNetwork\BananaSocialNetwork\obj\Debug\BananaSocialNetwork.Migrations.Friend2.resources
+C:\Users\Дмитрий\Documents\bananarepositoty\BananaSocialNetwork\BananaSocialNetwork\obj\Debug\BananaSocialNetwork.Migrations.Subscribers.resources
+C:\Users\Дмитрий\Documents\bananarepositoty\BananaSocialNetwork\BananaSocialNetwork\obj\Debug\BananaSocialNetwork.csprojResolveAssemblyReference.cache

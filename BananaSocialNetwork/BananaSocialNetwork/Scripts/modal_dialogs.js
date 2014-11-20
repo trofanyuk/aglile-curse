@@ -28,7 +28,24 @@ function add_friend(userId, elem)
             $(elem).css('background-color', 'white');
             $(elem).css('color', '#555');
             $(elem).val('Request sent');
-            alert();
+        },
+        error: function (errorData) { }
+    });
+}
+
+//  Profile index //
+
+function confirm_friend(userId, elem) {
+    $.ajax({
+        type: "POST",
+        url: "/Profile/ConfirmFriend/",
+        data: { idFriend: userId },
+        success: function (viewHTML) {
+            $(elem).attr('disabled', 'disabled');
+            $(elem).css('background-color', 'white');
+            $(elem).css('color', '#555');
+            $(elem).css('border', 'none');
+            $(elem).val('Your friend');
         },
         error: function (errorData) { }
     });

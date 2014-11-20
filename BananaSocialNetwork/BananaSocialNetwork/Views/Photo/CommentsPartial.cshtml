@@ -18,7 +18,7 @@
             @if (User.Identity.Name.Equals(Model.Album.User.UserName))
             {
               <div class="menu_div">
-                <div class="main-item" tabindex="1"><a href="javascript:void(0);"><i class="fa fa-chevron-down fa-1x margin_5"></i>Settings</a></div>
+                <div class="main-item" tabindex="1"><a @*href="javascript:void(0);"*@><i class="fa fa-chevron-down fa-1x margin_5"></i>Settings</a></div>
                 <ul class="sub-menu" style="width:189px;">
                     <li><a onclick="show_Edit_Photo()"><i class="fa fa-gear fa-1x"></i>Edit</a></li>
                     <li><a href='/Photo/DeleteConfirmed/@Model.Id'><i class="fa fa-trash fa-1x"></i>Delete</a></li>

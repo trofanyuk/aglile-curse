@@ -20,28 +20,36 @@ namespace BananaSocialNetwork.Controllers
     public class ProfileController : Controller
     {
         ApplicationDbContext db = new ApplicationDbContext();
-       
+
         //
         // GET: /Default/
         public ActionResult Index(string userId)
         {
-           
-            User user = db.Users.ToList().Where(m => m.Email == HttpContext.User.Identity.Name).FirstOrDefault();
-            if(user.Id != userId && userId != null)
+
+            try
             {
-                user = db.Users.ToList().Where(m => m.Id == userId).First();
-            }
-            user.Albums = db.Albums.ToList().Where(m => m.User.Id == user.Id).OrderByDescending(t => t.DateCreate);
-            user.Friends = db.Friends.ToList().Where(m => m.user.Id == user.Id || m.friend.Id == user.Id && m.confirm == false);
-            user.Subscribers = db.Subscribers.ToList().Where(m => m.user.Id == user.Id);
+                User user = db.Users.ToList().Where(m => m.Email == HttpContext.User.Identity.Name).FirstOrDefault();
+                if (userId != null && user.Id != userId)
+                {
+                    user = db.Users.ToList().Where(m => m.Id == userId).First();
+                }
+                user.Albums = db.Albums.ToList().Where(m => m.User.Id == user.Id).OrderByDescending(t => t.DateCreate);
+                user.Friends = db.Friends.ToList().Where(m => m.user.Id == user.Id || m.friend.Id == user.Id);
+                user.Subscribers = db.Subscribers.ToList().Where(m => m.user.Id == user.Id);
 
 
-            for (int i = 0; i < user.Albums.Count(); i++)
-            {
-                Album album = user.Albums.ElementAt(i);
-                album.Photos = db.Photos.ToList().Where(m => m.Album.Id == album.Id);
+                for (int i = 0; i < user.Albums.Count(); i++)
+                {
+                    Album album = user.Albums.ElementAt(i);
+                    album.Photos = db.Photos.ToList().Where(m => m.Album.Id == album.Id);
+                }
+                return View(user);
             }
-            return View(user);
+            catch (Exception ex)
+            {
+                return HttpNotFound();
+            }
+
         }
 
         [HttpGet]
@@ -106,7 +114,7 @@ namespace BananaSocialNetwork.Controllers
 
         //public ActionResult Delete(string id)
         //{
-           
+
         //    User user = db.Users.Where(m => m.Email == HttpContext.User.Identity.Name).FirstOrDefault();
         //    if (id == null)
         //    {
@@ -121,8 +129,8 @@ namespace BananaSocialNetwork.Controllers
         //}
 
         // POST: /Fr/Delete/5
-        
-       
+
+
         public ActionResult Delete(string id)
         {
             User user = db.Users.Where(m => m.Email == HttpContext.User.Identity.Name).FirstOrDefault();
@@ -139,20 +147,24 @@ namespace BananaSocialNetwork.Controllers
         }
 
         public ActionResult ConfirmFriend(string idFriend)
-        {  
+        {
             User friend = db.Users.Where(m => m.Id == idFriend).FirstOrDefault();
             User user = db.Users.Where(m => m.Email == HttpContext.User.Identity.Name).FirstOrDefault();
-
             Friends friends = new Friends(user, friend);
-            friends.confirm = true;
-            db.Friends.Add(friends);
-            db.SaveChanges();
+            var check = from ch in db.Friends.ToArray() where ch.user == friends.user && ch.friend == friends.friend select ch;
+            if (check.Count() <= 0)
+            {
+                friends.confirm = true;
+                db.Friends.Add(friends);
+                db.SaveChanges();
 
-            friends = db.Friends.Where(m => m.user.Id == idFriend && m.friend.Id == user.Id).First();
-            friends.confirm = true;
-            db.Entry(friends).State = EntityState.Modified;
-            db.SaveChanges();
-            
+                friends = db.Friends.Where(m => m.user.Id == idFriend && m.friend.Id == user.Id).First();
+                friends.confirm = true;
+                db.Entry(friends).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+
+
             return RedirectToAction("Index");
         }
 
@@ -173,32 +185,32 @@ namespace BananaSocialNetwork.Controllers
             List<Photo> photos = new List<Photo>();
 
 
-                User user = db.Users.ToList().Where(m => m.Email == HttpContext.User.Identity.Name).FirstOrDefault();
-                user.Subscribers = db.Subscribers.ToList().Where(m => m.user.Id == user.Id);
+            User user = db.Users.ToList().Where(m => m.Email == HttpContext.User.Identity.Name).FirstOrDefault();
+            user.Subscribers = db.Subscribers.ToList().Where(m => m.user.Id == user.Id);
 
-                //user.Subscribers = db.Subscribers.Where(m => m.user.Id == user.Id && m.subscriber.Id != user.Id);
-
-              
-               // Subscribers subscribers = db.Subscribers.Where(m => m.Id == 1).First();
-
-               
+            //user.Subscribers = db.Subscribers.Where(m => m.user.Id == user.Id && m.subscriber.Id != user.Id);
 
 
-                foreach (Subscribers sub in user.Subscribers)
+            // Subscribers subscribers = db.Subscribers.Where(m => m.Id == 1).First();
+
+
+
+
+            foreach (Subscribers sub in user.Subscribers)
+            {
+
+                sub.subscriber.Albums = db.Albums.Where(m => m.User.Id == sub.subscriber.Id);
+                for (int i = 0; i < sub.subscriber.Albums.Count(); i++)
                 {
-
-                    sub.subscriber.Albums = db.Albums.Where(m => m.User.Id == sub.subscriber.Id);
-                    for (int i = 0; i < sub.subscriber.Albums.Count(); i++)
+                    Album album = sub.subscriber.Albums.ElementAt(i);
+                    List<Photo> photosUser = db.Photos.ToList().Where(m => m.Album.Id == album.Id).ToList();
+                    foreach (Photo photo in photosUser)
                     {
-                        Album album = sub.subscriber.Albums.ElementAt(i);
-                        List<Photo> photosUser = db.Photos.ToList().Where(m => m.Album.Id == album.Id).ToList();
-                        foreach (Photo photo in photosUser)
-                        {
-                            photos.Add(photo);
-                        }
+                        photos.Add(photo);
                     }
-                   
                 }
+
+            }
             return View(photos);
         }
 

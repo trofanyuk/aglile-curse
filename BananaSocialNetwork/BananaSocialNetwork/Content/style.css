@@ -333,6 +333,8 @@ a {
 
 .main-item:focus ~ .sub-menu,
 .main-item:active ~ .sub-menu,
+.main-item a:focus ~ .sub-menu,
+.main-item a:active ~ .sub-menu,
 .sub-menu:hover {
     visibility: visible;
     display: block;
@@ -533,6 +535,11 @@ a {
     background-color: white;
 }
 
+.middle_content .profile .avatar_form .photo_holder{
+    border: solid 1px #AAAAAA;
+    border-bottom: none;
+}
+
 .middle_content .profile .avatar_form .controls{
     text-align: center;
     height: auto;
@@ -543,7 +550,7 @@ a {
 }
 
     .middle_content .profile .avatar_form img {
-        max-width: 200px;
+        max-width: 198px;
         max-height: 300px;
     }
 

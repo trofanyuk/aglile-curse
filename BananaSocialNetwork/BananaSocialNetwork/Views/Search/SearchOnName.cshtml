@@ -18,8 +18,42 @@
                     <a href="~/Profile/Index?userId=@user.Id" class="name_text">
                         @user.UserName
                     </a>
-                    <input type="button" value="Add to friends" class="f_b_pos f_btn"
-                           onclick="add_friend('@user.Id', this)" />
+                    @{
+        var main_u = User.Identity.Name;
+        var my_req = from fr in user.Friends where fr.confirm == false && user.Id != fr.user.Id && main_u.Equals(fr.user.UserName) select fr;
+        var not_my_req = from fr in user.Friends where fr.confirm == false && user.Id == fr.user.Id && !main_u.Equals(fr.user.UserName) select fr;
+        var friends = from fr in user.Friends
+                      where
+                          fr.confirm == true && user.Id == fr.user.Id && !main_u.Equals(fr.user.UserName)
+                          || fr.confirm == true && user.Id != fr.user.Id && main_u.Equals(fr.user.UserName)
+                      select fr;
+
+                    }
+                    @if (User.Identity.Name.Equals(user.UserName))
+                    {
+                        <p class="name_text text-size-11 margin_10  text-center">It's your profile</p>
+                    }
+                    else
+                    {
+                        if (my_req.Count() > 0)
+                        {
+                            <p class="name_text text-size-11 margin_10  text-center">Your request is not accepted</p>
+                        }
+                        else if (not_my_req.Count() > 0)
+                        {
+                            <input type="button" value="Confirm" class="f_b_pos f_btn"
+                                   onclick="confirm_friend('@user.Id', this)" />
+                        }
+                        else if (friends.Count() > 0)
+                        {
+                            <p class="name_text text-size-11 margin_10  text-center">Your friend</p>
+                        }
+                        else
+                        {
+                            <input type="button" value="Add to friends" class="f_b_pos f_btn"
+                                   onclick="add_friend('@user.Id', this)" />
+                        }
+                    }
                 </div>
             </div>
         </div>
