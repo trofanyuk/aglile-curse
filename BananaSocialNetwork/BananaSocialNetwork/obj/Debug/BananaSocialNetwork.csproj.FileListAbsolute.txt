@@ -346,3 +346,4 @@ D:\Team\NewRepo\BananaSocialNetwork\BananaSocialNetwork\obj\Debug\BananaSocialNe
 D:\Team\NewRepo\BananaSocialNetwork\BananaSocialNetwork\obj\Debug\BananaSocialNetwork.csproj.GenerateResource.Cache
 D:\Team\NewRepo\BananaSocialNetwork\BananaSocialNetwork\obj\Debug\BananaSocialNetwork.dll
 D:\Team\NewRepo\BananaSocialNetwork\BananaSocialNetwork\obj\Debug\BananaSocialNetwork.pdb
+C:\Users\Дмитрий\Desktop\BananaSocialNetwork\BananaSocialNetwork\obj\Debug\BananaSocialNetwork.csprojResolveAssemblyReference.cache

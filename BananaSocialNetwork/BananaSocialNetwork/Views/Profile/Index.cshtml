@@ -24,6 +24,10 @@
                         </div>
                         <div style="margin-top:5px;">
                             @{
+                                var si_up = from su in Model.Subscribers.ToArray()
+                                            where su.user.UserName.Equals(User.Identity.Name)
+                                            select su;
+
                                 if (User.Identity.Name.Equals(Model.UserName))
                                 {
                                     <p class="bold_text text-size-12">Your profile</p>
@@ -33,6 +37,12 @@
                                     var u_name = User.Identity.Name;
                                     var f_name = Model.UserName;
                                     bool isFr = false;
+                                    bool isSingUp = false;
+                                    if (si_up.Count() > 0)
+                                    {
+                                        isSingUp = true;
+                                    }
+
 
                                     foreach (BananaSocialNetwork.Models.Friends friend in Model.Friends)
                                     {
@@ -40,23 +50,36 @@
                                         {
                                             isFr = true;
                                             <p class="bold_text text-size-12">Your friend</p>
-                                            using (Html.BeginForm("AddSubscribers", "Profile", FormMethod.Get))
+
+                                            if (isSingUp)
                                             {
-                                                <input type="hidden" value="@friend.user.Id" name="idFriend" />
-                                                <input type="submit" value="Подписаться" class="green_btn" />
+                                                using (Html.BeginForm("DeleteSubscribers", "Profile", FormMethod.Get))
+                                                {
+                                                    <input type="hidden" value="@Model.Id" name="idFriend" />
+                                                    <input type="submit" value="Unsubscribe" class="green_btn" style="margin-top:2px;" />
+                                                }
                                             }
+                                            else
+                                            {
+                                                using (Html.BeginForm("AddSubscribers", "Profile", FormMethod.Get))
+                                                {
+                                                    <input type="hidden" value="@friend.user.Id" name="idFriend" />
+                                                    <input type="submit" value="Sign up" class="green_btn" style="margin-top:2px;" />
+                                                }
+                                            }
+
                                             using (Html.BeginForm("Delete", "Profile", FormMethod.Get))
                                             {
                                                 <input type="hidden" value="@friend.user.Id" name="id" />
                                                 <input type="submit" value="Delete" class="green_btn" style="margin-top:2px;" />
                                             }
                                         }
-                                        else if (friend.confirm == false && Model.Id != friend.user.Id)
+                                        else if (friend.confirm == false && Model.Id != friend.user.Id && u_name.Equals(friend.user.UserName))
                                         {
                                             isFr = true;
                                             <p class="bold_text text-size-12">Your request is not accepted</p>
                                         }
-                                        else if (friend.confirm == false && Model.Id == friend.user.Id)
+                                        else if (friend.confirm == false && Model.Id == friend.user.Id && u_name.Equals(friend.friend.UserName))
                                         {
                                             isFr = true;
 
@@ -108,11 +131,15 @@
                     <div class="friends_form margin_10">
                         <div class="header_form">
                             @{
-                                var newFr = from fr in Model.Friends where fr.confirm == false && Model.Id != fr.user.Id select fr;
+                                var newFr = from fr in Model.Friends
+                                            where fr.confirm == false
+                                            && fr.user != null
+                                            && !fr.user.UserName.Equals(User.Identity.Name)
+                                            select fr;
                             }
 
                             <p>
-                                <a href="~/Profile/ShowFriends/">
+                                <a href="~/Profile/ShowFriends?userId=@Model.Id">
                                     <i class="fa fa-users margin_5"></i>Friends
                                     @if (@newFr.Count() > 0 && User.Identity.Name.Equals(Model.UserName))
                                     {
@@ -230,10 +257,9 @@
             </div>
         </div>
     </div>
-
-    @using (Html.BeginForm("ShowUpdates", "Profile", FormMethod.Get))
+    @*@using (Html.BeginForm("ShowUpdates", "Profile", FormMethod.Get))
     {
 
         <input type="submit" value="ShowUpdates" />
-    }
+    }*@
 </div>

@@ -19,10 +19,12 @@
                         @user.UserName
                     </a>
                     @{
-        var main_u = User.Identity.Name;
-        var my_req = from fr in user.Friends where fr.confirm == false && user.Id != fr.user.Id && main_u.Equals(fr.user.UserName) select fr;
-        var not_my_req = from fr in user.Friends where fr.confirm == false && user.Id == fr.user.Id && !main_u.Equals(fr.user.UserName) select fr;
-        var friends = from fr in user.Friends
+                        var main_u = User.Identity.Name;
+                        var my_req = from fr in user.Friends where fr.confirm == false && fr.user != null && user.Id != fr.user.Id && main_u.Equals(fr.user.UserName) select fr;
+                        var not_my_req = from fr in user.Friends
+                                         where fr.confirm == false && fr.user != null && fr.friend != null 
+                                             && user.Id == fr.user.Id && main_u.Equals(fr.friend.UserName) select fr;
+                    var friends = from fr in user.Friends
                       where
                           fr.confirm == true && user.Id == fr.user.Id && !main_u.Equals(fr.user.UserName)
                           || fr.confirm == true && user.Id != fr.user.Id && main_u.Equals(fr.user.UserName)

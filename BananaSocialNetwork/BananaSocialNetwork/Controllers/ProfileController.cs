@@ -47,8 +47,8 @@ namespace BananaSocialNetwork.Controllers
                     user = db.Users.ToList().Where(m => m.Id == userId).First();
                 }
                 user.Albums = db.Albums.ToList().Where(m => m.User.Id == user.Id).OrderByDescending(t => t.DateCreate);
-                user.Friends = db.Friends.ToList().Where(m => m.user.Id == user.Id || m.friend.Id == user.Id);
-                user.Subscribers = db.Subscribers.ToList().Where(m => m.user.Id == user.Id);
+                user.Friends = db.Friends.ToList().Where(m => m.user.Id == user.Id  || m.friend.Id == user.Id /*&& m.confirm == true*/);
+                user.Subscribers = db.Subscribers.ToList().Where(m => m.subscriber.Id == user.Id);
 
 
                 for (int i = 0; i < user.Albums.Count(); i++)
@@ -206,9 +206,6 @@ namespace BananaSocialNetwork.Controllers
 
             // Subscribers subscribers = db.Subscribers.Where(m => m.Id == 1).First();
 
-
-
-
             foreach (Subscribers sub in user.Subscribers)
             {
 
@@ -228,13 +225,30 @@ namespace BananaSocialNetwork.Controllers
         }
 
 
-        public ActionResult ShowFriends()
+        public ActionResult ShowFriends(string userId)
         {
             User user = db.Users.ToList().Where(m => m.Email == HttpContext.User.Identity.Name).FirstOrDefault();
-            user.Friends = db.Friends.ToList().Where(m => m.user.Id == user.Id || m.friend.Id == user.Id  /*&& m.confirm == true*/);
+            if (userId != null && user.Id != userId)
+            {
+                user = db.Users.ToList().Where(m => m.Id == userId).First();
+            }
+            user.Friends = db.Friends.ToList().Where(m => m.user.Id == user.Id || m.friend.Id == user.Id /* && m.confirm == true*/);
 
 
             return View(user);
         }
+
+        public ActionResult DeleteSubscribers(string idFriend)
+        {
+            User user = db.Users.Where(m => m.Email == HttpContext.User.Identity.Name).FirstOrDefault();
+            Subscribers friends = db.Subscribers.Where(m => m.user.Id == user.Id && m.subscriber.Id == idFriend).FirstOrDefault();
+
+            db.Subscribers.Remove(friends);
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+
     }
 }
