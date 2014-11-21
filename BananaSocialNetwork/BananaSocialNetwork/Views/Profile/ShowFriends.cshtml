@@ -27,10 +27,11 @@
                     <div class="tab-pane active display_block" id="tab1">
                         @foreach (BananaSocialNetwork.Models.Friends friend in Model.Friends)
                         {
-                            if (!friend.confirm)
+                            if (!friend.confirm || friend.friend.Id == Model.Id)
                             {
                                 continue;
                             }
+                            
                             <div class="margin_5" style="border-bottom: solid 1px #e4e3e3;">
 
                                 <div class="display_block" style="width:100%;">

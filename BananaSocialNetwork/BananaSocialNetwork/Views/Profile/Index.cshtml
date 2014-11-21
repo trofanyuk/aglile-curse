@@ -152,7 +152,7 @@
                         <div>
                             @foreach (BananaSocialNetwork.Models.Friends friend in Model.Friends)
                             {
-                                if (friend.confirm == true)
+                                if (friend.confirm == true && friend.friend.Id != Model.Id)
                                 {
                                     <div class="margin_5 display_block">
                                         <a href="~/Profile/Index?userId=@friend.friend.Id">
