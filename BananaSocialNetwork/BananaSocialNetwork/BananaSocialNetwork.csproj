@@ -171,6 +171,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="IRepository\ApplicationDbContextIRepository.cs" />
+    <Compile Include="IRepository\IRepository.cs" />
     <Compile Include="Migrations\201411141104089_friends.cs" />
     <Compile Include="Migrations\201411141104089_friends.Designer.cs">
       <DependentUpon>201411141104089_friends.cs</DependentUpon>

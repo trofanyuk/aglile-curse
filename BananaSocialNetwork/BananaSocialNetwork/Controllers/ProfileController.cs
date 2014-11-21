@@ -14,12 +14,25 @@ using System.Data.Entity;
 using Newtonsoft.Json;
 using System.IO;
 using System.Net;
+using BananaSocialNetwork.IRepository;
 
 namespace BananaSocialNetwork.Controllers
 {
     public class ProfileController : Controller
     {
         ApplicationDbContext db = new ApplicationDbContext();
+        IRepositoryUser repoUser;
+        //
+        // GET: /Default/
+
+        public ProfileController()
+        {
+            repoUser = new UserIRepository();
+        }
+        public ProfileController(IRepositoryUser r)
+        {
+            repoUser = r;
+        }
 
         //
         // GET: /Default/
