@@ -53,7 +53,10 @@ namespace BananaSocialNetwork.Controllers
 
             foreach (User friend in users)
             {
-               
+                //if (db.Friends.Where(m => m.user.Id == user.Id && m.friend.Id == friend.Id).FirstOrDefault() == null)
+                //{
+                //    notFriends.Add(friend);
+                //}
                 friend.Friends = db.Friends.ToArray().Where(m => m.user != null && m.user.Id.Equals(friend.Id)
                     || m.friend != null && m.friend.Id.Equals(friend.Id));
             }

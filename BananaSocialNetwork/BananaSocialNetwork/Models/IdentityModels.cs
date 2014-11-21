@@ -38,7 +38,7 @@ namespace BananaSocialNetwork.Models
         public User()
         {
             Albums = new List<Album>();
-           
+            //Friends = new List<User>();
         }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)

@@ -125,7 +125,23 @@ namespace BananaSocialNetwork.Controllers
             return RedirectToAction("Edit");
         }
 
-       
+        //public ActionResult Delete(string id)
+        //{
+
+        //    User user = db.Users.Where(m => m.Email == HttpContext.User.Identity.Name).FirstOrDefault();
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Friends friends = db.Friends.Where(m=> m.user.Id == user.Id && m.friend.Id == id).First();
+        //    if (friends == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(friends);
+        //}
+
+        // POST: /Fr/Delete/5
 
 
         public ActionResult Delete(string id)
@@ -185,6 +201,10 @@ namespace BananaSocialNetwork.Controllers
             User user = db.Users.ToList().Where(m => m.Email == HttpContext.User.Identity.Name).FirstOrDefault();
             user.Subscribers = db.Subscribers.ToList().Where(m => m.user.Id == user.Id);
 
+            //user.Subscribers = db.Subscribers.Where(m => m.user.Id == user.Id && m.subscriber.Id != user.Id);
+
+
+            // Subscribers subscribers = db.Subscribers.Where(m => m.Id == 1).First();
 
             foreach (Subscribers sub in user.Subscribers)
             {
