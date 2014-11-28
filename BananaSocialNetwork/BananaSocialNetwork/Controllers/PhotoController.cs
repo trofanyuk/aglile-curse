@@ -72,8 +72,13 @@ namespace BananaSocialNetwork.Controllers
                     photo.PhotoPath = name;
                     db.Photos.Add(photo);
                     db.SaveChanges();
+
+                    News newNew = new News() { User = user, CreationTime = DateTime.Parse(DateTime.Now.ToString("d MMM yyyy")), NewsType = NewsType.AddPhoto, IdContent = photo.Id };
+                    db.News.Add(newNew);
+                    db.SaveChanges();
                 }
             }
+
 
             return RedirectToAction("Details/" + id, "Album");
         }
@@ -127,7 +132,7 @@ namespace BananaSocialNetwork.Controllers
             photo.Adress = json.Adress;
             photo.GeoLat = json.GeoLat;
             photo.GeoLong = json.GeoLong;
-            
+
             db.Entry(photo).State = EntityState.Modified;
             db.SaveChanges();
             return null;
@@ -167,9 +172,9 @@ namespace BananaSocialNetwork.Controllers
 
         public ActionResult CommentsSend(int? id)
         {
-            
+
             Photo photo = db.Photos.Find(id);
-            
+
             return PartialView(photo);
         }
 

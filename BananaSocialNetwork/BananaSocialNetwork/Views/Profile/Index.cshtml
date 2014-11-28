@@ -143,7 +143,7 @@
                                     <i class="fa fa-users margin_5"></i>Friends
                                     @if (@newFr.Count() > 0 && User.Identity.Name.Equals(Model.UserName))
                                     {
-                                        <span>@newFr.Count()</span>
+                                        <span><i class="fa fa-plus"></i>@newFr.Count()</span>
                                     }
                                 </a>
                             </p>
@@ -257,9 +257,14 @@
             </div>
         </div>
     </div>
-    @*@using (Html.BeginForm("ShowUpdates", "Profile", FormMethod.Get))
+    @using (Html.BeginForm("ShowMapAlbums", "Profile", FormMethod.Get))
+    {
+        <input type="hidden" value="@Model.Id" name="userId" />
+        <input type="submit" value="ShowMapAlbums" class="green_btn" style="margin-top:2px;" />
+    }
+    @using (Html.BeginForm("ShowUpdates", "Profile", FormMethod.Get))
     {
 
         <input type="submit" value="ShowUpdates" />
-    }*@
+    }
 </div>

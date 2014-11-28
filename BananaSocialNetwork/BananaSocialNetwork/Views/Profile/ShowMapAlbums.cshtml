@@ -1,0 +1,61 @@
+﻿@model BananaSocialNetwork.Models.User
+
+@{
+    Layout = "~/Views/Shared/_UsersLayout.cshtml";
+}
+
+<script src="http://maps.google.com/maps/api/js?sensor=true" type="text/javascript"></script>
+
+<div id="canvas" style="height: 600px; width:600px;">
+
+    @section scripts {
+        <script type="text/javascript">
+                    var markers = new Array();
+                   
+
+                    $(document).ready(function () {
+                        ShowMap();
+                    });
+
+
+                    //for (var album in Model.Albums)
+                    //{
+                    //      var GeoLong = album.GeoLong.ToString().Replace(',', '.');
+                    //      var GeoLat = album.GeoLat.ToString().Replace(',', '.');
+                                             
+            //     SetMarcer();  
+                    //}
+                    SetMarcer();
+                    var GeoLong = album.GeoLong.ToString().Replace(',', '.');
+                   var GeoLat = album.GeoLat.ToString().Replace(',', '.');
+
+                    function ShowMap() {
+                        geocoder = new google.maps.Geocoder();
+
+                        google.maps.visualRefresh = true;
+                        // установка основных координат
+                        var Odessa = new google.maps.LatLng(GeoLat, GeoLong);
+
+                        // Установка общих параметров отображения карты, как масштаб, центральная точка и тип карты
+                        var mapOptions = {
+                            zoom: 15,
+                            center: Odessa,
+                            mapTypeId: google.maps.MapTypeId.G_NORMAL_MAP
+                        };
+                        // Встраиваем гугл-карты в элемент на странице и получаем объект карты
+                        map = new google.maps.Map(document.getElementById("canvas"), mapOptions);
+                    }
+
+            function SetMarcer() {
+                var myLatlng = new google.maps.LatLng(GeoLat, GeoLong);
+                // Встраиваем гугл-карты в элемент на странице и получаем объект карты
+                var marker = new google.maps.Marker({
+                    position: myLatlng,
+                    map: map
+                });
+            }
+        </script>
+    }
+
+    <!--Устанавливаем секцию scripts, которая затем будет рендериться на мастер-странице -->
+</div>

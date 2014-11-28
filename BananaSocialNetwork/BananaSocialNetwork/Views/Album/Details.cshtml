@@ -48,4 +48,10 @@
             }
         }
     </div>
+    @using (Html.BeginForm("ShowMapPhotos", "Album", FormMethod.Get))
+    {
+    <input type="hidden" value="@Model.Id" name="albumId" />
+    <input type="submit" value="ShowMap" class="green_btn" style="margin-top:2px;" />
+    }
+  
 </div>

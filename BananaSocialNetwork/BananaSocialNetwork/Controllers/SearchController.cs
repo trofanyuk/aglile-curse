@@ -30,9 +30,9 @@ namespace BananaSocialNetwork.Controllers
         [HttpGet]
         public ActionResult SearchOnName(string search)
         {
-            User user = db.Users.Where(m => m.Email == HttpContext.User.Identity.Name).FirstOrDefault();
+           
             List<User> users;
-            List<User> notFriends = new List<User>();
+            
 
 
             search = search.Trim(' ');
@@ -53,10 +53,7 @@ namespace BananaSocialNetwork.Controllers
 
             foreach (User friend in users)
             {
-                //if (db.Friends.Where(m => m.user.Id == user.Id && m.friend.Id == friend.Id).FirstOrDefault() == null)
-                //{
-                //    notFriends.Add(friend);
-                //}
+               
                 friend.Friends = db.Friends.ToArray().Where(m => m.user != null && m.user.Id.Equals(friend.Id)
                     || m.friend != null && m.friend.Id.Equals(friend.Id));
             }
@@ -76,6 +73,8 @@ namespace BananaSocialNetwork.Controllers
                 friends.confirm = false;
                 db.Friends.Add(friends);
                 db.SaveChanges();
+
+               
             }
             
             return RedirectToAction("Index", "Profile");

@@ -34,11 +34,13 @@ namespace BananaSocialNetwork.Models
         public virtual IEnumerable<Subscribers> Subscribers { get; set; }
 
         public virtual IEnumerable<Comment> Comments { get; set; }
+
+        public virtual IEnumerable<News> News { get; set; }
         
         public User()
         {
             Albums = new List<Album>();
-            //Friends = new List<User>();
+           
         }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
@@ -61,6 +63,7 @@ namespace BananaSocialNetwork.Models
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Friends> Friends { get; set; }
         public DbSet<Subscribers> Subscribers { get; set; }
+        public DbSet<News> News { get; set; }
 
         public static ApplicationDbContext Create()
         {

@@ -46,6 +46,12 @@ function confirm_friend(userId, elem) {
             $(elem).css('color', '#555');
             $(elem).css('border', 'none');
             $(elem).val('Your friend');
+
+            var profile = $('.profile');
+            if(profile)
+            {
+                document.location = "/Profile/Index?userId=" + userId;
+            }
         },
         error: function (errorData) { }
     });

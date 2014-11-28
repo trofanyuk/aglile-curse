@@ -29,6 +29,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -173,17 +174,13 @@
     </Compile>
     <Compile Include="IRepository\ApplicationDbContextIRepository.cs" />
     <Compile Include="IRepository\IRepository.cs" />
-    <Compile Include="Migrations\201411141104089_friends.cs" />
-    <Compile Include="Migrations\201411141104089_friends.Designer.cs">
-      <DependentUpon>201411141104089_friends.cs</DependentUpon>
+    <Compile Include="Migrations\201411252113144_news.cs" />
+    <Compile Include="Migrations\201411252113144_news.Designer.cs">
+      <DependentUpon>201411252113144_news.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201411180016369_Friend2.cs" />
-    <Compile Include="Migrations\201411180016369_Friend2.Designer.cs">
-      <DependentUpon>201411180016369_Friend2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201411180053070_Subscribers.cs" />
-    <Compile Include="Migrations\201411180053070_Subscribers.Designer.cs">
-      <DependentUpon>201411180053070_Subscribers.cs</DependentUpon>
+    <Compile Include="Migrations\201411252200461_news_2.cs" />
+    <Compile Include="Migrations\201411252200461_news_2.Designer.cs">
+      <DependentUpon>201411252200461_news_2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -192,6 +189,7 @@
     <Compile Include="Models\Friends.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\News.cs" />
     <Compile Include="Models\Photo.cs" />
     <Compile Include="Models\Subscribers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -306,6 +304,8 @@
     <Content Include="Views\Profile\Delete.cshtml" />
     <Content Include="Views\Profile\ShowUpdates.cshtml" />
     <Content Include="Views\Profile\ShowFriends.cshtml" />
+    <Content Include="Views\Album\ShowMapPhotos.cshtml" />
+    <Content Include="Views\Profile\ShowMapAlbums.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -320,14 +320,11 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201411141104089_friends.resx">
-      <DependentUpon>201411141104089_friends.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201411252113144_news.resx">
+      <DependentUpon>201411252113144_news.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201411180016369_Friend2.resx">
-      <DependentUpon>201411180016369_Friend2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201411180053070_Subscribers.resx">
-      <DependentUpon>201411180053070_Subscribers.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201411252200461_news_2.resx">
+      <DependentUpon>201411252200461_news_2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

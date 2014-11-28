@@ -7,6 +7,7 @@
 {
     using (Html.BeginForm("AddFriend", "Search", FormMethod.Get))
     {
+
         <input type="hidden" name="idFriend" value="@user.Id" />
         <div>
             <div class="display_block f_placeholder">
@@ -23,13 +24,14 @@
                         var not_my_req = from fr in user.Friends
                                          where fr.confirm == false && fr.user != null && fr.friend != null 
                                              && user.Id == fr.user.Id && main_u.Equals(fr.friend.UserName) select fr;
-                    var friends = from fr in user.Friends
-                      where
-                          fr.confirm == true && user.Id == fr.user.Id && !main_u.Equals(fr.user.UserName)
-                          || fr.confirm == true && user.Id != fr.user.Id && main_u.Equals(fr.user.UserName)
-                      select fr;
+                        var friends = from fr in user.Friends
+                                      where
+                                          fr.confirm == true && fr.user != null && user.Id == fr.user.Id && !main_u.Equals(fr.user.UserName)
+                                          || fr.confirm == true && fr.user != null && user.Id != fr.user.Id && main_u.Equals(fr.user.UserName)
+                                      select fr;
 
                     }
+
                     @if (User.Identity.Name.Equals(user.UserName))
                     {
                         <p class="name_text text-size-11 margin_10  text-center">It's your profile</p>

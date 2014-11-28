@@ -698,6 +698,38 @@ a {
                 width: 100%;
             }
 
+/*  ShowUpdates  */
+.width_700{
+    width: 700px;
+}
+.news_placeholder{
+    padding:10px 10px;
+    background-color: white;
+    margin-bottom: 15px;
+    margin-right:10px;
+    margin-left:10px;
+    border:solid 1px #e1e0e0;
+}
+.news_placeholder .news_header .news_header_text{
+    color:#555;
+    font-weight:bold;
+    font-size:11px;
+    margin-left:5px;
+    line-height:5px;
+}
+.news_placeholder .news_header .news_avatar{
+    width:50px;
+    height:50px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+}
+.news_placeholder .news_content img{
+    max-width: 100%;
+}
+
 /*  Show friends  */
 .sh_fr_name{
     color: #555;

@@ -63,6 +63,10 @@ namespace BananaSocialNetwork.Controllers
             (user.Albums as List<Album>).Add(album);
             db.SaveChanges();
 
+            News newNew = new News() { User = user, CreationTime = DateTime.Parse(DateTime.Now.ToString("d MMM yyyy")), NewsType = NewsType.AddAlbum, IdContent = album.Id };
+            db.News.Add(newNew);
+            db.SaveChanges();
+
             return View("Index", "Profile");
         }
 
@@ -146,6 +150,16 @@ namespace BananaSocialNetwork.Controllers
         {
             Album album = db.Albums.Find(id);
             return View(album);
+        }
+
+
+        public ActionResult ShowMapPhotos(int albumId)
+        {
+            Album album = db.Albums.Where(m => m.Id == albumId).First();
+           
+                album.Photos = db.Photos.Where(m => m.Album.Id == albumId);
+                return View(album);
+
         }
 
         protected override void Dispose(bool disposing)
