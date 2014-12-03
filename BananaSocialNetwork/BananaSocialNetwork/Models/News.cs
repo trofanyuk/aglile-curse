@@ -5,7 +5,7 @@ using System.Web;
 
 namespace BananaSocialNetwork.Models
 {
-    public enum NewsType { AddAlbum, AddPhoto, AddFriend };
+    public enum NewsType { AddAlbum, AddPhoto };
 
     public class News
     {

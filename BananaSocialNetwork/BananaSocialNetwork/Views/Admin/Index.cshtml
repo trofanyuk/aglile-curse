@@ -1,0 +1,86 @@
+﻿@using BananaSocialNetwork.Models
+@{
+    Layout = "~/Views/Shared/_UsersLayout.cshtml";
+}
+
+<div class="middle_content">
+    <div><p style="padding:10px;" class="text-size-20 black_text bold_text">Administrator panel</p></div>
+    <div class="news_placeholder">
+        <div class="news_header">
+            <p class="news_header_text" style="font-size:30px;padding:10px;">News all users</p>
+        </div>
+        <div class="display_block">
+            <div class="float_left news_placeholder">
+                <i class="fa fa-quote-left text-size-50 black_text"></i>
+                <i class="fa fa-quote-right text-size-50 black_text"></i>
+            </div>
+            <div class="float_right all_news width_300">
+                @{
+                    ApplicationDbContext db = new ApplicationDbContext();
+                    foreach (var news in db.News.ToList())
+                    {
+                        if (news.NewsType == NewsType.AddPhoto)
+                        {
+                            Photo photo = db.Photos.ToList().Where(m => m.Id == news.IdContent).First();
+                            <div class="news_placeholder">
+                                <div>
+                                    <div class="news_header">
+                                        <div class="display_block">
+                                            <div class="float_left news_avatar" style="background-image: url(@news.User.AvatatPath)"></div>
+                                            <div class="float_right news_header_text">
+                                                <p>
+                                                    <a href="/Profile/Index?userId=@news.User.Id" class="green_link">
+                                                        @news.User.Firstname &nbsp;@news.User.Surname
+                                                    </a>
+                                                    add photo
+                                                </p>
+                                                <p class="text-size-10">@news.CreationTime</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="news_content">
+                                        <img src="@photo.PhotoPath" />
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        else if (news.NewsType == NewsType.AddAlbum)
+                        {
+                            Album album = db.Albums.ToList().Where(m => m.Id == news.IdContent).First();
+                            <div class="news_placeholder">
+                                <div>
+                                    <div class="news_header">
+                                        <div class="display_block">
+                                            <div class="float_left news_avatar" style="background-image: url(@news.User.AvatatPath)"></div>
+                                            <div class="float_right news_header_text">
+                                                <p>@news.User.Firstname &nbsp;@news.User.Surname add album "@album.Name"</p>
+                                                <p class="text-size-10">@news.CreationTime</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="news_content">
+                                        <div class="text-center"><p class="text-size-11">Position on map</p></div>
+                                        <div id="canvas" style="height: 200px; width:100%;">
+                                            
+                                            @*@section scripts {
+                                                <script type="text/javascript">
+                                                    var GeoLong = @album.GeoLong.ToString().Replace(',', '.');
+                                                    var GeoLat = @album.GeoLat.ToString().Replace(',', '.');
+
+
+                                                    $(document).ready(function () {
+                                                        GetMapMarker();
+                                                    });
+                                                </script>
+                                            }*@
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>

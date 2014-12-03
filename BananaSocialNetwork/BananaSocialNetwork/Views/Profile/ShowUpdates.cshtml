@@ -52,7 +52,7 @@
                             <div class="text-center"><p class ="text-size-11">Position on map</p></div>
                             <div id="canvas" style="height: 200px; width:100%;">
 
-                                @section scripts {
+                                @*@section scripts {
                                     <script type="text/javascript">
                                 var GeoLong = @album.GeoLong.ToString().Replace(',', '.');
                                 var GeoLat = @album.GeoLat.ToString().Replace(',', '.');
@@ -62,21 +62,11 @@
                                     GetMapMarker();
                                 });
                                     </script>
-                                }
+                                }*@
                             </div>
                         </div>
                     </div>
                 </div>
-            }
-            else if (U_News.NewsType == NewsType.AddFriend)
-            {
-                @*User user = db.Users.ToList().Where(m => m.Id == U_News.IdContent.ToString()).First();
-                    <div>ADD Friend</div>
-                    <div>@U_News.User.UserName <img src="@U_News.User.AvatatPath" style="width: 100px; " /></div>
-                    <div>Добавил</div>
-                    <div>
-                        <img src="@user.AvatatPath" style="width: 100px;" />
-                    </div>*@
             }
         }
     </div>

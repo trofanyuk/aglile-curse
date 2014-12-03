@@ -159,10 +159,6 @@ namespace BananaSocialNetwork.Controllers
                 friends.confirm = true;
                 db.Entry(friends).State = EntityState.Modified;
                 db.SaveChanges();
-                // ТУТ КАКАЯ ТО ЗАЛУПА С ДАТОЙ
-                News newNew = new News() { User = user, CreationTime = DateTime.Parse(DateTime.Now.ToString("d MMM yyyy")), NewsType = NewsType.AddFriend, IdContent = Convert.ToInt32(friend.Id) };
-                db.News.Add(newNew);
-                db.SaveChanges();
             }
 
 
