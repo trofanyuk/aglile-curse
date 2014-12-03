@@ -65,6 +65,10 @@ namespace BananaSocialNetwork.Controllers
             db.Comments.Add(comment);
             db.SaveChanges();
 
+            News newNew = new News() { User = user, CreationTime = DateTime.Parse(DateTime.Now.ToString("d MMM yyyy HH:mm:ss")), NewsType = NewsType.AddComent, IdContent = comment.Id };
+            db.News.Add(newNew);
+            db.SaveChanges();
+
 
             return View("OneComment", comment);
         }

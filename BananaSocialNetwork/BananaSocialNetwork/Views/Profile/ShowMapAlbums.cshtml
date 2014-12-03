@@ -10,32 +10,36 @@
 
     @section scripts {
         <script type="text/javascript">
-                    var markers = new Array();
-                   
+            
+            var markers = new Array();
+            @*var GeoLong = @Model.albums.GeoLong.ToString().Replace(',', '.');
+            var GeoLat = @Model.albums.GeoLat.ToString().Replace(',', '.');*@
+             
+                    //ShowPhotoLocation()
 
-                    $(document).ready(function () {
+            $(document).ready(function () {
+             
                         ShowMap();
+                      
                     });
-
-
-                    //for (var album in Model.Albums)
-                    //{
-                    //      var GeoLong = album.GeoLong.ToString().Replace(',', '.');
-                    //      var GeoLat = album.GeoLat.ToString().Replace(',', '.');
-                                             
-            //     SetMarcer();  
-                    //}
-                    SetMarcer();
-                    var GeoLong = album.GeoLong.ToString().Replace(',', '.');
-                   var GeoLat = album.GeoLat.ToString().Replace(',', '.');
+                  
+                    for (var album in Model.Albums)
+                    {
+                          var GeoLong = album.GeoLong.ToString().Replace(',', '.');
+                          var GeoLat = album.GeoLat.ToString().Replace(',', '.');
+                          alert("aaa");
+                          SetMarcer();  
+                    }
+                  //  SetMarcer();
+                  
 
                     function ShowMap() {
                         geocoder = new google.maps.Geocoder();
-
+                       
                         google.maps.visualRefresh = true;
                         // установка основных координат
-                        var Odessa = new google.maps.LatLng(GeoLat, GeoLong);
-
+                        var Odessa = new google.maps.LatLng(1, 1);
+                      
                         // Установка общих параметров отображения карты, как масштаб, центральная точка и тип карты
                         var mapOptions = {
                             zoom: 15,
@@ -44,6 +48,7 @@
                         };
                         // Встраиваем гугл-карты в элемент на странице и получаем объект карты
                         map = new google.maps.Map(document.getElementById("canvas"), mapOptions);
+                       
                     }
 
             function SetMarcer() {

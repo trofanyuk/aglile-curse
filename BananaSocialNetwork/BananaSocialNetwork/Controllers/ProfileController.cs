@@ -173,8 +173,8 @@ namespace BananaSocialNetwork.Controllers
             Subscribers subscribers = new Subscribers(user, friend);
             db.Subscribers.Add(subscribers);
             db.SaveChanges();
-
-            return RedirectToAction("Index", "Profile");
+           
+            return Redirect("Index?userId=" + idFriend);
         }
 
         public ActionResult ShowUpdates()
@@ -230,7 +230,7 @@ namespace BananaSocialNetwork.Controllers
             db.Subscribers.Remove(friends);
             db.SaveChanges();
 
-            return RedirectToAction("Index");
+            return Redirect("Index?userId=" + idFriend);
         }
 
         public ActionResult ShowMapAlbums(string userId)

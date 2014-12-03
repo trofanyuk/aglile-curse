@@ -6,7 +6,7 @@
         ApplicationDbContext db = new ApplicationDbContext();
     }
     <script src="http://maps.google.com/maps/api/js?sensor=true" type="text/javascript"></script>
-
+               @Scripts.Render("~/Scripts/google_map.js")
     <div class="middle_content width_700" style="background-color: #efefef;margin:auto">
         <div style="height:10px;">
 
@@ -51,16 +51,16 @@
                         <div class="news_content">
                             <div class="text-center"><p class ="text-size-11">Position on map</p></div>
                             <div id="canvas" style="height: 200px; width:100%;">
-
+                               
                                 @*@section scripts {
                                     <script type="text/javascript">
-                                var GeoLong = @album.GeoLong.ToString().Replace(',', '.');
-                                var GeoLat = @album.GeoLat.ToString().Replace(',', '.');
+                                    var GeoLong = @album.GeoLong.ToString().Replace(',', '.');
+                                    var GeoLat = @album.GeoLat.ToString().Replace(',', '.');
 
 
-                                $(document).ready(function () {
-                                    GetMapMarker();
-                                });
+                                    $(document).ready(function () {
+                                        GetMapMarker();
+                                    });
                                     </script>
                                 }*@
                             </div>

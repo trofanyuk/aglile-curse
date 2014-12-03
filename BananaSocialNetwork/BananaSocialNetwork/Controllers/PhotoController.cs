@@ -73,7 +73,7 @@ namespace BananaSocialNetwork.Controllers
                     db.Photos.Add(photo);
                     db.SaveChanges();
 
-                    News newNew = new News() { User = user, CreationTime = DateTime.Parse(DateTime.Now.ToString("d MMM yyyy")), NewsType = NewsType.AddPhoto, IdContent = photo.Id };
+                    News newNew = new News() { User = user, CreationTime = DateTime.Parse(DateTime.Now.ToString("d MMM yyyy HH:mm:ss")), NewsType = NewsType.AddPhoto, IdContent = photo.Id };
                     db.News.Add(newNew);
                     db.SaveChanges();
                 }
