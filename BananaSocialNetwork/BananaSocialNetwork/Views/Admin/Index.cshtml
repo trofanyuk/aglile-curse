@@ -2,47 +2,50 @@
 @{
     Layout = "~/Views/Shared/_UsersLayout.cshtml";
 }
-
+@System.Web.Optimization.Scripts.Render("~/bundles/modal_dialogs")
 <div class="middle_content">
-    <div><p style="padding:10px;" class="text-size-20 black_text bold_text">Administrator panel</p></div>
-    <div class="news_placeholder">
-        <div class="news_header">
-            <p class="news_header_text" style="font-size:30px;padding:10px;">News all users</p>
-        </div>
-        <div class="display_block">
-            <div class="float_left news_placeholder">
-                <i class="fa fa-quote-left text-size-50 black_text"></i>
-                <i class="fa fa-quote-right text-size-50 black_text"></i>
-            </div>
-            <div class="float_right all_news width_300">
+    <div><p style=" padding:10px;" class="text-size-20 black_text bold_text">Administrator panel</p></div>
+
+    <div class="news_placeholder" style="background-color: #efefef">
+        <div class="display_block" style="width:100%;">
+            @{
+                ApplicationDbContext db = new ApplicationDbContext();
+            }
+            <div class="float_left all_news width_50per" id="news">
                 @{
-                    ApplicationDbContext db = new ApplicationDbContext();
                     foreach (var news in db.News.ToList())
                     {
                         if (news.NewsType == NewsType.AddPhoto)
                         {
-                            Photo photo = db.Photos.ToList().Where(m => m.Id == news.IdContent).First();
-                            <div class="news_placeholder">
-                                <div>
-                                    <div class="news_header">
-                                        <div class="display_block">
-                                            <div class="float_left news_avatar" style="background-image: url(@news.User.AvatatPath)"></div>
-                                            <div class="float_right news_header_text">
-                                                <p>
-                                                    <a href="/Profile/Index?userId=@news.User.Id" class="green_link">
-                                                        @news.User.Firstname &nbsp;@news.User.Surname
-                                                    </a>
-                                                    add photo
-                                                </p>
-                                                <p class="text-size-10">@news.CreationTime</p>
+                            try
+                            {
+                                Photo photo = db.Photos.ToList().Where(m => m.Id == news.IdContent).First();
+                                <div class="news_placeholder">
+                                    <div>
+                                        <div class="news_header">
+                                            <div class="display_block">
+                                                <div class="float_left news_avatar" style="background-image: url(@news.User.AvatatPath)"></div>
+                                                <div class="float_right news_header_text">
+                                                    <p>
+                                                        <a href="/Profile/Index?userId=@news.User.Id" class="green_link">
+                                                            @news.User.Firstname &nbsp;@news.User.Surname
+                                                        </a>
+                                                        add photo
+                                                    </p>
+                                                    <p class="text-size-10">@news.CreationTime</p>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="news_content">
-                                        <img src="@photo.PhotoPath" />
+                                        <div class="news_content">
+                                            <img src="@photo.PhotoPath" />
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            }
+                            catch (Exception ex)
+                            {
+
+                            }
                         }
                         else if (news.NewsType == NewsType.AddAlbum)
                         {
@@ -61,18 +64,18 @@
                                     <div class="news_content">
                                         <div class="text-center"><p class="text-size-11">Position on map</p></div>
                                         <div id="canvas" style="height: 200px; width:100%;">
-                                            
+
                                             @*@section scripts {
-                                                <script type="text/javascript">
-                                                    var GeoLong = @album.GeoLong.ToString().Replace(',', '.');
-                                                    var GeoLat = @album.GeoLat.ToString().Replace(',', '.');
+                                            <script type="text/javascript">
+                                                var GeoLong = @album.GeoLong.ToString().Replace(',', '.');
+                                                var GeoLat = @album.GeoLat.ToString().Replace(',', '.');
 
 
-                                                    $(document).ready(function () {
-                                                        GetMapMarker();
-                                                    });
-                                                </script>
-                                            }*@
+                                                $(document).ready(function () {
+                                                    GetMapMarker();
+                                                });
+                                            </script>
+                                        }*@
                                         </div>
                                     </div>
                                 </div>
@@ -80,6 +83,50 @@
                         }
                     }
                 }
+            </div>
+            <div class="float_right width_50per">
+                <div class="margin_10" style="height:32px;">
+                    <input type="text" class="srh_size border_radius_0" style="width:245px; font-size:16px;" id="search_field" /><select class="srh_size border_radius_0" id="type_s">
+                        <option>By name</option>
+                        <option>By email</option>
+                    </select><input type="button" value="Search" class="btn border_radius_0" onclick="find_user()" />
+                    <input type="submit" value="Reset" class="btn border_radius_0" onclick="location.reload()"/>
+                </div>
+                <div class="all_news">
+                    <ul id="users" class="news_placeholder">
+                        @{
+                            foreach (var user in db.Users.ToList())
+                            {
+                                <li>
+                                    <div class="news_header friend_block" style="border-bottom: solid 1px #e4e3e3;" onclick="set_user_info('@user.Id')">
+                                        <div class="display_block" style="width:100%;">
+                                            <a href="~/Profile/Index?userId=@user.Id" class="float_left">
+                                                <div class="news_avatar" style="background-image: url(@user.AvatatPath)"></div>
+                                            </a>
+                                            <div class="float_right" style="width:87%;">
+                                                <div class="display_block" style="width:100%;">
+                                                    <div class="float_left width_50per">
+                                                        <p>
+                                                            <a href="~/Profile/Index?userId=@user.Id"
+                                                               class="sh_fr_name bold_text">@user.Firstname&nbsp;@user.Surname</a>
+                                                        </p>
+                                                    </div>
+                                                    <div class="float_right sh_fr_btn_cont">
+                                                        @*<p class="sh_fr_btn"><a class="sh_fr_btn">Show friends</a></p>
+                               <p class="sh_fr_btn">
+                               <a class="sh_fr_btn" href="Delete?id=@user.Id">Delete</a>
+                            </p>*@
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                            }
+                        }
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

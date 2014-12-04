@@ -1,0 +1,34 @@
+﻿@model object
+@{
+    Layout = null;
+}
+@{
+    foreach (var user in (Model as List<BananaSocialNetwork.Models.User>))
+    {
+        <li>
+            <div class="news_header friend_block" style="border-bottom: solid 1px #e4e3e3;" onclick="set_user_info('@user.Id')">
+                <div class="display_block" style="width:100%;">
+                    <a href="~/Profile/Index?userId=@user.Id" class="float_left">
+                        <div class="news_avatar" style="background-image: url(@user.AvatatPath)"></div>
+                    </a>
+                    <div class="float_right" style="width:87%;">
+                        <div class="display_block" style="width:100%;">
+                            <div class="float_left width_50per">
+                                <p>
+                                    <a href="~/Profile/Index?userId=@user.Id"
+                                       class="sh_fr_name bold_text">@user.Firstname&nbsp;@user.Surname</a>
+                                </p>
+                            </div>
+                            <div class="float_right sh_fr_btn_cont">
+                                @*<p class="sh_fr_btn"><a class="sh_fr_btn">Show friends</a></p>
+                               <p class="sh_fr_btn">
+                               <a class="sh_fr_btn" href="Delete?id=@user.Id">Delete</a>
+                            </p>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+    }
+}

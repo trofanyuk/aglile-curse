@@ -1,4 +1,78 @@
-﻿///  search  ///
+﻿// admin
+function find_user() {
+    var search = $('#search_field').val();
+    var type = $('#type_s option:selected').text();
+    var json = "";
+
+    if (search != '') {
+        $.ajax({
+            async: false,
+            type: "GET",
+            url: "/Admin/SearchUser/",
+            data: {
+                search: search,
+                type: type
+            },
+            success: function (res) {
+                json = res;
+            },
+            error: function (errorData) {}
+        });
+        $.ajax({
+            async: false,
+            type: "POST",
+            url: "/Admin/SearchUserView/",
+            data: { json: json },
+            success: function (html) {
+                var u_container = $('#users');
+                u_container.empty();
+                u_container.append(html);
+            },
+            error: function (errorData) {
+                alert("error!");
+            }
+        });
+    }
+}
+
+function set_user_info(id)
+{
+    set_user_news(id);
+}
+
+function set_user_news(id)
+{
+    var json = "";
+    $.ajax({
+        async: false,
+        type: "GET",
+        url: "/Admin/NewsUser/",
+        data: {
+            iduser : id
+        },
+        success: function (res) {
+            json = res;
+
+            $.ajax({
+                async: false,
+                type: "POST",
+                url: "/Admin/NewsUserView/",
+                data: { json: json },
+                success: function (html) {
+                    var u_container = $('#news');
+                    u_container.empty();
+                    u_container.append(html);
+                },
+                error: function (errorData) {
+                    alert("error!");
+                }
+            });
+        },
+        error: function (errorData) { }
+    });
+}
+
+///  search  ///
 
 function find_peoples() {
     var search = $('#search_field').val();
@@ -17,8 +91,7 @@ function find_peoples() {
     }
 }
 
-function add_friend(userId, elem)
-{
+function add_friend(userId, elem) {
     $.ajax({
         type: "GET",
         url: "/Search/AddFriend/",
@@ -48,8 +121,7 @@ function confirm_friend(userId, elem) {
             $(elem).val('Your friend');
 
             var profile = $('.profile');
-            if(profile)
-            {
+            if (profile) {
                 document.location = "/Profile/Index?userId=" + userId;
             }
         },

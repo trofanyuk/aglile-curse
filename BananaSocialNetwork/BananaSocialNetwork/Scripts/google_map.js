@@ -33,6 +33,28 @@ function GetMap() {
     });
 }
 
+function GetMapNews() {
+    geocoder = new google.maps.Geocoder();
+
+    google.maps.visualRefresh = true;
+    // установка основных координат
+    var Odessa = new google.maps.LatLng(46.481447, 30.735585);
+
+    // Установка общих параметров отображения карты, как масштаб, центральная точка и тип карты
+    var mapOptions = {
+        zoom: 15,
+        center: Odessa,
+        mapTypeId: google.maps.MapTypeId.G_NORMAL_MAP
+    };
+
+    // Встраиваем гугл-карты в элемент на странице и получаем объект карты
+    divs = document.getElementsByClassName("canvas_map");
+    for (var i = 0; i < divs.length; i++)
+    {
+        new google.maps.Map(divs.item(i), mapOptions);
+    }
+}
+
 function placeMarker(position, map) {
 
 

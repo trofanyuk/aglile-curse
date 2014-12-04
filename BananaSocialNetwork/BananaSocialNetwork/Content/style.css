@@ -733,6 +733,7 @@ a:hover{
     margin-right:10px;
     margin-left:10px;
     border:solid 1px #e1e0e0;
+    list-style:none;
 }
 .news_placeholder .news_header .news_header_text{
     color:#555;
@@ -755,9 +756,30 @@ a:hover{
 }
 
 /*  Admin/Index */
+.border_btm_top{
+    border-top:solid 1px #e1e0e0;
+    border-bottom:solid 1px #e1e0e0;
+}
 .all_news{
     max-height: 500px;
-    overflow-x:scroll;
+    overflow-x:no-display;
+    overflow-y: auto;
+}
+
+.srh_size{
+    min-height:100%;
+    border:none;
+}
+.border_radius_0{
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+}
+.friend_block{
+    cursor:pointer;
+}
+.friend_block:hover{
+    background-color: #e1e0e0;
 }
 
 /*  Show friends  */
