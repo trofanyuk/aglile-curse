@@ -299,7 +299,7 @@ a:hover{
 
 /*  Menu Drop  */
 .menu_div {
-    border: solid 1px #EEE;
+    border: solid 1px #e1e0e0;
 }
 
 .main-item {
@@ -523,7 +523,7 @@ a:hover{
 
 .middle_content .profile .header_form {
     width: 100%;
-    height: 30px;
+    height: 40px;
     background-color: #EFEFEF;
 }
 

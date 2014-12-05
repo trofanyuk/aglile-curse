@@ -82,7 +82,7 @@ function GetAllPhotosMap(arr, zoom) {
 
     google.maps.visualRefresh = true;
     // установка основных координат
-    var Odessa = new google.maps.LatLng(arr[1], arr[0]);
+    var Odessa = new google.maps.LatLng(0, 0);
 
     // Установка общих параметров отображения карты, как масштаб, центральная точка и тип карты
     var mapOptions = {

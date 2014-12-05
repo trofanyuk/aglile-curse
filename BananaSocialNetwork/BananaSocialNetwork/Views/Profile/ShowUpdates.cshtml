@@ -14,70 +14,80 @@
                    var arr = [];
                    var index = 0;
                </script>
-    <div class="middle_content width_700" style="background-color: #efefef;margin:auto">
-        <div style="height:10px;">
-           
-        </div>
-        
-        @foreach (BananaSocialNetwork.Models.News U_News in Model)
-        {
-                 <script type="text/javascript">
+               <div class="middle_content width_700" style="background-color: #efefef;margin:auto">
+                   <div style="height:10px;">
 
-                  
+                   </div>
+
+                   @foreach (BananaSocialNetwork.Models.News U_News in Model)
+                   {
+                       <script type="text/javascript">
+
+
                      index++;
-               </script>
-            if (U_News.NewsType == NewsType.AddPhoto)
-            {
-                Photo photo = db.Photos.ToList().Where(m => m.Id == U_News.IdContent).First();
-                <div class="news_placeholder">
-                    <div>
-                        <div class="news_header">
-                            <div class="display_block">
-                                <div class="float_left news_avatar" style="background-image: url(@U_News.User.AvatatPath)"></div>
-                                <div class="float_right news_header_text">
-                                    <p>@U_News.User.Firstname &nbsp;@U_News.User.Surname add photo</p>
-                                    <p class="text-size-10">@U_News.CreationTime</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="news_content">
-                            <img src="@photo.PhotoPath" />
-                        </div>
-                    </div>
-                </div>
-            }
-            else if (U_News.NewsType == NewsType.AddAlbum)
-            {
-                Album album = db.Albums.ToList().Where(m => m.Id == U_News.IdContent).First();
-                <div class="news_placeholder">
-                    <div>
-                        <div class="news_header">
-                            <div class="display_block">
-                                <div class="float_left news_avatar" style="background-image: url(@U_News.User.AvatatPath)"></div>
-                                <div class="float_right news_header_text">
-                                    <p>@U_News.User.Firstname &nbsp;@U_News.User.Surname add album "@album.Name"</p>
-                                    <p class="text-size-10">@U_News.CreationTime</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="news_content">
-                            <div class="text-center"><p class="text-size-11">Position on map</p></div>
-                            <div id="canvas" class="canvas_map" style="height: 350px; width:350px;">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                   <script type="text/javascript">
-                       
-                       arr[index] = @album.GeoLong.ToString().Replace(',', '.');
-                       index++;
-                       arr[index] = @album.GeoLat.ToString().Replace(',', '.');
-                    </script>
-                
-                 
-            }
-        }
-    </div>
+                       </script>
+                       if (U_News.NewsType == NewsType.AddPhoto)
+                       {
+                           try
+                           {
+                               Photo photo = db.Photos.ToList().Where(m => m.Id == U_News.IdContent).First();
+                               <div class="news_placeholder">
+                                   <div>
+                                       <div class="news_header">
+                                           <div class="display_block">
+                                               <div class="float_left news_avatar" style="background-image: url(@U_News.User.AvatatPath)"></div>
+                                               <div class="float_right news_header_text">
+                                                   <p>@U_News.User.Firstname &nbsp;@U_News.User.Surname add photo</p>
+                                                   <p class="text-size-10">@U_News.CreationTime</p>
+                                               </div>
+                                           </div>
+                                       </div>
+                                       <div class="news_content">
+                                           <img src="@photo.PhotoPath" />
+                                       </div>
+                                   </div>
+                               </div>
+                           }
+                           catch (Exception ex)
+                           {
+
+                           }
+
+                       }
+                       else if (U_News.NewsType == NewsType.AddAlbum)
+                       {
+                           try
+                           {
+                               Album album = db.Albums.ToList().Where(m => m.Id == U_News.IdContent).First();
+                               <div class="news_placeholder">
+                                   <div>
+                                       <div class="news_header">
+                                           <div class="display_block">
+                                               <div class="float_left news_avatar" style="background-image: url(@U_News.User.AvatatPath)"></div>
+                                               <div class="float_right news_header_text">
+                                                   <p>@U_News.User.Firstname &nbsp;@U_News.User.Surname add album "@album.Name"</p>
+                                                   <p class="text-size-10">@U_News.CreationTime</p>
+                                               </div>
+                                           </div>
+                                       </div>
+                                       <div class="news_content">
+                                           <div class="text-center"><p class="text-size-11">Position on map</p></div>
+                                           <div id="canvas" class="canvas_map" style="height: 350px; width:100%">
+                                           </div>
+                                       </div>
+                                   </div>
+                               </div>
+                               <script type="text/javascript">
+
+                                   arr[index] = @album.GeoLong.ToString().Replace(',', '.');
+                                   index++;
+                                   arr[index] = @album.GeoLat.ToString().Replace(',', '.');
+                               </script>
+                           }
+                           catch (Exception ex) { }
+                       }
+                   }
+               </div>
     @section scripts {
         <script type="text/javascript">
                                    

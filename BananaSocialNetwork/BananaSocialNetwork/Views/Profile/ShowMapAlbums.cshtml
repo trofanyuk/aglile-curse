@@ -12,16 +12,13 @@
     var index = 0;
     var inex2 = 0;
 </script>
-
 @foreach (var album in Model.Albums)
 {
     <script type="text/javascript">
-                       
-                        
-                       arr[index] = @album.GeoLong.ToString().Replace(',', '.');
-                       index++;
-                       arr[index] = @album.GeoLat.ToString().Replace(',', '.');
-                       
+        arr[index] = @album.GeoLong.ToString().Replace(',', '.');
+        index++;
+        arr[index] = @album.GeoLat.ToString().Replace(',', '.');
+
         index++;
     </script>
 
@@ -29,25 +26,19 @@
 
 @section scripts {
     <script type="text/javascript">
-
-
-
         $(document).ready(function () {
 
-            GetAllPhotosMap(arr, 5);
+            GetAllPhotosMap(arr, 2);
 
         });
-
-
-        //  SetMarcer();
-
-
-
     </script>
 }
-<div id="canvas" style="height: 600px; width:600px;">
- 
-   
-
-    <!--Устанавливаем секцию scripts, которая затем будет рендериться на мастер-странице -->
+<div class="middle_content">
+    <div class="profile">
+        <div class="header_form">
+            <p class="text-size-12"><i class="fa fa-map-marker margin_5"></i>All albums on the world map</p>
+        </div>
+        <div id="canvas" style="height: 600px; width:100%;"></div>
+    </div>
+    
 </div>
