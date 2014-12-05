@@ -781,6 +781,16 @@ a:hover{
 .friend_block:hover{
     background-color: #e1e0e0;
 }
+.scroll-x{
+    overflow-x: auto;
+}
+.comment_block{
+    width: 100%;
+    border:solid 1px #e1e0e0;
+}
+.line_height_5{
+    line-height: 5px;
+}
 
 /*  Show friends  */
 .sh_fr_name{

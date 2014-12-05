@@ -22,9 +22,7 @@
                    @foreach (BananaSocialNetwork.Models.News U_News in Model)
                    {
                        <script type="text/javascript">
-
-
-                     index++;
+                            index++;
                        </script>
                        if (U_News.NewsType == NewsType.AddPhoto)
                        {
@@ -90,12 +88,6 @@
                </div>
     @section scripts {
         <script type="text/javascript">
-                                   
-
-
-                //$(document).ready(function () {
-                //    GetMapMarker();
-                //});
             GetMapNews(arr);
         </script>
     }
