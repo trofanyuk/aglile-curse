@@ -173,7 +173,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="IRepository\ApplicationDbContextIRepository.cs" />
+    <Compile Include="IRepository\IRepositoryClasses.cs" />
+    <Compile Include="IRepository\ContextClasses.cs" />
     <Compile Include="IRepository\IRepository.cs" />
     <Compile Include="Migrations\201411252113144_news.cs" />
     <Compile Include="Migrations\201411252113144_news.Designer.cs">
