@@ -22,9 +22,7 @@
                         </script>
                         foreach (var news in db.News.ToList())
                         {
-                    <script type="text/javascript">
-                                index++;
-                    </script>
+                   
                             if (news.NewsType == NewsType.AddPhoto)
                             {
                                 try
@@ -70,18 +68,28 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="news_content">
-                                <div class="text-center"><p class="text-size-11">Position on map</p></div>
-                                <div id="canvas" class="canvas_map" style="height: 200px; width:100%;">
-
-                                    <script type="text/javascript">
-
-                                                        arr[index] = @album.GeoLong.ToString().Replace(',', '.');
-                                                        index++;
-                                                        arr[index] = @album.GeoLat.ToString().Replace(',', '.');
-                                    </script>
+                            @if (album.GeoLat != 0 && album.GeoLong != 0)
+                            {
+                                <div class="news_content">
+                                    <div class="text-center"><p class="text-size-11">Position on map</p></div>
+                                    <div id="canvas" class="canvas_map" style="height: 350px; width:100%">
+                                    </div>
                                 </div>
-                            </div>
+                                <script type="text/javascript">
+                                         //  alert("Индекс - 1" + index);
+                                           arr[index] = @album.GeoLong.ToString().Replace(',', '.');
+                                           index++;
+                                         //  alert("индекс - 2" + index);
+                                           arr[index] = @album.GeoLat.ToString().Replace(',', '.');
+                                           index++;
+
+                                </script>
+
+                            }
+                            else
+                            {
+                                <div> Альбом без точки на карте </div>
+                            }
                         </div>
                     </div>
                     @section scripts {

@@ -33,7 +33,7 @@ namespace BananaSocialNetwork.Controllers
            
             List<User> users;
             
-
+            
 
             search = search.Trim(' ');
 

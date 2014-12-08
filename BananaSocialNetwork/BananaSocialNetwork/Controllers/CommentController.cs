@@ -57,7 +57,7 @@ namespace BananaSocialNetwork.Controllers
             User user = db.Users.Where(m => m.Email == HttpContext.User.Identity.Name).FirstOrDefault();
             Photo photo = db.Photos.Find(Id);
 
-            comment.DateCreate = DateTime.Parse(DateTime.Now.ToString("d MMM yyyy"));
+            comment.DateCreate = DateTime.Parse(DateTime.Now.ToString("d MMM yyyy HH:mm:ss"));
             comment.Text = text;
             comment.User = user;
             comment.Photo = photo;

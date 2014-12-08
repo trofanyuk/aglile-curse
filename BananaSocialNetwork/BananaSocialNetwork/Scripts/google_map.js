@@ -37,7 +37,7 @@ function GetMapNews(arr) {
 
     divs = document.getElementsByClassName("canvas_map");
    
-    var k = 1;
+    var k = 0;
     for (var i = 0; i < divs.length; i++) {
       
             geocoder = new google.maps.Geocoder();
@@ -45,7 +45,7 @@ function GetMapNews(arr) {
             google.maps.visualRefresh = true;
         // установка основных координат
             //alert(arr);
-            //alert(arr[k+1]);
+           // alert(arr[k+1]);
             //alert(arr[k]);
             var Odessa = new google.maps.LatLng(arr[k + 1], arr[k]);
             //alert(arr);
