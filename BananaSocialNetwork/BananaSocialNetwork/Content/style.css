@@ -791,6 +791,9 @@ a:hover{
 .line_height_5{
     line-height: 5px;
 }
+.cur_poiter{
+    cursor: pointer;
+}
 
 /*  Show friends  */
 .sh_fr_name{

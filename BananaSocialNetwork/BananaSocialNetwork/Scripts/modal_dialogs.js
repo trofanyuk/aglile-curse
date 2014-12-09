@@ -184,8 +184,7 @@ function confirm_add_album() {
     });
 }
 
-function show_Edit_Album() {
-    var album_id = $("#al_id").val().toString();
+function show_Edit_Album(album_id) {
     $.ajax({
         type: "GET",
         url: "/Album/EditAlbumPartial/" + album_id,
@@ -196,23 +195,23 @@ function show_Edit_Album() {
     });
 }
 
-function save_edit_album() {
+function save_edit_album(al_id, obj) {
     var album =
         {
-            Id: $("#al_id").val().toString(),
+            Id: al_id,
             GeoLong: $("#GeoLong").val().toString(),
             GeoLat: $("#GeoLat").val().toString(),
             Adress: $("#Adress").val().toString(),
             Name: $("#Album_name").val().toString()
         };
-
     $.ajax({
         type: "POST",
         url: "/Album/Edit/",
         data: album,
         success: function (viewHTML) {
             close_edit_album();
-            $("#album_name").text(album.Name);
+            //$("#album_name").text(album.Name);
+            obj.text(album.Name);
         },
         error: function (errorData) { }
     });
@@ -240,22 +239,21 @@ function close_add_photo() {
     var dialog = $("#add_photo_dialog").remove();
 }
 
-function show_Edit_Photo() {
-    var photo_id = $("#id_mes").val().toString();
+function show_Edit_Photo(photo_id) {
     $.ajax({
         type: "GET",
         url: "/Photo/EditPhotoPartial/" + photo_id,
         success: function (viewHTML) {
-            $("#galleryOverlay").append(viewHTML);
+            $("body").append(viewHTML);
         },
         error: function (errorData) { }
     });
 }
 
-function save_edit_photo() {
+function save_edit_photo(id_photo) {
     var photo =
         {
-            Id: $("#id_mes").val().toString(),
+            Id: id_photo,
             GeoLong: $("#GeoLong").val().toString(),
             GeoLat: $("#GeoLat").val().toString(),
             Adress: $("#Adress").val().toString()
@@ -276,13 +274,12 @@ function close_edit_photo() {
     var dialog = $("#edit_photo_dialog").remove();
 }
 
-function show_Photo_in_map() {
-    var photo_id = $("#id_mes").val().toString();
+function show_Photo_in_map(photo_id) {
     $.ajax({
         type: "GET",
         url: "/Photo/PhotoInMapPartial/" + photo_id,
         success: function (viewHTML) {
-            $("#galleryOverlay").append(viewHTML);
+            $("body").append(viewHTML);
         },
         error: function (errorData) { }
     });

@@ -17,7 +17,7 @@
         <ul class="sub-menu" style="width:160px;">
             <li><a onclick="show_Add_Photo()"><i class="fa fa-plus fa-1x"></i>Add Photo</a></li>
             <li><a href="~/Album/ShowMapPhotos?albumId=@Model.Id"><i class="fa fa-map-marker fa-1x"></i>Photos on the map</a></li>
-            <li><a onclick="show_Edit_Album()"><i class="fa fa-gear fa-1x"></i>Edit</a></li>
+            <li><a onclick="show_Edit_Album(@Model.Id)"><i class="fa fa-gear fa-1x"></i>Edit</a></li>
             <li><a href="~/Album/DeleteConfirmed/@Model.Id"><i class="fa fa-trash fa-1x"></i>Delete</a></li>
         </ul>
     </div>

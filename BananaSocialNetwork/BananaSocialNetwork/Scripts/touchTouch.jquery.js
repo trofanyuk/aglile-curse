@@ -28,7 +28,7 @@
             current_pos = 0;
 
         // Appending the markup to the page
-        overlay.hide().appendTo('body');
+        overlay.hide().appendTo('body').css('z-index', '50');
         slider.appendTo(overlay);
 
         // Creating a placeholder for each image

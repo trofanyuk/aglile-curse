@@ -22,33 +22,33 @@
                         </script>
                         foreach (var news in db.News.ToList())
                         {
-                   
+
                             if (news.NewsType == NewsType.AddPhoto)
                             {
                                 try
                                 {
                                     Photo photo = db.Photos.ToList().Where(m => m.Id == news.IdContent).First();
-                    <div class="news_placeholder">
-                        <div>
-                            <div class="news_header">
-                                <div class="display_block">
-                                    <div class="float_left news_avatar" style="background-image: url(@news.User.AvatatPath)"></div>
-                                    <div class="float_right news_header_text">
-                                        <p>
-                                            <a href="/Profile/Index?userId=@news.User.Id" class="green_link">
-                                                @news.User.Firstname &nbsp;@news.User.Surname
-                                            </a>
-                                            add photo
-                                        </p>
-                                        <p class="text-size-10">@news.CreationTime</p>
+                                    <div class="news_placeholder">
+                                        <div>
+                                            <div class="news_header">
+                                                <div class="display_block">
+                                                    <div class="float_left news_avatar" style="background-image: url(@news.User.AvatatPath)"></div>
+                                                    <div class="float_right news_header_text">
+                                                        <p>
+                                                            <a href="/Profile/Index?userId=@news.User.Id" class="green_link">
+                                                                @news.User.Firstname &nbsp;@news.User.Surname
+                                                            </a>
+                                                            add photo
+                                                        </p>
+                                                        <p class="text-size-10">@news.CreationTime</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="news_content">
+                                                <img src="@photo.PhotoPath" />
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="news_content">
-                                <img src="@photo.PhotoPath" />
-                            </div>
-                        </div>
-                    </div>
                                 }
                                 catch (Exception ex) { }
                             }
@@ -57,46 +57,46 @@
                                 try
                                 {
                                     Album album = db.Albums.ToList().Where(m => m.Id == news.IdContent).First();
-                    <div class="news_placeholder">
-                        <div>
-                            <div class="news_header">
-                                <div class="display_block">
-                                    <div class="float_left news_avatar" style="background-image: url(@news.User.AvatatPath)"></div>
-                                    <div class="float_right news_header_text">
-                                        <p>@news.User.Firstname &nbsp;@news.User.Surname add album "@album.Name"</p>
-                                        <p class="text-size-10">@news.CreationTime</p>
-                                    </div>
-                                </div>
-                            </div>
-                            @if (album.GeoLat != 0 && album.GeoLong != 0)
-                            {
-                                <div class="news_content">
-                                    <div class="text-center"><p class="text-size-11">Position on map</p></div>
-                                    <div id="canvas" class="canvas_map" style="height: 350px; width:100%">
-                                    </div>
-                                </div>
-                                <script type="text/javascript">
-                                         //  alert("Индекс - 1" + index);
-                                           arr[index] = @album.GeoLong.ToString().Replace(',', '.');
-                                           index++;
-                                         //  alert("индекс - 2" + index);
-                                           arr[index] = @album.GeoLat.ToString().Replace(',', '.');
-                                           index++;
+                                    <div class="news_placeholder">
+                                        <div>
+                                            <div class="news_header">
+                                                <div class="display_block">
+                                                    <div class="float_left news_avatar" style="background-image: url(@news.User.AvatatPath)"></div>
+                                                    <div class="float_right news_header_text">
+                                                        <p>@news.User.Firstname &nbsp;@news.User.Surname add album "@album.Name"</p>
+                                                        <p class="text-size-10">@news.CreationTime</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @if (album.GeoLat != 0 && album.GeoLong != 0)
+                                            {
+                                                <div class="news_content">
+                                                    <div class="text-center"><p class="text-size-11">Position on map</p></div>
+                                                    <div class="canvas_map" style="height: 350px; width:100%">
+                                                    </div>
+                                                </div>
+                                                <script type="text/javascript">
+                                                    //  alert("Индекс - 1" + index);
+                                                    arr[index] = @album.GeoLong.ToString().Replace(',', '.');
+                                                    index++;
+                                                    //  alert("индекс - 2" + index);
+                                                    arr[index] = @album.GeoLat.ToString().Replace(',', '.');
+                                                    index++;
 
-                                </script>
+                                                </script>
 
-                            }
-                            else
-                            {
-                                <div> Альбом без точки на карте </div>
-                            }
-                        </div>
-                    </div>
-                    @section scripts {
-                        <script type="text/javascript">
+                                            }
+                                            else
+                                            {
+                                                <div> Альбом без точки на карте </div>
+                                            }
+                                        </div>
+                                    </div>
+                                    @section scripts {
+                                        <script type="text/javascript">
                                             GetMapNews(arr);
-                        </script>
-                    }
+                                        </script>
+                                    }
                                 }
                                 catch (Exception ex) { }
                             }
@@ -115,33 +115,36 @@
                 <div class="all_news">
                     <ul id="users" class="news_placeholder">
                         @{
-                        foreach (var user in db.Users.ToList())
+                            foreach (var user in db.Users.ToList())
                             {
-                        <li>
-                            <div class="news_header friend_block" style="border-bottom: solid 1px #e4e3e3;" onclick="set_user_info('@user.Id')">
-                                <div class="display_block" style="width:100%;">
-                                    <a href="~/Profile/Index?userId=@user.Id" class="float_left">
-                                        <div class="news_avatar" style="background-image: url(@user.AvatatPath)"></div>
-                                    </a>
-                                    <div class="float_right" style="width:87%;">
+                                <li>
+                                    <div class="news_header friend_block" style="border-bottom: solid 1px #e4e3e3;" onclick="set_user_info('@user.Id')">
                                         <div class="display_block" style="width:100%;">
-                                            <div class="float_left width_50per">
-                                                <p>
-                                                    <a href="~/Profile/Index?userId=@user.Id"
-                                                       class="sh_fr_name bold_text">@user.Firstname&nbsp;@user.Surname</a>
-                                                </p>
-                                            </div>
-                                            <div class="float_right sh_fr_btn_cont">
-                                                @*<p class="sh_fr_btn"><a class="sh_fr_btn">Show friends</a></p>
-                                                       <p class="sh_fr_btn">
-                                                       <a class="sh_fr_btn" href="Delete?id=@user.Id">Delete</a>
-                                                    </p>*@
+                                            <a href="~/Profile/Index?userId=@user.Id" class="float_left">
+                                                <div class="news_avatar" style="background-image: url(@user.AvatatPath)"></div>
+                                            </a>
+                                            <div class="float_right" style="width:87%;">
+                                                <div class="display_block" style="width:100%;">
+                                                    <div class="float_left width_50per">
+                                                        <p>
+                                                            <a href="~/Profile/Index?userId=@user.Id"
+                                                               class="sh_fr_name bold_text">@user.Firstname&nbsp;@user.Surname</a>
+                                                        </p>
+                                                    </div>
+                                                    <div class="float_right sh_fr_btn_cont">
+                                                            @*<i class="fa fa-plus-square-o"></i>*@
+                                                            <i class="fa fa-close"></i>
+                                                        
+                                                        @*<p class="sh_fr_btn"><a class="sh_fr_btn">Show friends</a></p>
+                                                               <p class="sh_fr_btn">
+                                                               <a class="sh_fr_btn" href="Delete?id=@user.Id">Delete</a>
+                                                            </p>*@
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </li>
+                                </li>
                             }
                         }
                     </ul>
@@ -154,22 +157,24 @@
                 <div><p class="black_text text-size-12 bold_text">Albums</p></div>
                 <div class="all_news" id="albums">
                     @{
+                        int index = 0;
                         foreach (var album in db.Albums.ToList())
                         {
-                    <div class="news_placeholder">
-                        <div class="display_block news_header">
-                            <div class="news_avatar float_left" style="background-image:url(@album.User.AvatatPath)"></div>
-                            <div class="float_left margin_5" style="width:150px">
-                                <p class="text-size-12 bold_text">@album.Name</p>
+                            <div class="news_placeholder">
+                                <div class="display_block news_header">
+                                    <div class="news_avatar float_left" style="background-image:url(@album.User.AvatatPath)"></div>
+                                    <div class="float_left margin_5" style="width:150px" id="album_@index">
+                                        <p class="text-size-12 bold_text">@album.Name</p>
+                                    </div>
+                                    <div class="float_right cur_poiter" onclick="show_Edit_Album(@album.Id)"><i class="fa fa-pencil"></i></div>
+                                    <div class="float_right cur_poiter"><i class="fa fa-close"></i></div>
+                                </div>
+                                <div>
+                                    <p class="text-size-10">Creation date: <span class="bold_text">@album.DateCreate</span></p>
+                                    <p class="text-size-10">Album owner: <span class="bold_text">@album.User.Firstname&nbsp;@album.User.Surname</span></p>
+                                </div>
                             </div>
-                            <div class="float_right"><i class="fa fa-pencil"></i></div>
-                            <div class="float_right"><i class="fa fa-close"></i></div>
-                        </div>
-                        <div>
-                            <p class="text-size-10">Creation date: <span class="bold_text">@album.DateCreate</span></p>
-                            <p class="text-size-10">Album owner: <span class="bold_text">@album.User.Firstname&nbsp;@album.User.Surname</span></p>
-                        </div>
-                    </div>
+                            index++;
                         }
                     }
                 </div>
@@ -183,8 +188,8 @@
                             <div class="news_placeholder">
                                 <div>
                                     <i class="fa fa-close float_right margin_5"></i>
-                                    <i class="fa fa-edit float_right margin_5"></i>
-                                    <i class="fa fa-map-marker float_right margin_5"></i>
+                                    <i class="fa fa-edit float_right margin_5 cur_poiter" onclick="show_Edit_Photo(@photo.Id)"></i>
+                                    <i class="fa fa-map-marker float_right margin_5 cur_poiter" onclick="show_Photo_in_map(@photo.Id)"></i>
                                 </div>
                                 <div class="display_block" style="width:100%; height: 200px;">
                                     <div class="float_left width_50per">
