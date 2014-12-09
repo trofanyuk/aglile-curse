@@ -164,7 +164,13 @@
                                 <div class="display_block news_header">
                                     <div class="news_avatar float_left" style="background-image:url(@album.User.AvatatPath)"></div>
                                     <div class="float_left margin_5" style="width:150px" id="album_@index">
-                                        <p class="text-size-12 bold_text">@album.Name</p>
+                                        @*<p class="text-size-12 bold_text">@album.Name</p>*@
+                                        
+                                        <script type="text/javascript">
+                                            var p = $("<p>");
+                                            p.text("@album.Name");
+                                            $("#album_@index").append(p);
+                                        </script>
                                     </div>
                                     <div class="float_right cur_poiter" onclick="show_Edit_Album(@album.Id)"><i class="fa fa-pencil"></i></div>
                                     <div class="float_right cur_poiter"><i class="fa fa-close"></i></div>
