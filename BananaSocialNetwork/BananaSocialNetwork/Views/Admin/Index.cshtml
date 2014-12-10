@@ -118,7 +118,7 @@
                             foreach (var user in db.Users.ToList())
                             {
                                 <li>
-                                    <div class="news_header friend_block" style="border-bottom: solid 1px #e4e3e3;" onclick="set_user_info('@user.Id')">
+                                    <div class="news_header" style="border-bottom: solid 1px #e4e3e3;">
                                         <div class="display_block" style="width:100%;">
                                             <a href="~/Profile/Index?userId=@user.Id" class="float_left">
                                                 <div class="news_avatar" style="background-image: url(@user.AvatatPath)"></div>
@@ -132,7 +132,8 @@
                                                         </p>
                                                     </div>
                                                     <div class="float_right sh_fr_btn_cont">
-                                                            @*<i class="fa fa-plus-square-o"></i>*@
+                                                        <i class="fa fa-sitemap cur_poiter btn btn-default" onclick="set_user_info('@user.Id')"
+                                                           data-toggle="tooltip" data-placement="left" title="Tooltip on left"></i>
                                                             <i class="fa fa-close"></i>
                                                         
                                                         @*<p class="sh_fr_btn"><a class="sh_fr_btn">Show friends</a></p>
@@ -160,20 +161,14 @@
                         int index = 0;
                         foreach (var album in db.Albums.ToList())
                         {
-                            <div class="news_placeholder">
+                            <div class="news_placeholder" id="album_placeholder_@album.Id">
                                 <div class="display_block news_header">
                                     <div class="news_avatar float_left" style="background-image:url(@album.User.AvatatPath)"></div>
-                                    <div class="float_left margin_5" style="width:150px" id="album_@index">
-                                        @*<p class="text-size-12 bold_text">@album.Name</p>*@
-                                        
-                                        <script type="text/javascript">
-                                            var p = $("<p>");
-                                            p.text("@album.Name");
-                                            $("#album_@index").append(p);
-                                        </script>
+                                    <div class="float_left margin_5" style="width:150px">
+                                        <p class="text-size-12 bold_text" id="album_name_@album.Id">@album.Name</p>
                                     </div>
-                                    <div class="float_right cur_poiter" onclick="show_Edit_Album(@album.Id)"><i class="fa fa-pencil"></i></div>
-                                    <div class="float_right cur_poiter"><i class="fa fa-close"></i></div>
+                                    <div class="float_right cur_poiter" onclick="show_Edit_Album(@album.Id)"><i class="fa fa-edit"></i></div>
+                                    <div class="float_right cur_poiter" onclick="delete_album(@album.Id)"><i class="fa fa-close"></i></div>
                                 </div>
                                 <div>
                                     <p class="text-size-10">Creation date: <span class="bold_text">@album.DateCreate</span></p>
@@ -191,9 +186,9 @@
                     @{
                         foreach (var photo in db.Photos.ToList())
                         {
-                            <div class="news_placeholder">
+                            <div class="news_placeholder" id="photo_placeholder_@photo.Id">
                                 <div>
-                                    <i class="fa fa-close float_right margin_5"></i>
+                                    <i class="fa fa-close float_right margin_5 cur_poiter" onclick="delete_photo(@photo.Id)"></i>
                                     <i class="fa fa-edit float_right margin_5 cur_poiter" onclick="show_Edit_Photo(@photo.Id)"></i>
                                     <i class="fa fa-map-marker float_right margin_5 cur_poiter" onclick="show_Photo_in_map(@photo.Id)"></i>
                                 </div>

@@ -14,7 +14,7 @@
         <div class="float_left">
             <div class="first_column margin_10">
                 <div class="avatar_form margin_10">
-                    <div class="photo_holder">
+                    <div class="photo_holder"> 
                         <img style="background-image: url(@Model.AvatatPath)" src="@Model.AvatatPath" />
                     </div>
                     <div class="controls">
@@ -253,11 +253,11 @@
                                 {
                                     foreach (var photo in album.Photos)
                                     {
-                                <a href="@photo.PhotoPath" class="float_left margin_10" data-id="@photo.Id">
+                                    <a href="@photo.PhotoPath" class="float_left margin_10" data-id="@photo.Id">
                                     <div class="photo float_left"
                                          style="background-image: url(@photo.PhotoPath); ">
                                     </div>
-                                </a>
+                                    </a>
                                     }
                                 }
                             </div>

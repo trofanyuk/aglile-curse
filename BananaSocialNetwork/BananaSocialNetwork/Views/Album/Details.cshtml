@@ -9,7 +9,7 @@
 <div class="middle_content min_width profile_bg">
     <div class="album">
         <div class="al_header">
-            <p class="float_left al_name" id="album_name">@Model.Name</p>
+            <p class="float_left al_name" id="album_name_@Model.Id">@Model.Name</p>
             @if (User.Identity.Name.Equals(Model.User.UserName))
 {
     <div class="menu_div float_right" style="width:160px;">

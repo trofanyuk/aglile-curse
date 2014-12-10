@@ -83,6 +83,7 @@ namespace BananaSocialNetwork.Controllers
 
 
         [Authorize]
+        [HttpGet]
         public ActionResult DeleteConfirmed(int id)
         {
             Album album = db.Albums.Find(id);

@@ -195,7 +195,7 @@ function show_Edit_Album(album_id) {
     });
 }
 
-function save_edit_album(al_id, obj) {
+function save_edit_album(al_id) {
     var album =
         {
             Id: al_id,
@@ -210,8 +210,7 @@ function save_edit_album(al_id, obj) {
         data: album,
         success: function (viewHTML) {
             close_edit_album();
-            //$("#album_name").text(album.Name);
-            obj.text(album.Name);
+            $("#album_name_" + al_id).text(album.Name);
         },
         error: function (errorData) { }
     });
@@ -219,6 +218,19 @@ function save_edit_album(al_id, obj) {
 
 function close_edit_album() {
     var dialog = $("#edit_album_dialog").remove();
+}
+
+function delete_album(al_id)
+{
+    $.ajax({
+        type: "GET",
+        url: "/Album/DeleteConfirmed/",
+        data: { id: al_id },
+        success: function (viewHTML) {
+            $("#album_placeholder_" + al_id).remove();
+        },
+        error: function (errorData) { }
+    });
 }
 
 // Photos //
@@ -287,4 +299,17 @@ function show_Photo_in_map(photo_id) {
 
 function close_photo_in_map() {
     var dialog = $("#photo_int_map").remove();
+}
+
+function delete_photo(photo_id)
+{
+    $.ajax({
+        type: "GET",
+        url: "/Photo/DeleteConfirmed/",
+        data: { id: photo_id },
+        success: function (viewHTML) {
+            $("#photo_placeholder_" + photo_id).remove();
+        },
+        error: function (errorData) { }
+    });
 }
