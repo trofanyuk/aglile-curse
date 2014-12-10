@@ -205,6 +205,13 @@ namespace BananaSocialNetwork.Controllers
                 allNews.AddRange(db.News.ToList().Where(m => m.User.Id == usr.subscriber.Id));
             }
 
+           
+
+
+           
+
+           allNews.Reverse();
+
             return View(allNews);
         }
 
