@@ -27,43 +27,65 @@
                     {
                         <p class="name_text text-size-11 margin_10  text-center">It's your profile</p>
                     }
+                    else if (ViewBag.FriendsNull == 0)
+                    {
+                    <input type="button" value="Add to friends" class="f_b_pos f_btn"
+                           onclick="add_friend('@user.Id', this)" />
+                    }
                     else
                     {
                         foreach (BananaSocialNetwork.Models.Friends friends in ViewBag.Friends)
                         {
-                            if (friends.friend == null || friends.user == null)
-                            { 
+                            if (friends.user == null)
+                            {
+                              
+                        <input type="button" value="Add to friends" class="f_b_pos f_btn"
+                                        onclick="add_friend('@user.Id', this)" />
+                                continue;
+                            }
+
+                            else if (friends.friend == null)
+                            {
+                               
+                                continue;
+                                @*<input type="button" value="Add to friends" class="f_b_pos f_btn"
+                                        onclick="add_friend('@user.Id', this)" />*@
                                 
-                                <script>
-                                    alert("aaa");
-                                </script>
-                                
-                            }    
-                            else if (friends.confirm == false && friends.friend.Id == user.Id)
+                            }
+                            else if (friends.confirm == false && friends.friend.Id == user.Id && friends.user.Id == ViewBag.User)
                             { 
                                 <p class="name_text text-size-11 margin_10  text-center">Your request is not accepted</p>
+                                break;
                             }
-                            else if (friends.confirm == false && friends.user.Id == user.Id)
+                            else if (friends.confirm == false && friends.user.Id == user.Id && friends.friend.Id == ViewBag.User)
                             {
                               
                                 <input type="button" value="Confirm" class="f_b_pos f_btn"
                                        onclick="confirm_friend('@user.Id', this)" />
+                                break;
                             }
-                            else if (friends.confirm == true && friends.user.Id == user.Id || friends.confirm == true && friends.friend.Id == user.Id)
+                            else if (friends.confirm == true && friends.friend.Id == user.Id && friends.user.Id == ViewBag.User)
                             {
                              
-                                <p class="name_text text-size-11 margin_10  text-center">Your friend</p>
+                                <p class="name_text text-size-11 margin_10  text-center">Your friend</p>break;
                             }
-                            else
+                            else if (friends.friend == null && friends.user == null)
                             {
                                 <input type="button" value="Add to friends" class="f_b_pos f_btn"
-                                       onclick="add_friend('@user.Id', this)" />
+                                        onclick="add_friend('@user.Id', this)" />
                             }
-
+                                  @*else if (friends.friend == null && friends.user.Id == ViewBag.User && friends.confirm == false)
+                            {
+                                <script>alert("аывавыаыва");</script>
+                                <input type="button" value="Add to friends" class="f_b_pos f_btn"
+                                        onclick="add_friend('@user.Id', this)" />
+                                
+                            }*@      
 
                         }
 
                     }
+                   
 
 
 

@@ -60,8 +60,16 @@ namespace BananaSocialNetwork.Controllers
             ViewBag.Users = users;
 
             User user = db.Users.Where(m => m.Email == HttpContext.User.Identity.Name).FirstOrDefault();
-            List<Friends> friends = db.Friends.Where(m => m.user.Id == user.Id || m.friend.Id == user.Id && m.confirm == false).ToList<Friends>();
-            ViewBag.Friends = friends;
+            List<Friends> friends = db.Friends.Where(m => m.user.Id == user.Id  || m.friend.Id == user.Id).ToList<Friends>();
+            if(friends.Count() == 0)
+            {
+                ViewBag.FriendsNull = 0;
+            }
+            else
+            {
+                ViewBag.Friends = friends;
+            }
+            ViewBag.User = user.Id;
             
             return View();
         }

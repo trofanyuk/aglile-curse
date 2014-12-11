@@ -205,16 +205,18 @@ namespace BananaSocialNetwork.Controllers
                 allNews.AddRange(db.News.ToList().Where(m => m.User.Id == usr.subscriber.Id));
             }
 
+
+
+            allNews.Sort(delegate(News news1, News news2)
+            { return news2.CreationTime.CompareTo(news1.CreationTime); });  
            
-
-
+        
            
-
-           allNews.Reverse();
 
             return View(allNews);
         }
 
+    
 
         public ActionResult ShowFriends(string userId)
         {
