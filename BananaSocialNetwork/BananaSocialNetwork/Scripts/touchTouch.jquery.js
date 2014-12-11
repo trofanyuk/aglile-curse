@@ -360,6 +360,7 @@ function sendCom() {
 
 function del_comment(id, id_com)
 {
+
     //alert(id_com);
     $.ajax({
         async: false,

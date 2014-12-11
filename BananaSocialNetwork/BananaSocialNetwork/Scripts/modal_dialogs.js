@@ -306,7 +306,7 @@ function delete_user(id)
 function delete_comment(idComment)
 {
     $.ajax({
-        type: "GET",
+        type: "POST",
         url: "/Comment/DeleteConfirmed/",
         data: { id: idComment },
         success: function (viewHTML) {
