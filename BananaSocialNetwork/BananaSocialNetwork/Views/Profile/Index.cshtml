@@ -188,7 +188,7 @@
                         <div class="menu_div float_right margin_5" style="width:180px;">
                             <div class="main-item text-center" tabindex="1"><a @*href="javascript:void(0);"*@>Settings</a></div>
                             <ul class="sub-menu" style="width:180px;">
-                                @if (User.Identity.Name.Equals(Model.UserName))
+                                @if (User.Identity.Name.Equals(Model.UserName) || User.IsInRole("admin"))
                                 {
                                     <li><a class="margin_10" onclick="showModal_Add_Album()"><i class="fa fa-plus"></i>Create album</a></li>
                                 }

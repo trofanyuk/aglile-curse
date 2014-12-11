@@ -11,12 +11,15 @@ namespace BananaSocialNetwork.Controllers
     public class AdminController : Controller
     {
         ApplicationDbContext db = new ApplicationDbContext();
+       
+        [Authorize(Roles = "admin")]
         public ActionResult Index()
         {
             return View();
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin")]
         public string SearchUser(string search, string type)
         {
             List<User> users = new List<User>();
@@ -47,6 +50,7 @@ namespace BananaSocialNetwork.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public ActionResult SearchUserView(string json)
         {
             JavaScriptSerializer js = new JavaScriptSerializer();
@@ -56,6 +60,7 @@ namespace BananaSocialNetwork.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin")]
         public string NewsUser(string iduser)
         {
             List<News> allNews = new List<News>();
@@ -66,6 +71,7 @@ namespace BananaSocialNetwork.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public ActionResult NewsUserView(string json)
         {
             JavaScriptSerializer js = new JavaScriptSerializer();
