@@ -6,7 +6,7 @@
     foreach (var user in (Model as List<BananaSocialNetwork.Models.User>))
     {
         <li>
-            <div class="news_header friend_block" style="border-bottom: solid 1px #e4e3e3;" onclick="set_user_info('@user.Id')">
+            <div class="news_header" style="border-bottom: solid 1px #e4e3e3;">
                 <div class="display_block" style="width:100%;">
                     <a href="~/Profile/Index?userId=@user.Id" class="float_left">
                         <div class="news_avatar" style="background-image: url(@user.AvatatPath)"></div>
@@ -20,10 +20,10 @@
                                 </p>
                             </div>
                             <div class="float_right sh_fr_btn_cont">
-                                @*<p class="sh_fr_btn"><a class="sh_fr_btn">Show friends</a></p>
-                               <p class="sh_fr_btn">
-                               <a class="sh_fr_btn" href="Delete?id=@user.Id">Delete</a>
-                            </p>*@
+                                <i class="fa fa-sitemap cur_poiter btn btn-default" onclick="set_user_info('@user.Id')"
+                                   data-toggle="tooltip" data-placement="left" title="All information"></i>
+                                <i class="fa fa-close cur_poiter btn btn-default" onclick="delete_user('@user.Id')"
+                                   data-toggle="tooltip" data-placement="left" title="Delete user"></i>
                             </div>
                         </div>
                     </div>

@@ -39,6 +39,16 @@ namespace BananaSocialNetwork.Controllers
             }
         }
 
+        [HttpGet]
+        public void Delete(string id)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            var user = db.Users.Where(m => m.Id.Equals(id)).First();
+            db.Friends.RemoveRange(db.Friends.Where(m => m.friend.Id.Equals(id) || m.user.Id.Equals(id)));
+            db.Subscribers.RemoveRange(db.Subscribers.Where(m => m.subscriber.Id.Equals(id) || m.user.Id.Equals(id)));
+            db.Users.Remove(user);
+            db.SaveChanges();
+        }
         //
         // GET: /Account/Login
         [AllowAnonymous]

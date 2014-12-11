@@ -11,9 +11,6 @@
     </script>
     foreach (var news in (Model as List<BananaSocialNetwork.Models.News>))
     {
-        @*<script type="text/javascript">
-            index++;
-        </script>*@
         if (news.NewsType == NewsType.AddPhoto)
         {
             try

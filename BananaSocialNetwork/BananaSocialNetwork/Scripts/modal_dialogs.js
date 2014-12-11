@@ -35,9 +35,132 @@ function find_user() {
     }
 }
 
+function reset()
+{
+    all_users();
+    all_news();
+    all_albums();
+    all_photos();
+}
+
+function all_news()
+{
+    var json = "";
+    $.ajax({
+        async: false,
+        type: "GET",
+        url: "/Admin/AllNews/",
+        success: function (res) {
+            json = res;
+
+            $.ajax({
+                async: false,
+                type: "POST",
+                url: "/Admin/NewsUserView/",
+                data: { json: json },
+                success: function (html) {
+                    var u_container = $('#news');
+                    u_container.empty();
+                    u_container.append(html);
+                },
+                error: function (errorData) {
+                    alert("error!");
+                }
+            });
+        },
+        error: function (errorData) { }
+    });
+}
+
+function all_albums() {
+    var json = "";
+    $.ajax({
+        async: false,
+        type: "GET",
+        url: "/Admin/AllAlbums/",
+        success: function (res) {
+            json = res;
+
+            $.ajax({
+                async: false,
+                type: "POST",
+                url: "/Admin/AlbumsUserView/",
+                data: { json: json },
+                success: function (html) {
+                    var u_container = $('#albums');
+                    u_container.empty();
+                    u_container.append(html);
+                },
+                error: function (errorData) {
+                    alert("error!");
+                }
+            });
+        },
+        error: function (errorData) { }
+    });
+}
+
+function all_photos() {
+    var json = "";
+    $.ajax({
+        async: false,
+        type: "GET",
+        url: "/Admin/AllPhotos/",
+        success: function (res) {
+            json = res;
+
+            $.ajax({
+                async: false,
+                type: "POST",
+                url: "/Admin/PhotosAlbumView/",
+                data: { json: json },
+                success: function (html) {
+                    var u_container = $('#photos');
+                    u_container.empty();
+                    u_container.append(html);
+                },
+                error: function (errorData) {
+                    alert("error!");
+                }
+            });
+        },
+        error: function (errorData) { }
+    });
+}
+
+function all_users() {
+    var json = "";
+    $.ajax({
+        async: false,
+        type: "GET",
+        url: "/Admin/AllUsers/",
+        success: function (res) {
+            json = res;
+
+            $.ajax({
+                async: false,
+                type: "POST",
+                url: "/Admin/SearchUserView/",
+                data: { json: json },
+                success: function (html) {
+                    var u_container = $('#users');
+                    u_container.empty();
+                    u_container.append(html);
+                },
+                error: function (errorData) {
+                    alert("error!");
+                }
+            });
+        },
+        error: function (errorData) { }
+    });
+}
+
 function set_user_info(id)
 {
     set_user_news(id);
+    set_user_albums(id);
+    set_user_photos(id);
 }
 
 function set_user_news(id)
@@ -69,6 +192,114 @@ function set_user_news(id)
             });
         },
         error: function (errorData) { }
+    });
+}
+
+function set_user_albums(id) {
+    var json = "";
+    $.ajax({
+        async: false,
+        type: "GET",
+        url: "/Admin/AlbumsUser/",
+        data: {
+            iduser: id
+        },
+        success: function (res) {
+            json = res;
+
+            $.ajax({
+                async: false,
+                type: "POST",
+                url: "/Admin/AlbumsUserView/",
+                data: { json: json },
+                success: function (html) {
+                    var u_container = $('#albums');
+                    u_container.empty();
+                    u_container.append(html);
+                },
+                error: function (errorData) {
+                    alert("error!");
+                }
+            });
+        },
+        error: function (errorData) { }
+    });
+}
+
+function set_album_photos(id) {
+    var json = "";
+    $.ajax({
+        async: false,
+        type: "GET",
+        url: "/Admin/PhotosAlbum/",
+        data: {
+            idalbum: id
+        },
+        success: function (res) {
+            json = res;
+
+            $.ajax({
+                async: false,
+                type: "POST",
+                url: "/Admin/PhotosAlbumView/",
+                data: { json: json },
+                success: function (html) {
+                    var u_container = $('#photos');
+                    u_container.empty();
+                    u_container.append(html);
+                },
+                error: function (errorData) {
+                    alert("error!");
+                }
+            });
+        },
+        error: function (errorData) { }
+    });
+}
+
+function set_user_photos(id) {
+    var json = "";
+    $.ajax({
+        async: false,
+        type: "GET",
+        url: "/Admin/PhotosUser/",
+        data: {
+            iduser: id
+        },
+        success: function (res) {
+            json = res;
+
+            $.ajax({
+                async: false,
+                type: "POST",
+                url: "/Admin/PhotosAlbumView/",
+                data: { json: json },
+                success: function (html) {
+                    var u_container = $('#photos');
+                    u_container.empty();
+                    u_container.append(html);
+                },
+                error: function (errorData) {
+                    alert("error!");
+                }
+            });
+        },
+        error: function (errorData) { }
+    });
+}
+
+function delete_user(id)
+{
+    $.ajax({
+        type: "GET",
+        url: "/Account/Delete/",
+        data: { id: id },
+        success: function (viewHTML) {
+            $("#user_placeholder_" + id).remove();
+        },
+        error: function (errorData) {
+            alert("Something wrong!");
+        }
     });
 }
 

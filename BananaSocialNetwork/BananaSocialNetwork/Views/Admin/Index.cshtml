@@ -13,7 +13,10 @@
         }
         <div class="display_block" style="width:100%;">
             <div class="float_left width_50per">
-                <div><p class="black_text text-size-12 bold_text">News</p></div>
+                <div class="text-right">
+                    <p class="black_text text-size-12 bold_text float_left margin_10">News</p>
+                    <input type="button" class="btn margin_5 border_radius_0" value="All news" onclick="all_news()" /> 
+                </div>
                 <div class="all_news" id="news">
                     @{
                         <script type="text/javascript">
@@ -110,43 +113,14 @@
                         <option>By name</option>
                         <option>By email</option>
                     </select><input type="button" value="Search" class="btn border_radius_0" onclick="find_user()" />
-                    <input type="submit" value="Reset" class="btn border_radius_0" onclick="location.reload()" />
+                    <input type="submit" value="Reset" class="btn border_radius_0" onclick="reset()" />
                 </div>
                 <div class="all_news">
                     <ul id="users" class="news_placeholder">
                         @{
-                            foreach (var user in db.Users.ToList())
-                            {
-                                <li>
-                                    <div class="news_header" style="border-bottom: solid 1px #e4e3e3;">
-                                        <div class="display_block" style="width:100%;">
-                                            <a href="~/Profile/Index?userId=@user.Id" class="float_left">
-                                                <div class="news_avatar" style="background-image: url(@user.AvatatPath)"></div>
-                                            </a>
-                                            <div class="float_right" style="width:87%;">
-                                                <div class="display_block" style="width:100%;">
-                                                    <div class="float_left width_50per">
-                                                        <p>
-                                                            <a href="~/Profile/Index?userId=@user.Id"
-                                                               class="sh_fr_name bold_text">@user.Firstname&nbsp;@user.Surname</a>
-                                                        </p>
-                                                    </div>
-                                                    <div class="float_right sh_fr_btn_cont">
-                                                        <i class="fa fa-sitemap cur_poiter btn btn-default" onclick="set_user_info('@user.Id')"
-                                                           data-toggle="tooltip" data-placement="left" title="Tooltip on left"></i>
-                                                            <i class="fa fa-close"></i>
-                                                        
-                                                        @*<p class="sh_fr_btn"><a class="sh_fr_btn">Show friends</a></p>
-                                                               <p class="sh_fr_btn">
-                                                               <a class="sh_fr_btn" href="Delete?id=@user.Id">Delete</a>
-                                                            </p>*@
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            }
+                            <script>
+                                all_users();
+                            </script>
                         }
                     </ul>
                 </div>
@@ -155,70 +129,28 @@
         <hr style="border-color: #e1e0e0;" />
         <div class="display_block" style="width:100%;">
             <div class="float_left" style="width:30%;">
-                <div><p class="black_text text-size-12 bold_text">Albums</p></div>
+                <div class="text-right">
+                    <p class="black_text text-size-12 bold_text float_left margin_10">Albums</p>
+                    <input type="button" class="btn margin_5 border_radius_0" value="All albums" onclick="all_albums()" /> 
+                </div>
                 <div class="all_news" id="albums">
                     @{
-                        int index = 0;
-                        foreach (var album in db.Albums.ToList())
-                        {
-                            <div class="news_placeholder" id="album_placeholder_@album.Id">
-                                <div class="display_block news_header">
-                                    <div class="news_avatar float_left" style="background-image:url(@album.User.AvatatPath)"></div>
-                                    <div class="float_left margin_5" style="width:150px">
-                                        <p class="text-size-12 bold_text" id="album_name_@album.Id">@album.Name</p>
-                                    </div>
-                                    <div class="float_right cur_poiter" onclick="show_Edit_Album(@album.Id)"><i class="fa fa-edit"></i></div>
-                                    <div class="float_right cur_poiter" onclick="delete_album(@album.Id)"><i class="fa fa-close"></i></div>
-                                </div>
-                                <div>
-                                    <p class="text-size-10">Creation date: <span class="bold_text">@album.DateCreate</span></p>
-                                    <p class="text-size-10">Album owner: <span class="bold_text">@album.User.Firstname&nbsp;@album.User.Surname</span></p>
-                                </div>
-                            </div>
-                            index++;
-                        }
+                        <script>
+                            all_albums();
+                        </script>
                     }
                 </div>
             </div>
             <div class="float_right" style="width: 70%;">
-                <div><p class="black_text text-size-12 bold_text">Photos</p></div>
+                <div class="text-right">
+                    <p class="black_text text-size-12 bold_text float_left margin_10">Photos</p>
+                    <input type="button" class="btn margin_5 border_radius_0" value="All photos" onclick="all_photos()" /> 
+                </div>
                 <div class="all_news" id="photos">
                     @{
-                        foreach (var photo in db.Photos.ToList())
-                        {
-                            <div class="news_placeholder" id="photo_placeholder_@photo.Id">
-                                <div>
-                                    <i class="fa fa-close float_right margin_5 cur_poiter" onclick="delete_photo(@photo.Id)"></i>
-                                    <i class="fa fa-edit float_right margin_5 cur_poiter" onclick="show_Edit_Photo(@photo.Id)"></i>
-                                    <i class="fa fa-map-marker float_right margin_5 cur_poiter" onclick="show_Photo_in_map(@photo.Id)"></i>
-                                </div>
-                                <div class="display_block" style="width:100%; height: 200px;">
-                                    <div class="float_left width_50per">
-                                        <img src="@photo.PhotoPath" style="max-width:100%" />
-                                    </div>
-                                    <div class="float_right width_50per" style="height: 100%;">
-                                        <div class="scroll-x" style="height: 100%">
-                                            @foreach (var comment in db.Comments.ToList().Where(m => m.Photo.Id == photo.Id))
-                                            {
-                                                <div class="display_block comment_block">
-                                                    <div class="float_left news_header">
-                                                        <div class="float_left">
-                                                            <div class="news_avatar margin_5" style="background-image:url(@comment.User.AvatatPath)"></div>
-                                                        </div>
-                                                        <div class="float_left margin_5">
-                                                            <p class="text-size-10 bold_text line_height_5">@comment.User.Firstname&nbsp;@comment.User.Surname</p>
-                                                            <p class="text-size-10 bold_text line_height_5">@comment.DateCreate</p>
-                                                            <p class="text-size-10 line_height_5">@comment.Text</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="float_right"></div>
-                                                </div>
-                                            }
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        }
+                        <script>
+                            all_photos();
+                        </script>
                     }
 
                 </div>

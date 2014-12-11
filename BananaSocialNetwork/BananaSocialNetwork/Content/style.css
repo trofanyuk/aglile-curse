@@ -739,6 +739,9 @@ a:hover{
     border:solid 1px #e1e0e0;
     list-style:none;
 }
+.news_placeholder .news_header{
+    height: auto;
+}
 .news_placeholder .news_header .news_header_text{
     color:#555;
     font-weight:bold;

@@ -1,0 +1,32 @@
+﻿@model object
+@using BananaSocialNetwork.Models
+@{
+    Layout = null;
+    ApplicationDbContext db = new ApplicationDbContext();
+}
+
+@{
+    int index = 0;
+    foreach (var album in (Model as List<BananaSocialNetwork.Models.Album>))
+    {
+        <div class="news_placeholder" id="album_placeholder_@album.Id">
+            <div class="display_block news_header">
+                <div class="news_avatar float_left" style="background-image:url(@album.User.AvatatPath)"></div>
+                <div class="float_left margin_5" style="width:150px">
+                    <p class="text-size-12 bold_text" id="album_name_@album.Id">@album.Name</p>
+                </div>
+                <div class="float_right">
+                    <div class="cur_poiter" onclick="set_album_photos(@album.Id)"><i class="fa fa-sitemap"></i></div>
+                    <div class="cur_poiter" onclick="show_Edit_Album(@album.Id)"><i class="fa fa-edit"></i></div>
+                    <div class="cur_poiter" onclick="delete_album(@album.Id)"><i class="fa fa-close"></i></div>
+                </div>
+                
+            </div>
+            <div>
+                <p class="text-size-10">Creation date: <span class="bold_text">@album.DateCreate</span></p>
+                <p class="text-size-10">Album owner: <span class="bold_text">@album.User.Firstname&nbsp;@album.User.Surname</span></p>
+            </div>
+        </div>
+        index++;
+    }
+}

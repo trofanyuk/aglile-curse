@@ -318,6 +318,8 @@
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\SearchUserView.cshtml" />
     <Content Include="Views\Admin\NewsUserView.cshtml" />
+    <Content Include="Views\Admin\AlbumsUserView.cshtml" />
+    <Content Include="Views\Admin\PhotosAlbumView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

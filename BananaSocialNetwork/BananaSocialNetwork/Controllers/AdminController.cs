@@ -61,6 +61,28 @@ namespace BananaSocialNetwork.Controllers
 
         [HttpGet]
         [Authorize(Roles = "admin")]
+        public string AllUsers()
+        {
+            List<User> allUsers = new List<User>();
+            allUsers.AddRange(db.Users.ToList());
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            var result = js.Serialize(allUsers);
+            return result;
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "admin")]
+        public string AllNews()
+        {
+            List<News> allNews = new List<News>();
+            allNews.AddRange(db.News.ToList());
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            var result = js.Serialize(allNews);
+            return result;
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "admin")]
         public string NewsUser(string iduser)
         {
             List<News> allNews = new List<News>();
@@ -76,6 +98,81 @@ namespace BananaSocialNetwork.Controllers
         {
             JavaScriptSerializer js = new JavaScriptSerializer();
             Type type = typeof(List<News>);
+            object news = js.Deserialize(json, type);
+            return View(news);
+        }
+
+
+        [HttpGet]
+        [Authorize(Roles = "admin")]
+        public string AllAlbums()
+        {
+            List<Album> allAlbums = new List<Album>();
+            allAlbums.AddRange(db.Albums.ToList());
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            var result = js.Serialize(allAlbums);
+            return result;
+        }
+        [HttpGet]
+        [Authorize(Roles = "admin")]
+        public string AlbumsUser(string iduser)
+        {
+            List<Album> allAlbums = new List<Album>();
+            allAlbums.AddRange(db.Albums.ToList().Where(m => m.User.Id == iduser));
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            var result = js.Serialize(allAlbums);
+            return result;
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "admin")]
+        public ActionResult AlbumsUserView(string json)
+        {
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            Type type = typeof(List<Album>);
+            object news = js.Deserialize(json, type);
+            return View(news);
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "admin")]
+        public string AllPhotos()
+        {
+            List<Photo> allPhotos = new List<Photo>();
+            allPhotos.AddRange(db.Photos.ToList());
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            var result = js.Serialize(allPhotos);
+            return result;
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "admin")]
+        public string PhotosAlbum(int idalbum)
+        {
+            List<Photo> allPhotos = new List<Photo>();
+            allPhotos.AddRange(db.Photos.ToList().Where(m => m.Album.Id == idalbum));
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            var result = js.Serialize(allPhotos);
+            return result;
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "admin")]
+        public string PhotosUser(string iduser)
+        {
+            List<Photo> allPhotos = new List<Photo>();
+            allPhotos.AddRange(db.Photos.ToList().Where(m => m.Album.User.Id == iduser));
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            var result = js.Serialize(allPhotos);
+            return result;
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "admin")]
+        public ActionResult PhotosAlbumView(string json)
+        {
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            Type type = typeof(List<Photo>);
             object news = js.Deserialize(json, type);
             return View(news);
         }

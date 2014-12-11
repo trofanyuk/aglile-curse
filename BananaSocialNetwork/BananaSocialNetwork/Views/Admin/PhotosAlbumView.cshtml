@@ -1,0 +1,44 @@
+﻿@model object
+@using BananaSocialNetwork.Models
+@{
+    Layout = null;
+    ApplicationDbContext db = new ApplicationDbContext();
+}
+
+@{
+    foreach (var photo in (Model as List<BananaSocialNetwork.Models.Photo>))
+    {
+        <div class="news_placeholder" id="photo_placeholder_@photo.Id">
+            <div>
+                <i class="fa fa-close float_right margin_5 cur_poiter" onclick="delete_photo(@photo.Id)"></i>
+                <i class="fa fa-edit float_right margin_5 cur_poiter" onclick="show_Edit_Photo(@photo.Id)"></i>
+                <i class="fa fa-map-marker float_right margin_5 cur_poiter" onclick="show_Photo_in_map(@photo.Id)"></i>
+            </div>
+            <div class="display_block" style="width:100%; height: 200px;">
+                <div class="float_left width_50per">
+                    <img src="@photo.PhotoPath" style="max-width:100%" />
+                </div>
+                <div class="float_right width_50per" style="height: 100%;">
+                    <div class="scroll-x" style="height: 100%">
+                        @foreach (var comment in db.Comments.ToList().Where(m => m.Photo.Id == photo.Id))
+                        {
+                            <div class="display_block comment_block">
+                                <div class="float_left news_header">
+                                    <div class="float_left">
+                                        <div class="news_avatar margin_5" style="background-image:url(@comment.User.AvatatPath)"></div>
+                                    </div>
+                                    <div class="float_left margin_5">
+                                        <p class="text-size-10 bold_text line_height_5">@comment.User.Firstname&nbsp;@comment.User.Surname</p>
+                                        <p class="text-size-10 bold_text line_height_5">@comment.DateCreate</p>
+                                        <p class="text-size-10 line_height_5">@comment.Text</p>
+                                    </div>
+                                </div>
+                                <div class="float_right"></div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
