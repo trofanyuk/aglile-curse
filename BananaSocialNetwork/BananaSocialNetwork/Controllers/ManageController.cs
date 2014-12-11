@@ -35,8 +35,7 @@ namespace BananaSocialNetwork.Controllers
             }
         }
 
-        //
-        // GET: /Manage/Index
+       
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
             ViewBag.StatusMessage = message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
@@ -58,8 +57,7 @@ namespace BananaSocialNetwork.Controllers
             return View(model);
         }
 
-        //
-        // GET: /Manage/RemoveLogin
+      
         public ActionResult RemoveLogin()
         {
             var linkedAccounts = UserManager.GetLogins(User.Identity.GetUserId());
@@ -67,8 +65,7 @@ namespace BananaSocialNetwork.Controllers
             return View(linkedAccounts);
         }
 
-        //
-        // POST: /Manage/RemoveLogin
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> RemoveLogin(string loginProvider, string providerKey)
@@ -91,15 +88,13 @@ namespace BananaSocialNetwork.Controllers
             return RedirectToAction("ManageLogins", new { Message = message });
         }
 
-        //
-        // GET: /Manage/AddPhoneNumber
+       
         public ActionResult AddPhoneNumber()
         {
             return View();
         }
 
-        //
-        // POST: /Manage/AddPhoneNumber
+      
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> AddPhoneNumber(AddPhoneNumberViewModel model)
@@ -108,7 +103,7 @@ namespace BananaSocialNetwork.Controllers
             {
                 return View(model);
             }
-            // Generate the token and send it
+          
             var code = await UserManager.GenerateChangePhoneNumberTokenAsync(User.Identity.GetUserId(), model.Number);
             if (UserManager.SmsService != null)
             {
@@ -122,8 +117,7 @@ namespace BananaSocialNetwork.Controllers
             return RedirectToAction("VerifyPhoneNumber", new { PhoneNumber = model.Number });
         }
 
-        //
-        // POST: /Manage/EnableTwoFactorAuthentication
+      
         [HttpPost]
         public async Task<ActionResult> EnableTwoFactorAuthentication()
         {
@@ -136,8 +130,7 @@ namespace BananaSocialNetwork.Controllers
             return RedirectToAction("Index", "Manage");
         }
 
-        //
-        // POST: /Manage/DisableTwoFactorAuthentication
+        
         [HttpPost]
         public async Task<ActionResult> DisableTwoFactorAuthentication()
         {
@@ -150,8 +143,7 @@ namespace BananaSocialNetwork.Controllers
             return RedirectToAction("Index", "Manage");
         }
 
-        //
-        // GET: /Manage/VerifyPhoneNumber
+       
         public async Task<ActionResult> VerifyPhoneNumber(string phoneNumber)
         {
             await UserManager.GenerateChangePhoneNumberTokenAsync(User.Identity.GetUserId(), phoneNumber);
@@ -159,8 +151,7 @@ namespace BananaSocialNetwork.Controllers
             return phoneNumber == null ? View("Error") : View(new VerifyPhoneNumberViewModel { PhoneNumber = phoneNumber });
         }
 
-        //
-        // POST: /Manage/VerifyPhoneNumber
+       
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> VerifyPhoneNumber(VerifyPhoneNumberViewModel model)
@@ -179,13 +170,12 @@ namespace BananaSocialNetwork.Controllers
                 }
                 return RedirectToAction("Index", new { Message = ManageMessageId.AddPhoneSuccess });
             }
-            // If we got this far, something failed, redisplay form
+         
             ModelState.AddModelError("", "Failed to verify phone");
             return View(model);
         }
 
-        //
-        // GET: /Manage/RemovePhoneNumber
+      
         public async Task<ActionResult> RemovePhoneNumber()
         {
             var result = await UserManager.SetPhoneNumberAsync(User.Identity.GetUserId(), null);
@@ -201,15 +191,13 @@ namespace BananaSocialNetwork.Controllers
             return RedirectToAction("Index", new { Message = ManageMessageId.RemovePhoneSuccess });
         }
 
-        //
-        // GET: /Manage/ChangePassword
+       
         public ActionResult ChangePassword()
         {
             return View();
         }
 
-        //
-        // POST: /Manage/ChangePassword
+      
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ChangePassword(ChangePasswordViewModel model)
@@ -232,15 +220,13 @@ namespace BananaSocialNetwork.Controllers
             return View(model);
         }
 
-        //
-        // GET: /Manage/SetPassword
+ 
         public ActionResult SetPassword()
         {
             return View();
         }
 
-        //
-        // POST: /Manage/SetPassword
+       
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> SetPassword(SetPasswordViewModel model)
@@ -260,12 +246,11 @@ namespace BananaSocialNetwork.Controllers
                 AddErrors(result);
             }
 
-            // If we got this far, something failed, redisplay form
+         
             return View(model);
         }
 
-        //
-        // GET: /Manage/ManageLogins
+ 
         public async Task<ActionResult> ManageLogins(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
@@ -287,18 +272,16 @@ namespace BananaSocialNetwork.Controllers
             });
         }
 
-        //
-        // POST: /Manage/LinkLogin
+       
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LinkLogin(string provider)
         {
-            // Request a redirect to the external login provider to link a login for the current user
+          
             return new AccountController.ChallengeResult(provider, Url.Action("LinkLoginCallback", "Manage"), User.Identity.GetUserId());
         }
 
-        //
-        // GET: /Manage/LinkLoginCallback
+       
         public async Task<ActionResult> LinkLoginCallback()
         {
             var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync(XsrfKey, User.Identity.GetUserId());

@@ -11,7 +11,7 @@ namespace BananaSocialNetwork.Controllers
     public class AdminController : Controller
     {
         ApplicationDbContext db = new ApplicationDbContext();
-       
+
         [Authorize(Roles = "admin")]
         public ActionResult Index()
         {
@@ -22,18 +22,21 @@ namespace BananaSocialNetwork.Controllers
         [Authorize(Roles = "admin")]
         public string SearchUser(string search, string type)
         {
+            string usersName;
             List<User> users = new List<User>();
             if (type.Equals("By name"))
             {
-                search = search.Trim(' ');
+                usersName = search.Trim(' ');
 
-                if (search.IndexOf(' ') == -1)
+
+
+                if (usersName.IndexOf(' ') == -1)
                 {
-                    users = db.Users.Where(m => m.Firstname == search || m.Surname == search).ToList<User>();
+                    users = db.Users.Where(m => m.Firstname == usersName || m.Surname == usersName).ToList<User>();
                 }
                 else
                 {
-                    string[] searchStr = search.Split(' ');
+                    string[] searchStr = usersName.Split(' ');
                     string FirstName = searchStr[0];
                     string SureName = searchStr[1];
 

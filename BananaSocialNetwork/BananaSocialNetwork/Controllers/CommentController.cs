@@ -14,13 +14,13 @@ namespace BananaSocialNetwork.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: /Comment/
+
         public ActionResult Index()
         {
             return View(db.Comments.ToList());
         }
 
-        // GET: /Comment/Details/5
+
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -35,7 +35,7 @@ namespace BananaSocialNetwork.Controllers
             return View(comment);
         }
 
-        // GET: /Comment/Create
+
         public ActionResult Create()
         {
             return View();
@@ -46,9 +46,7 @@ namespace BananaSocialNetwork.Controllers
             return View(comment);
         }
 
-        // POST: /Comment/Create
-        // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
-        // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
 
         public ActionResult Create(string text, int Id)
@@ -83,7 +81,7 @@ namespace BananaSocialNetwork.Controllers
 
         }
 
-        // GET: /Comment/Edit/5
+
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -98,9 +96,7 @@ namespace BananaSocialNetwork.Controllers
             return View(comment);
         }
 
-        // POST: /Comment/Edit/5
-        // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
-        // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Text,DateCreate")] Comment comment)
@@ -114,7 +110,7 @@ namespace BananaSocialNetwork.Controllers
             return View(comment);
         }
 
-        // GET: /Comment/Delete/5
+
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -129,7 +125,7 @@ namespace BananaSocialNetwork.Controllers
             return View(comment);
         }
 
-        // POST: /Comment/Delete/5
+
         [HttpPost]
         public ActionResult DeleteConfirmed(int id)
         {

@@ -44,9 +44,9 @@
         {
             try
             {
-               
+
                 Album album = db.Albums.ToList().Where(m => m.Id == news.IdContent).First();
-                
+
                 <div class="news_placeholder">
                     <div>
                         <div class="news_header">
@@ -62,16 +62,16 @@
                         {
                             <div class="news_content">
                                 <div class="text-center"><p class="text-size-11">Position on map</p></div>
-                                <div  class="canvas_map" style="height: 350px; width:100%">
+                                <div class="canvas_map" style="height: 350px; width:100%">
                                 </div>
                             </div>
                             <script type="text/javascript">
-                                         //  alert("Индекс - 1" + index);
-                                           arr[index] = @album.GeoLong.ToString().Replace(',', '.');
-                                           index++;
-                                         //  alert("индекс - 2" + index);
-                                           arr[index] = @album.GeoLat.ToString().Replace(',', '.');
-                                           index++;
+                                //  alert("Индекс - 1" + index);
+                                arr[index] = @album.GeoLong.ToString().Replace(',', '.');
+                                index++;
+                                //  alert("индекс - 2" + index);
+                                arr[index] = @album.GeoLat.ToString().Replace(',', '.');
+                                index++;
 
                             </script>
 

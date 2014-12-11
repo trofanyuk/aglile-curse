@@ -176,14 +176,6 @@
     <Compile Include="IRepository\IRepositoryClasses.cs" />
     <Compile Include="IRepository\ContextClasses.cs" />
     <Compile Include="IRepository\IRepository.cs" />
-    <Compile Include="Migrations\201411252113144_news.cs" />
-    <Compile Include="Migrations\201411252113144_news.Designer.cs">
-      <DependentUpon>201411252113144_news.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201411252200461_news_2.cs" />
-    <Compile Include="Migrations\201411252200461_news_2.Designer.cs">
-      <DependentUpon>201411252200461_news_2.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Album.cs" />
@@ -276,14 +268,10 @@
     <Content Include="Views\Account\ConfirmedEmail.cshtml" />
     <Content Include="Views\Account\EmailNoneConfirmed.cshtml" />
     <Content Include="Views\Shared\_UsersLayout.cshtml" />
-    <Content Include="Views\Album\Index.cshtml" />
     <Content Include="Views\Photo\Index.cshtml" />
     <Content Include="Views\Shared\_Base.cshtml" />
     <Content Include="Views\Account\RegistrationCanceled.cshtml" />
-    <Content Include="Views\Album\NotAlbums.cshtml" />
     <Content Include="Views\Album\Details.cshtml" />
-    <Content Include="Views\Album\Delete.cshtml" />
-    <Content Include="Views\Album\Create.cshtml" />
     <Content Include="Views\Photo\Create.cshtml" />
     <Content Include="Views\Photo\Delete.cshtml" />
     <Content Include="Views\Photo\Details.cshtml" />
@@ -305,7 +293,6 @@
     <Content Include="Views\Comment\Index.cshtml" />
     <Content Include="Views\Comment\CommentList.cshtml" />
     <Content Include="Views\Comment\OneComment.cshtml" />
-    <Content Include="Views\Album\Edit.cshtml" />
     <Content Include="Views\Photo\EditPhotoPartial.cshtml" />
     <Content Include="Views\Album\EditAlbumPartial.cshtml" />
     <Content Include="Views\Photo\PhotoInMapPartial.cshtml" />
@@ -332,14 +319,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201411252113144_news.resx">
-      <DependentUpon>201411252113144_news.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201411252200461_news_2.resx">
-      <DependentUpon>201411252200461_news_2.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

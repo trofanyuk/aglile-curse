@@ -157,10 +157,8 @@ namespace BananaSocialNetwork.Controllers
         public ActionResult ShowMapPhotos(int albumId)
         {
             Album album = db.Albums.Where(m => m.Id == albumId).First();
-           
-                album.Photos = db.Photos.Where(m => m.Album.Id == albumId);
-                return View(album);
-
+            album.Photos = db.Photos.Where(m => m.Album.Id == albumId);
+            return View(album);
         }
 
         protected override void Dispose(bool disposing)

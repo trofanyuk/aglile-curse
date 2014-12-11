@@ -8,7 +8,7 @@ using System.Web;
 namespace BananaSocialNetwork.IRepository
 {
 
-    public class IRepositoryClasses
+    public class RepositoryClasses
     {
         public UserIRepository User { get; set; }
         public AlbumsIRepository Albums { get; set; }

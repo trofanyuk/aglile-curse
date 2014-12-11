@@ -14,13 +14,13 @@ namespace BananaSocialNetwork.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: /Fr/
+        
         public ActionResult Index()
         {
             return View(db.Friends.ToList());
         }
 
-        // GET: /Fr/Details/5
+      
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -35,15 +35,13 @@ namespace BananaSocialNetwork.Controllers
             return View(friends);
         }
 
-        // GET: /Fr/Create
+     
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: /Fr/Create
-        // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
-        // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
+      
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include="Id")] Friends friends)
@@ -58,7 +56,7 @@ namespace BananaSocialNetwork.Controllers
             return View(friends);
         }
 
-        // GET: /Fr/Edit/5
+       
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -73,9 +71,7 @@ namespace BananaSocialNetwork.Controllers
             return View(friends);
         }
 
-        // POST: /Fr/Edit/5
-        // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
-        // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
+     
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include="Id")] Friends friends)
@@ -89,7 +85,7 @@ namespace BananaSocialNetwork.Controllers
             return View(friends);
         }
 
-        // GET: /Fr/Delete/5
+        
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -104,7 +100,7 @@ namespace BananaSocialNetwork.Controllers
             return View(friends);
         }
 
-        // POST: /Fr/Delete/5
+        
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

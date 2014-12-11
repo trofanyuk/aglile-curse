@@ -33,17 +33,17 @@ namespace BananaSocialNetwork.Controllers
 
             List<User> users;
 
+            string usersName;
+            usersName = search.Trim(' ');
 
 
-            search = search.Trim(' ');
-
-            if (search.IndexOf(' ') == -1)
+            if (usersName.IndexOf(' ') == -1)
             {
-                users = db.Users.Where(m => m.Firstname == search || m.Surname == search).ToList<User>();
+                users = db.Users.Where(m => m.Firstname == usersName || m.Surname == usersName).ToList<User>();
             }
             else
             {
-                string[] searchStr = search.Split(' ');
+                string[] searchStr = usersName.Split(' ');
                 string FirstName = searchStr[0];
                 string SureName = searchStr[1];
 
@@ -60,8 +60,8 @@ namespace BananaSocialNetwork.Controllers
             ViewBag.Users = users;
 
             User user = db.Users.Where(m => m.Email == HttpContext.User.Identity.Name).FirstOrDefault();
-            List<Friends> friends = db.Friends.Where(m => m.user.Id == user.Id  || m.friend.Id == user.Id).ToList<Friends>();
-            if(friends.Count() == 0)
+            List<Friends> friends = db.Friends.Where(m => m.user.Id == user.Id || m.friend.Id == user.Id).ToList<Friends>();
+            if (friends.Count() == 0)
             {
                 ViewBag.FriendsNull = 0;
             }
@@ -70,7 +70,7 @@ namespace BananaSocialNetwork.Controllers
                 ViewBag.Friends = friends;
             }
             ViewBag.User = user.Id;
-            
+
             return View();
         }
 
@@ -86,8 +86,6 @@ namespace BananaSocialNetwork.Controllers
                 friends.confirm = false;
                 db.Friends.Add(friends);
                 db.SaveChanges();
-
-
             }
 
             return RedirectToAction("Index", "Profile");

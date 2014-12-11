@@ -22,8 +22,6 @@ namespace BananaSocialNetwork.Controllers
     {
         ApplicationDbContext db = new ApplicationDbContext();
         IRepositoryUser repoUser;
-        //
-        // GET: /Default/
 
         public ProfileController()
         {
@@ -34,8 +32,7 @@ namespace BananaSocialNetwork.Controllers
             repoUser = r;
         }
 
-        //
-        // GET: /Default/
+
         public ActionResult Index(string userId)
         {
 
@@ -47,7 +44,7 @@ namespace BananaSocialNetwork.Controllers
                     user = db.Users.ToList().Where(m => m.Id == userId).First();
                 }
                 user.Albums = db.Albums.ToList().Where(m => m.User.Id == user.Id).OrderByDescending(t => t.DateCreate);
-                user.Friends = db.Friends.ToList().Where(m => m.user.Id == user.Id  || m.friend.Id == user.Id);
+                user.Friends = db.Friends.ToList().Where(m => m.user.Id == user.Id || m.friend.Id == user.Id);
                 user.Subscribers = db.Subscribers.ToList().Where(m => m.subscriber.Id == user.Id);
 
 
@@ -125,7 +122,7 @@ namespace BananaSocialNetwork.Controllers
             return RedirectToAction("Edit");
         }
 
-       
+
 
 
         public ActionResult Delete(string id)
@@ -173,29 +170,12 @@ namespace BananaSocialNetwork.Controllers
             Subscribers subscribers = new Subscribers(user, friend);
             db.Subscribers.Add(subscribers);
             db.SaveChanges();
-           
+
             return Redirect("Index?userId=" + idFriend);
         }
 
         public ActionResult ShowUpdates()
         {
-            //List<Photo> photos = new List<Photo>();
-            //User user = db.Users.ToList().Where(m => m.Email == HttpContext.User.Identity.Name).FirstOrDefault();
-            //user.Subscribers = db.Subscribers.ToList().Where(m => m.user.Id == user.Id);
-            //foreach (Subscribers sub in user.Subscribers)
-            //{
-            //    sub.subscriber.Albums = db.Albums.Where(m => m.User.Id == sub.subscriber.Id);
-            //    for (int i = 0; i < sub.subscriber.Albums.Count(); i++)
-            //    {
-            //        Album album = sub.subscriber.Albums.ElementAt(i);
-            //        List<Photo> photosUser = db.Photos.ToList().Where(m => m.Album.Id == album.Id).ToList();
-            //        foreach (Photo photo in photosUser)
-            //        {
-            //            photos.Add(photo);
-            //        }
-            //    }
-            //}
-            //return View(photos);
 
             List<News> allNews = new List<News>();
             User user = db.Users.ToList().Where(m => m.Email == HttpContext.User.Identity.Name).FirstOrDefault();
@@ -205,18 +185,13 @@ namespace BananaSocialNetwork.Controllers
                 allNews.AddRange(db.News.ToList().Where(m => m.User.Id == usr.subscriber.Id));
             }
 
-
-
             allNews.Sort(delegate(News news1, News news2)
-            { return news2.CreationTime.CompareTo(news1.CreationTime); });  
-           
-        
-           
+            { return news2.CreationTime.CompareTo(news1.CreationTime); });
 
             return View(allNews);
         }
 
-    
+
 
         public ActionResult ShowFriends(string userId)
         {

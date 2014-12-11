@@ -15,14 +15,14 @@ namespace BananaSocialNetwork.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: /Photo/
+
         public ActionResult Index()
         {
 
             return View(db.Photos.ToList());
         }
 
-        // GET: /Photo/Details/5
+
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,15 +37,11 @@ namespace BananaSocialNetwork.Controllers
             return View(photo);
         }
 
-        // GET: /Photo/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: /Photo/Create
-        // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
-        // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
         private void SaveFile(string fileName, string contentType, Stream inputStream, string userEmail, int albumId)
         {
             string name = @"/server_imgs/" + userEmail + Convert.ToString(albumId) + fileName;
@@ -105,7 +101,7 @@ namespace BananaSocialNetwork.Controllers
             return View(photo);
         }
 
-        // GET: /Photo/Edit/5
+
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -121,9 +117,7 @@ namespace BananaSocialNetwork.Controllers
             return View(photo);
         }
 
-        // POST: /Photo/Edit/5
-        // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
-        // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
 
         public ActionResult Edit(Photo json)
@@ -138,7 +132,7 @@ namespace BananaSocialNetwork.Controllers
             return null;
         }
 
-        // GET: /Photo/Delete/5
+
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -153,7 +147,7 @@ namespace BananaSocialNetwork.Controllers
             return View(photo);
         }
 
-        // POST: /Photo/Delete/5
+
         [HttpGet]
         public ActionResult DeleteConfirmed(int id)
         {
