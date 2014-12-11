@@ -199,6 +199,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\arrows.png" />
+    <Content Include="Content\bgslider.css" />
+    <Content Include="Content\bg\1.jpg" />
+    <Content Include="Content\bg\2.jpg" />
+    <Content Include="Content\bg\3.jpg" />
+    <Content Include="Content\bg\4.jpg" />
+    <Content Include="Content\bg\pattern.png" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -224,6 +230,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modal_dialogs.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\bgslider.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\touchTouch.jquery.js" />

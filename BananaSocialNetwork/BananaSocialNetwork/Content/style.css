@@ -42,6 +42,10 @@ a:hover{
     color:#555;
 }
 
+.white_text{
+    color: white;
+}
+
 .green_link{
     color: #147269;
 }
@@ -281,6 +285,7 @@ a:hover{
 .middle_content {
     border: solid 1px #25AD9F;
     border-top: none;
+    z-index: 10;
 }
 
 .green_btn {
@@ -403,6 +408,7 @@ a:hover{
     height: auto;
     border: solid 1px #25AD9F;
     margin: auto;
+    background-color: rgba(0, 0, 0, 0.40)
 }
 
     .middle_content .enter_form .header_form {
@@ -437,6 +443,7 @@ a:hover{
     .middle_content .enter_form input[type="submit"] {
         width: 100%;
         height: 50px;
+        border: none;
     }
 
     .middle_content .enter_form .remember_text {
@@ -447,7 +454,7 @@ a:hover{
 
 .middle_content .reg_form {
     width: 100%;
-    height: 400px;
+    height: auto;
     /*border: solid 1px #25AD9F;*/
     margin: auto;
 }
@@ -455,7 +462,8 @@ a:hover{
     .middle_content .reg_form .header_form {
         width: 100%;
         height: 50px;
-        background-color: #25AD9F;
+        /*background-color: #25AD9F;*/
+        border-bottom: solid 1px #25AD9F;
     }
 
     .middle_content .reg_form .header_small {
@@ -498,11 +506,7 @@ a:hover{
     .middle_content .reg_form input[type="submit"] {
         width: 100%;
         height: 50px;
-    }
-
-    .middle_content .reg_form .note {
-        color: #929292;
-        font-size: 10px;
+        border: none;
     }
 
     .middle_content .reg_form .validation_conteiner {
@@ -540,8 +544,6 @@ a:hover{
     color:#555;
     text-decoration: none;
     cursor: pointer;
-    font-weight: bold;
-    font-size: 12px;
 }
 
 .middle_content .profile .header_form a i{
@@ -595,6 +597,8 @@ a:hover{
 .middle_content .profile .about_form .note{
     color: #555;
     width: 100%;
+    display: block;
+    float: left;
 }
 
 .middle_content .profile .friends_form {

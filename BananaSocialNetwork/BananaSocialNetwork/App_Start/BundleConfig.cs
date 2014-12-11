@@ -40,6 +40,12 @@ namespace BananaSocialNetwork
                       "~/Content/touchTouch.css",
                       "~/Content/style.css"));
 
+            bundles.Add(new ScriptBundle("~/bundles/bgslider_script").Include(
+                        "~/Scripts/bgslider.js"));
+
+            bundles.Add(new StyleBundle("~/Content/bgslider_css").Include(
+                      "~/Content/bgslider.css"));
+
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862
             BundleTable.EnableOptimizations = true;

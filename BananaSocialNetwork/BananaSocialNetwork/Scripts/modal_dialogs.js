@@ -154,6 +154,7 @@ function confirm_add_album() {
     var location = $("#Adress");
     var geolong = $("#GeoLong").val();
     var geolat = $("#GeoLat").val();
+    var uid = $("#uid").val();
 
     if (name.val() == "") {
         alert_div.css("visibility", "visible");
@@ -174,12 +175,12 @@ function confirm_add_album() {
     $.ajax({
         type: "POST",
         url: "/Album/Create/",
-        data: album,
+        data: { json: album, id: uid },
         success: function () {
-            window.location.href = "/Profile/Index/";
+            window.location.href = "/Profile/Index?userId=" + uid;
         },
         error: function (errorData) {
-            window.location.href = "/Profile/Index/";
+            window.location.href = "/Profile/Index?userId=" + uid;
         }
     });
 }
@@ -220,6 +221,18 @@ function close_edit_album() {
     var dialog = $("#edit_album_dialog").remove();
 }
 
+function delete_album_profile(al_id, u_id) {
+    $.ajax({
+        type: "GET",
+        url: "/Album/DeleteConfirmed/",
+        data: { id: al_id },
+        success: function (viewHTML) {
+            document.location = "/Profile/Index?userId=" + u_id;
+        },
+        error: function (errorData) { }
+    });
+}
+
 function delete_album(al_id)
 {
     $.ajax({
@@ -232,6 +245,7 @@ function delete_album(al_id)
         error: function (errorData) { }
     });
 }
+
 
 // Photos //
 

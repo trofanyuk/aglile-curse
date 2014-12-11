@@ -10,15 +10,23 @@
     @Html.ActionLink("Register as a new user", "Register")
     @Html.ActionLink("Forgot your password?", "ForgotPassword")
 *@
+@Styles.Render("~/Content/bgslider_css")
+@*@Scripts.Render("~/bundles/bgslider_script")*@
 
+<ul class="cb-slideshow">
+    <li><span>Image 01</span></li>
+    <li><span>Image 02</span></li>
+    <li><span>Image 03</span></li>
+    <li><span>Image 04</span></li>
+</ul>
 @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
     <div class="container middle_content min_width " style="border:none">
         <div class="display_block">
             <div class="width_50per float_left" style="margin-top:120px;">
-                <p class="bigger_text">Welcome to Banana Social Network</p>
-                <p class="middle_text">Keep in touch with friends and other wonderful people. Get instant updates pictures of your friends.</p>
+                <p class="bigger_text white_text">Welcome to Banana Social Network</p>
+                <p class="middle_text white_text">Keep in touch with friends and other wonderful people. Get instant updates pictures of your friends.</p>
             </div>
 
             <div class="width_50per float_right" style="margin-top: 60px;">

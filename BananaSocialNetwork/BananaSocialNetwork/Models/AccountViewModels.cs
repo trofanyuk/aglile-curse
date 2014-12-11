@@ -6,7 +6,7 @@ namespace BananaSocialNetwork.Models
     public class ExternalLoginConfirmationViewModel
     {
         [Required]
-        [Display(Name = "Ел. почта")]
+        [Display(Name = "E-Mail")]
         public string Email { get; set; }
     }
 
@@ -42,20 +42,20 @@ namespace BananaSocialNetwork.Models
     public class ForgotViewModel
     {
         [Required]
-        [Display(Name = "Ел. почта")]
+        [Display(Name = "E-Mail")]
         public string Email { get; set; }
     }
 
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Ел. почта")]
+        [Display(Name = "E-Mail")]
         [EmailAddress]
         public string Email { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Пароль")]
+        [Display(Name = "Password")]
         public string Password { get; set; }
 
         [Display(Name = "Remember me?")]
@@ -66,17 +66,17 @@ namespace BananaSocialNetwork.Models
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Ел. почта")]
+        [Display(Name = "E-Mail")]
         public string Email { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Пароль")]
+        [Display(Name = "Password")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Пароль повторно")]
+        [Display(Name = "Password again")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
     }
@@ -85,17 +85,17 @@ namespace BananaSocialNetwork.Models
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Ел. почта")]
+        [Display(Name = "E-Mail")]
         public string Email { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Пароль")]
+        [Display(Name = "Password")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Пароль повторно")]
+        [Display(Name = "Password again")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
@@ -106,7 +106,7 @@ namespace BananaSocialNetwork.Models
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Ел. почта")]
+        [Display(Name = "E-Mail")]
         public string Email { get; set; }
     }
 }

@@ -7,32 +7,37 @@
 @System.Web.Optimization.Scripts.Render("~/bundles/modal_dialogs")
 <input type="hidden" value="@Model.Id" id="al_id" />
 <div class="middle_content min_width profile_bg">
-    <div class="album">
+    <div class="album" id="album_placeholder_@Model.Id">
         <div class="al_header">
             <p class="float_left al_name" id="album_name_@Model.Id">@Model.Name</p>
-            @if (User.Identity.Name.Equals(Model.User.UserName))
-{
-    <div class="menu_div float_right" style="width:160px;">
-        <div class="main-item" tabindex="1"><a @*href="javascript:void(0);"*@>Settings</a></div>
-        <ul class="sub-menu" style="width:160px;">
-            <li><a onclick="show_Add_Photo()"><i class="fa fa-plus fa-1x"></i>Add Photo</a></li>
-            <li><a href="~/Album/ShowMapPhotos?albumId=@Model.Id"><i class="fa fa-map-marker fa-1x"></i>Photos on the map</a></li>
-            <li><a onclick="show_Edit_Album(@Model.Id)"><i class="fa fa-gear fa-1x"></i>Edit</a></li>
-            <li><a href="~/Album/DeleteConfirmed/@Model.Id"><i class="fa fa-trash fa-1x"></i>Delete</a></li>
-        </ul>
-    </div>
-}
+            <div class="menu_div float_right" style="width:160px;">
+                <div class="main-item" tabindex="1"><a @*href="javascript:void(0);"*@>Settings</a></div>
+                <ul class="sub-menu" style="width:160px;">
+                    @if (User.Identity.Name.Equals(Model.User.UserName) || User.IsInRole("admin"))
+                    {
+                    <li><a onclick="show_Add_Photo()"><i class="fa fa-plus fa-1x"></i>Add Photo</a></li>
+                    <li><a href="~/Album/ShowMapPhotos?albumId=@Model.Id"><i class="fa fa-map-marker fa-1x"></i>Photos on the map</a></li>
+                    <li><a onclick="show_Edit_Album(@Model.Id)"><i class="fa fa-gear fa-1x"></i>Edit</a></li>
+                    <li><a onclick="delete_album_profile(@Model.Id ,'@Model.User.Id')"><i class="fa fa-trash fa-1x"></i>Delete</a></li>
+                    }
+                    else
+                    {
+                    <li><a href="~/Album/ShowMapPhotos?albumId=@Model.Id"><i class="fa fa-map-marker fa-1x"></i>Photos on the map</a></li>
+                    }
+                </ul>
+            </div>
+
         </div>
         @if (@Model.Photos.Count() > 0)
         {
             <div class="display_block thumbs ">
                 @foreach (BananaSocialNetwork.Models.Photo photo in Model.Photos)
                 {
-                    <a href="@photo.PhotoPath"
-                       style="background-image: url(@photo.PhotoPath);"
-                       title=""
-                       class="photo_content margin_10"
-                       data-id="@photo.Id"></a>
+                <a href="@photo.PhotoPath"
+                   style="background-image: url(@photo.PhotoPath);"
+                   title=""
+                   class="photo_content margin_10"
+                   data-id="@photo.Id"></a>
                 }
             </div>
         }

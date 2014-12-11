@@ -3,6 +3,7 @@
 @{
     Layout = "~/Views/Shared/_UsersLayout.cshtml";
 }
+@System.Web.Optimization.Scripts.Render("~/bundles/modal_dialogs")
 <div class="middle_content">
     <div class="profile">
         <div>
@@ -77,12 +78,8 @@
                                                         <a href="~/Profile/Index?userId=@friend.user.Id"
                                                            class="sh_fr_name bold_text">@friend.user.Firstname&nbsp;@friend.user.Surname</a>
                                                     </p>
-                                                </div>
-                                                <div class="float_right sh_fr_btn_cont">
-                                                    @*<p class="sh_fr_btn"><a class="sh_fr_btn">Show friends</a></p>
-                                                        <p class="sh_fr_btn">
-                                                            <a class="sh_fr_btn" href="Delete?id=@friend.friend.Id">Delete</a>
-                                                        </p>*@
+                                                    <input type="button" value="Confirm" class="green_btn" style="width: 120px;"
+                                                           onclick="confirm_friend('@friend.user.Id', this)" />
                                                 </div>
                                             </div>
                                         </div>

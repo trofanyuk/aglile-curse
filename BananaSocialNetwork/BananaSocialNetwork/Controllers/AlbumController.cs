@@ -46,9 +46,9 @@ namespace BananaSocialNetwork.Controllers
 
         [HttpPost]
         [Authorize]
-        public ActionResult Create(Album json)
+        public ActionResult Create(Album json, string id)
         {
-            User user = db.Users.Where(m => m.Email == HttpContext.User.Identity.Name).FirstOrDefault();
+            User user = db.Users.Where(m => m.Id == id).FirstOrDefault();
             Album album = new Album()
             {
                 Name = json.Name,

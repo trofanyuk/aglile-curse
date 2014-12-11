@@ -5,13 +5,20 @@
 @{
     ViewBag.Title = "Register";
 }
-
+@Styles.Render("~/Content/bgslider_css")
+<ul class="cb-slideshow">
+    <li><span>Image 01</span></li>
+    <li><span>Image 02</span></li>
+    <li><span>Image 03</span></li>
+    <li><span>Image 04</span></li>
+</ul>
 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
-    <div class="container middle_content min_width">
-        <div class="reg_form" style="margin-top:60px;">
+    <div class="container middle_content min_width" style="background-color: rgba(0, 0, 0, 0.40)">
+        <div class="reg_form" style="margin-top:0px;">
             <div class="header_form"><p class="header_text">Registration</p></div>
+            <div class="validation_conteiner bold_text" style="height:auto;"><p class="validation_text margin_10">@ViewBag.Error</p></div>
             <div class="display_block" style="width:100%">
                 <div class="width_50per float_left">
                     <div class="margin_10">
@@ -28,13 +35,13 @@
                     </div>
                 </div>
                 <div class="width_50per float_right">
-                    <div class="margin_10 validation_conteiner">
+                    <div class="margin_10 validation_conteiner bold_text">
                         @Html.ValidationMessageFor(m => m.Email, "", new { @class = "validation_text" })
                     </div>
-                    <div class="margin_10 validation_conteiner">
+                    <div class="margin_10 validation_conteiner bold_text">
                         @Html.ValidationMessageFor(m => m.Password, "", new { @class = "validation_text" })
                     </div>
-                    <div class="margin_10 validation_conteiner">
+                    <div class="margin_10 validation_conteiner bold_text">
                         @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "validation_text" })
                     </div>
                 </div>
@@ -47,7 +54,7 @@
                 </div>
                 <div class="width_50per float_right">
                     <div class="margin_10">
-                        <p class="note">
+                        <p class="white_text text-size-10">
                             Note: your friends can find you by name or email. Your e-mail address will be hidden from other users. You can change the settings at any time.
                         </p>
                     </div>

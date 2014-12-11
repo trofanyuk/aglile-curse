@@ -192,6 +192,7 @@ namespace BananaSocialNetwork.Controllers
                                                                    + callbackUrl + "\">завершить регистрацию</a>");
                         return View("ConfirmEmail");
                     }
+                    ViewBag.Error = "User with this login exists";
                     AddErrors(result);
                 }
                 catch (Exception ex)
