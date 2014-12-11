@@ -303,6 +303,20 @@ function delete_user(id)
     });
 }
 
+function delete_comment(idComment)
+{
+    $.ajax({
+        type: "GET",
+        url: "/Comment/DeleteConfirmed/",
+        data: { id: idComment },
+        success: function (viewHTML) {
+            $("#comment_placeholder_" + idComment).remove();
+        },
+        error: function (errorData) {
+            alert("Something wrong!");
+        }
+    });
+}
 ///  search  ///
 
 function find_peoples() {

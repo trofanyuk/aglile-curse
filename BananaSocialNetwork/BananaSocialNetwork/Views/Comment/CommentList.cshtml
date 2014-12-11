@@ -19,11 +19,15 @@
                     </div>
                 </div>
             </div>
-            <div class="float_right del">
-                <a onclick="del_comment(@comment.Id, @id_div)" class="dark_green_text">
-                    <i class="fa fa-close fa-1x"></i>
-                </a>
-            </div>
+            @if (User.Identity.Name.Equals(comment.User.UserName) || User.IsInRole("admin"))
+            {
+                <div class="float_right del">
+                    <a onclick="del_comment(@comment.Id, @id_div)" class="dark_green_text">
+                        <i class="fa fa-close fa-1x"></i>
+                    </a>
+                </div>
+            }
+
         </div>
     </div>
 }

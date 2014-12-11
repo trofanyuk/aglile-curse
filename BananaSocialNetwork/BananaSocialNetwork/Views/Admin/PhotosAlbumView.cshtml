@@ -22,7 +22,7 @@
                     <div class="scroll-x" style="height: 100%">
                         @foreach (var comment in db.Comments.ToList().Where(m => m.Photo.Id == photo.Id))
                         {
-                            <div class="display_block comment_block">
+                            <div class="display_block comment_block" id="comment_placeholder_@comment.Id">
                                 <div class="float_left news_header">
                                     <div class="float_left">
                                         <div class="news_avatar margin_5" style="background-image:url(@comment.User.AvatatPath)"></div>
@@ -33,7 +33,9 @@
                                         <p class="text-size-10 line_height_5">@comment.Text</p>
                                     </div>
                                 </div>
-                                <div class="float_right"></div>
+                                <div class="float_right">
+                                    <i class="fa fa-close cur_poiter" onclick="delete_comment(@comment.Id)"></i>
+                                </div>
                             </div>
                         }
                     </div>
